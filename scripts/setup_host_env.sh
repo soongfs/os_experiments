@@ -14,7 +14,7 @@ mkdir -p "${WORKDIR}"
 cd "${WORKDIR}"
 
 ${SUDO} apt-get update
-DEBIAN_FRONTEND=noninteractive ${SUDO} apt-get install -y build-essential curl git
+DEBIAN_FRONTEND=noninteractive ${SUDO} apt-get install -y build-essential bsdextrautils curl git
 
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 

@@ -1,0 +1,8 @@
+label=run3
+log_path=artifacts/run3_event_log.txt
+total_claims=16
+claims_by_thread[0]=4
+claims_by_thread[1]=3
+claims_by_thread[2]=5
+claims_by_thread[3]=4
+claim_sequence=T3 -> T0 -> T1 -> T2 -> T3 -> T0 -> T1 -> T2 -> T3 -> T0 -> T1 -> T2 -> T2 -> T2 -> T3 -> T0

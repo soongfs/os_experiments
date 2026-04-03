@@ -1,0 +1,16 @@
+thread-0 claimed slot-0
+thread-3 claimed slot-1
+thread-1 claimed slot-2
+thread-2 claimed slot-3
+thread-1 claimed slot-4
+thread-0 claimed slot-5
+thread-3 claimed slot-6
+thread-2 claimed slot-7
+thread-1 claimed slot-8
+thread-0 claimed slot-9
+thread-3 claimed slot-10
+thread-2 claimed slot-11
+thread-0 claimed slot-12
+thread-1 claimed slot-13
+thread-3 claimed slot-14
+thread-2 claimed slot-15
