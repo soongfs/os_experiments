@@ -1,0 +1,180 @@
+608-8000055e: 65ac         	ld	a1, 0x48(a1)
+609-80000560: 00000097     	auipc	ra, 0x0
+610-80000564: 404080e7     	jalr	0x404(ra) <lab2_task1::sys_write::h71f1739792eb04f7>
+611-80000568: f42a         	sd	a0, 0x28(sp)
+612-8000056a: a899         	j	0x800005c0 <.Lpcrel_hi3+0x24>
+613-8000056c: 6562         	ld	a0, 0x18(sp)
+614-8000056e: 6128         	ld	a0, 0x40(a0)
+615-80000570: 00000097     	auipc	ra, 0x0
+616:80000574: 122080e7     	jalr	0x122(ra) <lab2_task1::sys_get_taskinfo::h06016bf8fc0478f5>
+617-80000578: f82a         	sd	a0, 0x30(sp)
+618-8000057a: 7542         	ld	a0, 0x30(sp)
+619-8000057c: c145         	beqz	a0, 0x8000061c <.Lpcrel_hi5>
+620-8000057e: a0b9         	j	0x800005cc <.Lpcrel_hi3+0x30>
+621-80000580: 6562         	ld	a0, 0x18(sp)
+622-80000582: 6128         	ld	a0, 0x40(a0)
+623-80000584: c7aa         	sw	a0, 0xcc(sp)
+624-80000586: 01ec         	addi	a1, sp, 0xcc
+--
+724-80000684: f42a         	sd	a0, 0x28(sp)
+725-80000686: bf2d         	j	0x800005c0 <.Lpcrel_hi3+0x24>
+726-
+727-0000000080000688 <lab2_task1::user_memory_end::hd133bbb8d5fbcdd0>:
+728-80000688: 0000b517     	auipc	a0, 0xb
+729-8000068c: 4a850513     	addi	a0, a0, 0x4a8
+730-80000690: 8082         	ret
+731-
+732:0000000080000692 <lab2_task1::sys_get_taskinfo::h06016bf8fc0478f5>:
+733-80000692: 7139         	addi	sp, sp, -0x40
+734-80000694: fc06         	sd	ra, 0x38(sp)
+735-80000696: f02a         	sd	a0, 0x20(sp)
+736-80000698: 00000097     	auipc	ra, 0x0
+737-8000069c: a48080e7     	jalr	-0x5b8(ra) <lab2_task1::validated_user_mut::h7dc5cfbe0357450a>
+738-800006a0: e82a         	sd	a0, 0x10(sp)
+739-800006a2: ec2e         	sd	a1, 0x18(sp)
+740-800006a4: 6542         	ld	a0, 0x10(sp)
+741-800006a6: 8905         	andi	a0, a0, 0x1
+742:800006a8: c511         	beqz	a0, 0x800006b4 <lab2_task1::sys_get_taskinfo::h06016bf8fc0478f5+0x22>
+743:800006aa: a009         	j	0x800006ac <lab2_task1::sys_get_taskinfo::h06016bf8fc0478f5+0x1a>
+744-800006ac: 6562         	ld	a0, 0x18(sp)
+745-800006ae: f82a         	sd	a0, 0x30(sp)
+746-800006b0: e42a         	sd	a0, 0x8(sp)
+747-800006b2: a035         	j	0x800006de <.Lpcrel_hi9+0x14>
+748-800006b4: 6662         	ld	a2, 0x18(sp)
+749-800006b6: f432         	sd	a2, 0x28(sp)
+750-800006b8: 4501         	li	a0, 0x0
+751-800006ba: f208         	sd	a0, 0x20(a2)
+--
+1183-80000aa4: 00000097     	auipc	ra, 0x0
+1184-80000aa8: 62c080e7     	jalr	0x62c(ra) <lab2_task1::user_console::print::h2e32b5565952565b>
+1185-80000aac: 1808         	addi	a0, sp, 0x30
+1186-80000aae: f42a         	sd	a0, 0x28(sp)
+1187-80000ab0: 00000097     	auipc	ra, 0x0
+1188-80000ab4: dc4080e7     	jalr	-0x23c(ra) <lab2_task1::TaskInfo::empty::h6f5c5c7b5852c48c>
+1189-80000ab8: 7522         	ld	a0, 0x28(sp)
+1190-80000aba: 00000097     	auipc	ra, 0x0
+1191:80000abe: 42e080e7     	jalr	0x42e(ra) <lab2_task1::syscall::get_taskinfo::hd2e27fb9ada967dc>
+1192-80000ac2: ecaa         	sd	a0, 0x58(sp)
+1193-80000ac4: 6566         	ld	a0, 0x58(sp)
+1194-80000ac6: cd39         	beqz	a0, 0x80000b24 <.Lpcrel_hi29+0x1c>
+1195-80000ac8: a009         	j	0x80000aca <.Lpcrel_hi28+0x38>
+1196-80000aca: 6566         	ld	a0, 0x58(sp)
+1197-80000acc: 00000097     	auipc	ra, 0x0
+1198-80000ad0: 438080e7     	jalr	0x438(ra) <lab2_task1::syscall::describe_error::hbd4e922f5bf8cbca>
+1199-80000ad4: f92a         	sd	a0, 0xb0(sp)
+--
+1263-80000b70: 188c         	addi	a1, sp, 0x70
+1264-80000b72: 00000097     	auipc	ra, 0x0
+1265-80000b76: 554080e7     	jalr	0x554(ra) <core::fmt::Arguments::new::hb617f8b7156eab4b>
+1266-80000b7a: 00000097     	auipc	ra, 0x0
+1267-80000b7e: 556080e7     	jalr	0x556(ra) <lab2_task1::user_console::print::h2e32b5565952565b>
+1268-80000b82: a009         	j	0x80000b84 <.Lpcrel_hi30+0x1c>
+1269-80000b84: 4501         	li	a0, 0x0
+1270-80000b86: 00000097     	auipc	ra, 0x0
+1271:80000b8a: 362080e7     	jalr	0x362(ra) <lab2_task1::syscall::get_taskinfo::hd2e27fb9ada967dc>
+1272-80000b8e: e22a         	sd	a0, 0x100(sp)
+1273-80000b90: 6512         	ld	a0, 0x100(sp)
+1274-80000b92: c141         	beqz	a0, 0x80000c12 <.Lpcrel_hi33>
+1275-80000b94: a009         	j	0x80000b96 <.Lpcrel_hi30+0x2e>
+1276-80000b96: 6512         	ld	a0, 0x100(sp)
+1277-80000b98: 00000097     	auipc	ra, 0x0
+1278-80000b9c: 36c080e7     	jalr	0x36c(ra) <lab2_task1::syscall::describe_error::hbd4e922f5bf8cbca>
+1279-80000ba0: e62a         	sd	a0, 0x108(sp)
+--
+1669-
+1670-0000000080000ede <_$LT$I$u20$as$u20$core..iter..traits..collect..IntoIterator$GT$::into_iter::h08dba9a15c61c4ca>:
+1671-80000ede: 1141         	addi	sp, sp, -0x10
+1672-80000ee0: e02a         	sd	a0, 0x0(sp)
+1673-80000ee2: e42e         	sd	a1, 0x8(sp)
+1674-80000ee4: 0141         	addi	sp, sp, 0x10
+1675-80000ee6: 8082         	ret
+1676-
+1677:0000000080000ee8 <lab2_task1::syscall::get_taskinfo::hd2e27fb9ada967dc>:
+1678-80000ee8: 1141         	addi	sp, sp, -0x10
+1679-80000eea: e406         	sd	ra, 0x8(sp)
+1680-80000eec: 85aa         	mv	a1, a0
+1681-80000eee: e02e         	sd	a1, 0x0(sp)
+1682-80000ef0: 4505         	li	a0, 0x1
+1683-80000ef2: 4681         	li	a3, 0x0
+1684-80000ef4: 8636         	mv	a2, a3
+1685-80000ef6: 00000097     	auipc	ra, 0x0
+1686:80000efa: 07a080e7     	jalr	0x7a(ra) <lab2_task1::syscall::invoke_syscall3::heda18a77e670d003>
+1687-80000efe: 60a2         	ld	ra, 0x8(sp)
+1688-80000f00: 0141         	addi	sp, sp, 0x10
+1689-80000f02: 8082         	ret
+1690-
+1691-0000000080000f04 <lab2_task1::syscall::describe_error::hbd4e922f5bf8cbca>:
+1692-80000f04: 1101         	addi	sp, sp, -0x20
+1693-80000f06: e02a         	sd	a0, 0x0(sp)
+1694-80000f08: ec2a         	sd	a0, 0x18(sp)
+--
+1735-80000f62: 453d         	li	a0, 0xf
+1736-80000f64: e82a         	sd	a0, 0x10(sp)
+1737-80000f66: a009         	j	0x80000f68 <.Lpcrel_hi3+0x10>
+1738-80000f68: 6522         	ld	a0, 0x8(sp)
+1739-80000f6a: 65c2         	ld	a1, 0x10(sp)
+1740-80000f6c: 6105         	addi	sp, sp, 0x20
+1741-80000f6e: 8082         	ret
+1742-
+1743:0000000080000f70 <lab2_task1::syscall::invoke_syscall3::heda18a77e670d003>:
+1744-80000f70: 7139         	addi	sp, sp, -0x40
+1745-80000f72: e036         	sd	a3, 0x0(sp)
+1746-80000f74: 86b2         	mv	a3, a2
+1747-80000f76: 6602         	ld	a2, 0x0(sp)
+1748-80000f78: e436         	sd	a3, 0x8(sp)
+1749-80000f7a: 86ae         	mv	a3, a1
+1750-80000f7c: 65a2         	ld	a1, 0x8(sp)
+1751-80000f7e: e836         	sd	a3, 0x10(sp)
+1752-80000f80: 88aa         	mv	a7, a0
+1753-80000f82: 6542         	ld	a0, 0x10(sp)
+1754-80000f84: f046         	sd	a7, 0x20(sp)
+1755-80000f86: f42a         	sd	a0, 0x28(sp)
+1756-80000f88: f82e         	sd	a1, 0x30(sp)
+1757-80000f8a: fc32         	sd	a2, 0x38(sp)
+1758-80000f8c: ec2a         	sd	a0, 0x18(sp)
+1759-80000f8e: 6562         	ld	a0, 0x18(sp)
+1760:80000f90: 00000073     	ecall
+1761-80000f94: ec2a         	sd	a0, 0x18(sp)
+1762-80000f96: 6562         	ld	a0, 0x18(sp)
+1763-80000f98: 6121         	addi	sp, sp, 0x40
+1764-80000f9a: 8082         	ret
+1765-
+1766-0000000080000f9c <lab2_task1::syscall::write::hd6fde1bea6cfdfd7>:
+1767-80000f9c: 7139         	addi	sp, sp, -0x40
+1768-80000f9e: fc06         	sd	ra, 0x38(sp)
+--
+1776-80000fb2: a009         	j	0x80000fb4 <lab2_task1::syscall::write::hd6fde1bea6cfdfd7+0x18>
+1777-80000fb4: 6602         	ld	a2, 0x0(sp)
+1778-80000fb6: 65a2         	ld	a1, 0x8(sp)
+1779-80000fb8: f42e         	sd	a1, 0x28(sp)
+1780-80000fba: f832         	sd	a2, 0x30(sp)
+1781-80000fbc: 4681         	li	a3, 0x0
+1782-80000fbe: 8536         	mv	a0, a3
+1783-80000fc0: 00000097     	auipc	ra, 0x0
+1784:80000fc4: fb0080e7     	jalr	-0x50(ra) <lab2_task1::syscall::invoke_syscall3::heda18a77e670d003>
+1785-80000fc8: e82a         	sd	a0, 0x10(sp)
+1786-80000fca: a021         	j	0x80000fd2 <lab2_task1::syscall::write::hd6fde1bea6cfdfd7+0x36>
+1787-80000fcc: 4501         	li	a0, 0x0
+1788-80000fce: e82a         	sd	a0, 0x10(sp)
+1789-80000fd0: a009         	j	0x80000fd2 <lab2_task1::syscall::write::hd6fde1bea6cfdfd7+0x36>
+1790-80000fd2: 6542         	ld	a0, 0x10(sp)
+1791-80000fd4: 70e2         	ld	ra, 0x38(sp)
+1792-80000fd6: 6121         	addi	sp, sp, 0x40
+--
+1797-80000fdc: e406         	sd	ra, 0x8(sp)
+1798-80000fde: c22a         	sw	a0, 0x4(sp)
+1799-80000fe0: 1502         	slli	a0, a0, 0x20
+1800-80000fe2: 02055593     	srli	a1, a0, 0x20
+1801-80000fe6: 4509         	li	a0, 0x2
+1802-80000fe8: 4681         	li	a3, 0x0
+1803-80000fea: 8636         	mv	a2, a3
+1804-80000fec: 00000097     	auipc	ra, 0x0
+1805:80000ff0: f84080e7     	jalr	-0x7c(ra) <lab2_task1::syscall::invoke_syscall3::heda18a77e670d003>
+1806-80000ff4: a009         	j	0x80000ff6 <lab2_task1::syscall::shutdown::h1a5aeaede483d340+0x1c>
+1807-80000ff6: 10500073     	wfi
+1808-80000ffa: bff5         	j	0x80000ff6 <lab2_task1::syscall::shutdown::h1a5aeaede483d340+0x1c>
+1809-
+1810-0000000080000ffc <core::array::_$LT$impl$u20$core..ops..index..Index$LT$I$GT$$u20$for$u20$$u5b$T$u3b$$u20$N$u5d$$GT$::index::h78cd68b19783114c>:
+1811-80000ffc: 7171         	addi	sp, sp, -0xb0
+1812-80000ffe: e432         	sd	a2, 0x8(sp)
+1813-80001000: e82e         	sd	a1, 0x10(sp)

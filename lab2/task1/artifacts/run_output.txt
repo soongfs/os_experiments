@@ -1,0 +1,9 @@
+[kernel] booted in M-mode
+[kernel] launching user task id=1 name=lab2_task1_user
+[user] task started in U-mode
+[kernel] get_taskinfo -> id=1 name=lab2_task1_user
+[user] get_taskinfo success: id=1, name=lab2_task1_user
+[kernel] get_taskinfo rejected user pointer 0x0 with -14
+[user] null pointer call rejected: bad user pointer (-14)
+[user] task finished cleanly
+[kernel] user requested shutdown with code 0
