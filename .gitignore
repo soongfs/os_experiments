@@ -3,3 +3,4 @@ lab0/task2/delayed_write
 lab0/task3/*.o
 lab0/task3/task3_demo
 lab1/task1/list_dir_entries
+lab1/task2/sleep_observer
