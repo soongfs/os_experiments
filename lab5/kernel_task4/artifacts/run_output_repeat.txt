@@ -1,0 +1,37 @@
+[kernel] booted in M-mode
+[kernel] LAB5 kernel task4 kernel-context interrupt handling on SMP
+[kernel] environment: harts=4 boot_stack_per_hart=16384 interrupt_stack_per_hart=8192
+[kernel] interrupt policy: timer=MTIP ipi=MSIP, handlers run on dedicated interrupt stacks and never take the shared spinlock
+[kernel] timer interval=2500 ticks (250 us), critical_hold=4500 ticks (450 us), target_timer_irqs_per_hart=10, target_ipi_receives_per_hart=4
+[hart3] init complete: role=secondary normal_sp=0x8000aa90 interrupt_stack=[0x80016cf0, 0x80018cf0) ready_harts=2/4
+[hart0] init complete: role=primary normal_sp=0x80016920 interrupt_stack=[0x8001ccf0, 0x8001ecf0) ready_harts=1/4
+[hart2] init complete: role=secondary normal_sp=0x8000ea90 interrupt_stack=[0x80018cf0, 0x8001acf0) ready_harts=4/4
+[hart2] start barrier observed
+[hart1] init complete: role=secondary normal_sp=0x80012a90 interrupt_stack=[0x8001acf0, 0x8001ccf0) ready_harts=3/4
+[hart0] start barrier released: ready_harts=4 booted_mask=0xf
+[hart3] start barrier observed
+[hart1] start barrier observed
+[hart3] progress: work_units=6 timer_irqs=31 ipi_irqs=6 interrupts_while_lock_held=13
+[hart1] progress: work_units=6 timer_irqs=30 ipi_irqs=6 interrupts_while_lock_held=12
+[hart0] progress: work_units=6 timer_irqs=36 ipi_irqs=6 interrupts_while_lock_held=15
+[hart2] progress: work_units=6 timer_irqs=41 ipi_irqs=6 interrupts_while_lock_held=11
+[hart0] progress: work_units=12 timer_irqs=60 ipi_irqs=6 interrupts_while_lock_held=24
+[hart3] progress: work_units=12 timer_irqs=63 ipi_irqs=6 interrupts_while_lock_held=22
+[hart0] worker complete: work_units=12 timer_irqs=62 ipi_irqs=6 interrupts_while_lock_held=24 finished_harts=1/4
+[hart3] worker complete: work_units=12 timer_irqs=65 ipi_irqs=6 interrupts_while_lock_held=22 finished_harts=2/4
+[hart1] progress: work_units=12 timer_irqs=71 ipi_irqs=6 interrupts_while_lock_held=20
+[hart1] worker complete: work_units=12 timer_irqs=72 ipi_irqs=6 interrupts_while_lock_held=20 finished_harts=3/4
+[hart2] progress: work_units=12 timer_irqs=78 ipi_irqs=6 interrupts_while_lock_held=19
+[hart2] worker complete: work_units=12 timer_irqs=81 ipi_irqs=6 interrupts_while_lock_held=19 finished_harts=4/4
+[kernel] summary: ready_harts=4 booted_mask=0xf finished_harts=4 shared_critical_sections=48 shared_checksum=0x531ffea66a325e87
+[kernel] shared_lock: acquisitions=50 contention_spins=424720 lock_state_violations=0
+[kernel] hart[0]: init_done=1 work_units=12 timer_irqs=62 ipi_sent=6 ipi_irqs=6 interrupts_while_lock_held=24 last_mepc=0x80002494
+[kernel] hart[0]: interrupt_stack=[0x8001ccf0, 0x8001ecf0) min_sp=0x8001eae0 last_sp=0x8001eae0
+[kernel] hart[1]: init_done=1 work_units=12 timer_irqs=72 ipi_sent=6 ipi_irqs=6 interrupts_while_lock_held=20 last_mepc=0x80002494
+[kernel] hart[1]: interrupt_stack=[0x8001acf0, 0x8001ccf0) min_sp=0x8001cae0 last_sp=0x8001cae0
+[kernel] hart[2]: init_done=1 work_units=12 timer_irqs=81 ipi_sent=6 ipi_irqs=6 interrupts_while_lock_held=19 last_mepc=0x80002494
+[kernel] hart[2]: interrupt_stack=[0x80018cf0, 0x8001acf0) min_sp=0x8001aae0 last_sp=0x8001aae0
+[kernel] hart[3]: init_done=1 work_units=12 timer_irqs=65 ipi_sent=6 ipi_irqs=6 interrupts_while_lock_held=22 last_mepc=0x80002494
+[kernel] hart[3]: interrupt_stack=[0x80016cf0, 0x80018cf0) min_sp=0x80018ae0 last_sp=0x80018ae0
+[kernel] acceptance each hart handled timer interrupts and IPIs: PASS
+[kernel] acceptance interrupt handlers preserved dedicated stacks and lock state: PASS
