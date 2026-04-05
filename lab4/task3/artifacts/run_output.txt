@@ -1,0 +1,21 @@
+[info] page_size=4096 bytes mapping=0x743a5269f000
+[pre-fork/page0] value=0x1111111111111111 owner=seed_page0 self_pfn=0x11f5c0 peer_pfn=0x11f5c0 self_kpagecount=1 peer_kpagecount=1
+[pre-fork/page1] value=0x2222222222222222 owner=seed_page1 self_pfn=0x10ea8b peer_pfn=0x10ea8b self_kpagecount=1 peer_kpagecount=1
+[info] child_pid=10532
+[post-fork] parent and child initial views should match before any write
+[post-fork/page0] value=0x1111111111111111 owner=seed_page0 self_pfn=0x11f5c0 peer_pfn=0x11f5c0 self_kpagecount=2 peer_kpagecount=2
+[post-fork/page1] value=0x2222222222222222 owner=seed_page1 self_pfn=0x10ea8b peer_pfn=0x10ea8b self_kpagecount=2 peer_kpagecount=2
+[child-write/page0] child_minflt_delta=2 child_majflt_delta=0
+[child-write/page0/parent-view] value=0x1111111111111111 owner=seed_page0 self_pfn=0x11f5c0 peer_pfn=0x1c9855 self_kpagecount=1 peer_kpagecount=1
+[child-write/page0/child-view] value=0xc0ffee0000000001 owner=child_page0 child_pfn=0x1c9855 child_kpagecount=1
+[child-write/page1/shared-still] value=0x2222222222222222 owner=seed_page1 self_pfn=0x10ea8b peer_pfn=0x10ea8b self_kpagecount=2 peer_kpagecount=2
+[parent-write/page1] parent_minflt_delta=1 parent_majflt_delta=0
+[parent-write/page1/parent-view] value=0xa11ce00000000002 owner=parent_page1 self_pfn=0x126271 peer_pfn=0x10ea8b self_kpagecount=1 peer_kpagecount=1
+[parent-write/page1/child-view] value=0x2222222222222222 owner=seed_page1 child_pfn=0x10ea8b child_kpagecount=1
+[final] parent_page0=0x1111111111111111 (seed_page0) parent_page1=0xa11ce00000000002 (parent_page1)
+[final] child_page0=0xc0ffee0000000001 (child_page0) child_page1=0x2222222222222222 (seed_page1)
+[acceptance] fork initial values same: PASS
+[acceptance] child write isolates page0: PASS
+[acceptance] parent write isolates page1: PASS
+[acceptance] child first write triggered COW minor fault: PASS
+[acceptance] parent first write triggered COW minor fault: PASS

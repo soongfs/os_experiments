@@ -1,0 +1,12 @@
+uid=0(root) gid=0(root) groups=0(root)
+gcc (Debian 14.2.0-19) 14.2.0
+Linux 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 GNU/Linux
+4096
+--- /proc/vmstat cow probe ---
+cow_ksm 0
+--- pagemap interfaces ---
+/proc/kpagecount
+/proc/kpageflags
+/proc/self/clear_refs
+/proc/self/pagemap
+/proc/self/smaps
