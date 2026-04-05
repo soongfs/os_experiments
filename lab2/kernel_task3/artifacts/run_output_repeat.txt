@@ -1,0 +1,133 @@
+[kernel] booted in M-mode
+[kernel] starting LAB2 kernel task3 completion-time suite
+[kernel] time source: CLINT mtime @ 0x200bff8, timebase-frequency=10000000 Hz, 1 tick=100 ns
+[kernel] timing window: after kernel setup, immediately before mret to U-mode, until first trap back from the app
+[kernel] each app runs 1 warm-up round plus 3 measured rounds; summary excludes warm-up
+[kernel] launch app=io_burst warm-up run | expected: I/O-heavy: UART writes dominate; timing should include serial output cost
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+[kernel] result io_burst warm-up: status=exit(0) mtime=[28094 -> 34445] delta=6351 ticks = 635 us = 0.635 ms
+[kernel] launch app=io_burst round=1/3 | expected: I/O-heavy: UART writes dominate; timing should include serial output cost
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+[kernel] result io_burst round 1: status=exit(0) mtime=[42647 -> 44759] delta=2112 ticks = 211 us = 0.211 ms
+[kernel] launch app=io_burst round=2/3 | expected: I/O-heavy: UART writes dominate; timing should include serial output cost
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+[kernel] result io_burst round 2: status=exit(0) mtime=[50030 -> 52122] delta=2092 ticks = 209 us = 0.209 ms
+[kernel] launch app=io_burst round=3/3 | expected: I/O-heavy: UART writes dominate; timing should include serial output cost
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+[kernel] result io_burst round 3: status=exit(0) mtime=[57116 -> 59385] delta=2269 ticks = 226 us = 0.226 ms
+[kernel] launch app=compute_spin warm-up run | expected: compute-heavy: expected to be the slowest on average
+[kernel] result compute_spin warm-up: status=exit(0) mtime=[63623 -> 95297] delta=31674 ticks = 3167 us = 3.167 ms
+[kernel] launch app=compute_spin round=1/3 | expected: compute-heavy: expected to be the slowest on average
+[kernel] result compute_spin round 1: status=exit(0) mtime=[99893 -> 131342] delta=31449 ticks = 3144 us = 3.144 ms
+[kernel] launch app=compute_spin round=2/3 | expected: compute-heavy: expected to be the slowest on average
+[kernel] result compute_spin round 2: status=exit(0) mtime=[135937 -> 167163] delta=31226 ticks = 3122 us = 3.122 ms
+[kernel] launch app=compute_spin round=3/3 | expected: compute-heavy: expected to be the slowest on average
+[kernel] result compute_spin round 3: status=exit(0) mtime=[171692 -> 203673] delta=31981 ticks = 3198 us = 3.198 ms
+[kernel] launch app=info_probe warm-up run | expected: syscall-heavy but low-output: repeated get_taskinfo probes should remain shorter than compute_spin
+[kernel] result info_probe warm-up: status=exit(0) mtime=[209210 -> 214748] delta=5538 ticks = 553 us = 0.553 ms
+[kernel] launch app=info_probe round=1/3 | expected: syscall-heavy but low-output: repeated get_taskinfo probes should remain shorter than compute_spin
+[kernel] result info_probe round 1: status=exit(0) mtime=[220138 -> 220539] delta=401 ticks = 40 us = 0.040 ms
+[kernel] launch app=info_probe round=2/3 | expected: syscall-heavy but low-output: repeated get_taskinfo probes should remain shorter than compute_spin
+[kernel] result info_probe round 2: status=exit(0) mtime=[227885 -> 228252] delta=367 ticks = 36 us = 0.036 ms
+[kernel] launch app=info_probe round=3/3 | expected: syscall-heavy but low-output: repeated get_taskinfo probes should remain shorter than compute_spin
+[kernel] result info_probe round 3: status=exit(0) mtime=[233813 -> 234202] delta=389 ticks = 38 us = 0.038 ms
+[kernel] final timing summary:
+[kernel] summary io_burst: measured_runs=3 ok=3 min=209 us (0.209 ms) max=226 us (0.226 ms) avg=2157 ticks / 215 us (0.215 ms) spread=17 us (07.90%)
+[kernel] summary compute_spin: measured_runs=3 ok=3 min=3122 us (3.122 ms) max=3198 us (3.198 ms) avg=31552 ticks / 3154 us (3.154 ms) spread=76 us (02.40%)
+[kernel] summary info_probe: measured_runs=3 ok=3 min=36 us (0.036 ms) max=40 us (0.040 ms) avg=385 ticks / 38 us (0.038 ms) spread=4 us (10.52%)
+[kernel] check all runs exited successfully: PASS
+[kernel] check every run captured a non-zero mtime delta: PASS
+[kernel] check each app was measured 3 times after warm-up: PASS
+[kernel] check compute_spin stays slowest on average: PASS
