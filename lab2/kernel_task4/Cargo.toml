@@ -1,0 +1,10 @@
+[package]
+name = "lab2_kernel_task4"
+version = "0.1.0"
+edition = "2021"
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"

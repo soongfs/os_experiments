@@ -1,0 +1,41 @@
+[kernel] booted in S-mode
+[kernel] starting LAB2 kernel task4 exception diagnostics suite
+[kernel] trap CSRs: scause/sepc/stval will be logged from supervisor trap context
+[kernel] address layout: kernel identity @ 0x80000000, user alias @ 0x40000000
+[kernel] exception summary target: Illegal Instruction + Store/AMO Page Fault, then continue running later tasks
+[kernel] launch app=healthy_before_faults | expected=normal write+exit path should succeed
+[user] healthy_before_faults
+[kernel] result app=healthy_before_faults status=exit(0)
+[kernel] launch app=illegal_instruction | expected=U-mode writes sstatus CSR and should raise Illegal Instruction
+[kernel] exception app=illegal_instruction action=kill-and-continue
+[kernel]   scause=0x2 interrupt=0 code=2 type=Illegal Instruction
+[kernel]   sepc=0x40000b48 stval=0x10001073
+[kernel]   instruction=0x10001073
+[kernel]   regs ra=0x80001018 sp=0x400141e0 gp=0x0 s0=0x0 a0=0x40000b48 a1=0x400141e0 a7=0x1
+[kernel] result app=illegal_instruction status=fault(type=Illegal Instruction, scause=0x2, sepc=0x40000b48, stval=0x10001073)
+[kernel] launch app=healthy_after_illegal | expected=system should continue after illegal instruction fault
+[user] survived_illegal_instruction
+[kernel] result app=healthy_after_illegal status=exit(0)
+[kernel] launch app=store_page_fault | expected=U-mode store to unmapped address 0x0 should raise Store/AMO Page Fault
+[kernel] exception app=store_page_fault action=kill-and-continue
+[kernel]   scause=0xf interrupt=0 code=15 type=Store/AMO Page Fault
+[kernel]   sepc=0x40000bda stval=0x0
+[kernel]   instruction=0x0000e188
+[kernel]   regs ra=0x40000bd4 sp=0x400141a0 gp=0x0 s0=0x0 a0=0xdeadbeefdeadbeef a1=0x0 a7=0x1
+[kernel] result app=store_page_fault status=fault(type=Store/AMO Page Fault, scause=0xf, sepc=0x40000bda, stval=0x0)
+[kernel] launch app=healthy_after_store_fault | expected=system should continue after store page fault
+[user] survived_store_page_fault
+[kernel] result app=healthy_after_store_fault status=exit(0)
+[kernel] final exception summary:
+[kernel] result app=healthy_before_faults status=exit(0)
+[kernel] result app=illegal_instruction status=fault(type=Illegal Instruction, scause=0x2, sepc=0x40000b48, stval=0x10001073)
+[kernel] result app=healthy_after_illegal status=exit(0)
+[kernel] result app=store_page_fault status=fault(type=Store/AMO Page Fault, scause=0xf, sepc=0x40000bda, stval=0x0)
+[kernel] result app=healthy_after_store_fault status=exit(0)
+[kernel] exception_stats illegal_instruction=1 store_page_fault=1 load_page_fault=0 instruction_page_fault=0 other_faults=0 clean_exits=3
+[kernel] check healthy task before faults exits cleanly: PASS
+[kernel] check illegal instruction fault captured with scause/sepc/stval: PASS
+[kernel] check system continues after illegal instruction: PASS
+[kernel] check store page fault captured with scause/sepc/stval: PASS
+[kernel] check system continues after store page fault: PASS
+[kernel] check exception counters are consistent: PASS
