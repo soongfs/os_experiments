@@ -1,0 +1,45 @@
+[kernel] booted in M-mode
+[kernel] starting LAB2 task2 statistics suite
+[kernel] launch task id=1 name=io_burst | expected: write syscall count should dominate; elapsed cycles should stay modest
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+[kernel] result io_burst: status=exit(0) cycles=8415640 total=25 write=24 get_taskinfo=0 error=0
+[kernel] launch task id=2 name=compute_spin | expected: almost no syscalls, but elapsed cycles should be the highest
+[kernel] result compute_spin: status=exit(0) cycles=20854920 total=1 write=0 get_taskinfo=0 error=0
+[kernel] launch task id=3 name=info_flood | expected: get_taskinfo calls should dominate and returned snapshots should grow monotonically
+[kernel] result info_flood: status=exit(0) cycles=6339640 total=21 write=0 get_taskinfo=20 error=0
+[kernel] launch task id=4 name=illegal_trap | expected: should trigger an illegal-instruction trap and be recorded as faulted
+[kernel] task illegal_trap faulted: mcause=0x2 mepc=0x80001ac2 mtval=0x30501073
+[kernel] result illegal_trap: status=fault(cause=0x2, mtval=0x30501073) cycles=6296559 total=0 write=0 get_taskinfo=0 error=0
+[kernel] final statistics report:
+[kernel] result io_burst: status=exit(0) cycles=8415640 total=25 write=24 get_taskinfo=0 error=0
+[kernel] result compute_spin: status=exit(0) cycles=20854920 total=1 write=0 get_taskinfo=0 error=0
+[kernel] result info_flood: status=exit(0) cycles=6339640 total=21 write=0 get_taskinfo=20 error=0
+[kernel] result illegal_trap: status=fault(cause=0x2, mtval=0x30501073) cycles=6296559 total=0 write=0 get_taskinfo=0 error=0
+[kernel] check io_burst writes: PASS
+[kernel] check compute_spin low-syscall/high-time trend: PASS
+[kernel] check info_flood get_taskinfo trend: PASS
+[kernel] check illegal_trap robustness path: PASS
+[kernel] cross-task trend comparison: PASS
