@@ -15,6 +15,15 @@ For simple tasks, a single `.c` or `.rs` file is acceptable. For larger tasks, f
 
 If a new task would conflict with an existing task directory that already serves a different lab requirement, prefer creating a new task directory instead of overloading the old one.
 
+## Execution Environment by Lab
+
+Do not assume that every lab runs in the same execution environment.
+
+- `LAB0` and `LAB1` tasks run directly in the host Linux user-space environment unless the task explicitly says otherwise. These labs use the host kernel's existing process, file system, signal, and scheduling facilities.
+- From `LAB2` onward, tasks may split into user-space and kernel-space roles inside a RISC-V bare-metal environment under QEMU. In these labs, both the user program and the teaching kernel run inside the QEMU guest unless the task explicitly says otherwise.
+- For `LAB2+`, "user-space task" means lower-privilege code inside the guest, such as U-mode code, not a host Linux process. "Kernel-space task" means the teaching kernel running inside the guest, such as M-mode or S-mode code, not the host machine's real kernel.
+- When writing READMEs, state clearly whether the observed behavior comes from the host Linux environment or from the QEMU guest environment.
+
 ## Required Environment
 
 All labs should be reproducible on WSL Debian and on a native Linux server. The baseline host toolchain should include:
