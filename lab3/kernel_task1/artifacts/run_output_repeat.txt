@@ -1,0 +1,37 @@
+[kernel] booted in M-mode
+[kernel] LAB3 kernel task1 task-switch visualization
+[kernel] timer source: mtime=0x200bff8, mtimecmp=0x2004000, frequency=10000000 Hz, 1 tick=100 ns
+[kernel] switch trace: enabled=true, limit=10 record(s)
+[kernel] workloads: 3 rounds of explicit yield, 3 long phases for timer preemption
+[sched] boot restore_begin: to id=1 name=yield_demo reason=boot next_mepc=0x800025da
+[sched] switch#01 save_done: from id=1 name=yield_demo reason=explicit_yield saved_mepc=0x80002afa
+[sched] switch#01 restore_begin: to id=2 name=timeslice_demo reason=explicit_yield next_mepc=0x80002578
+[sched] switch#02 save_done: from id=2 name=timeslice_demo reason=time_slice saved_mepc=0x80002578
+[sched] switch#02 restore_begin: to id=1 name=yield_demo reason=time_slice next_mepc=0x80002afa
+[sched] switch#03 save_done: from id=1 name=yield_demo reason=time_slice saved_mepc=0x80001f26
+[sched] switch#03 restore_begin: to id=2 name=timeslice_demo reason=time_slice next_mepc=0x80002578
+[sched] switch#04 save_done: from id=2 name=timeslice_demo reason=time_slice saved_mepc=0x80000234
+[sched] switch#04 restore_begin: to id=1 name=yield_demo reason=time_slice next_mepc=0x80001f26
+[sched] switch#05 save_done: from id=1 name=yield_demo reason=explicit_yield saved_mepc=0x80002afa
+[sched] switch#05 restore_begin: to id=2 name=timeslice_demo reason=explicit_yield next_mepc=0x80000234
+[sched] switch#06 save_done: from id=2 name=timeslice_demo reason=time_slice saved_mepc=0x80001f5a
+[sched] switch#06 restore_begin: to id=1 name=yield_demo reason=time_slice next_mepc=0x80002afa
+[sched] switch#07 save_done: from id=1 name=yield_demo reason=time_slice saved_mepc=0x80001f5a
+[sched] switch#07 restore_begin: to id=2 name=timeslice_demo reason=time_slice next_mepc=0x80001f5a
+[sched] switch#08 save_done: from id=2 name=timeslice_demo reason=time_slice saved_mepc=0x80001f26
+[sched] switch#08 restore_begin: to id=1 name=yield_demo reason=time_slice next_mepc=0x80001f5a
+[sched] switch#09 save_done: from id=1 name=yield_demo reason=explicit_yield saved_mepc=0x80002afa
+[sched] switch#09 restore_begin: to id=2 name=timeslice_demo reason=explicit_yield next_mepc=0x80001f26
+[sched] switch#10 save_done: from id=2 name=timeslice_demo reason=time_slice saved_mepc=0x80000234
+[sched] switch#10 restore_begin: to id=1 name=yield_demo reason=time_slice next_mepc=0x80002afa
+[sched] switch trace limit reached at 10 record(s); further switches suppressed
+[kernel] task exit: id=1 name=yield_demo code=0xc95c2cca0aecc165
+[kernel] task exit: id=2 name=timeslice_demo code=0x14dc072bf38e21d3
+[kernel] switch summary begins
+[kernel] summary: total_switches=83 explicit_yield_switches=3 time_slice_switches=79 task_exit_switches=1 timer_interrupts=79
+[kernel] task result: id=1 name=yield_demo exit_code=0xc95c2cca0aecc165
+[kernel] task result: id=2 name=timeslice_demo exit_code=0x14dc072bf38e21d3
+[kernel] acceptance: switch logs came from scheduler/switch_to path with save_done + restore_begin markers
+[kernel] acceptance explicit_yield observed: PASS
+[kernel] acceptance time_slice observed: PASS
+[kernel] acceptance multiple readable switches captured: PASS

@@ -1,0 +1,179 @@
+960-800008b0: 30200073     	mret
+961-800008b4: 00000013     	nop
+962-800008b8: 00000013     	nop
+963-800008bc: 00000013     	nop
+964-
+965:00000000800008c0 <trap_entry>:
+966-800008c0: 34011173     	csrrw	sp, mscratch, sp
+967-800008c4: df010113     	addi	sp, sp, -0x210
+968-800008c8: e006         	sd	ra, 0x0(sp)
+969-800008ca: e40e         	sd	gp, 0x8(sp)
+970-800008cc: e812         	sd	tp, 0x10(sp)
+--
+1414-80000cec: 00000097     	auipc	ra, 0x0
+1415-80000cf0: 23e080e7     	jalr	0x23e(ra) <lab3_kernel_task1::handle_syscall::h7181c953ccfe626b>
+1416-80000cf4: a039         	j	0x80000d02 <.Lpcrel_hi14+0x48>
+1417-80000cf6: 6522         	ld	a0, 0x8(sp)
+1418-80000cf8: 00001097     	auipc	ra, 0x1
+1419:80000cfc: f68080e7     	jalr	-0x98(ra) <lab3_kernel_task1::handle_timer_interrupt::hd04b505bb4f726fc>
+1420-80000d00: a009         	j	0x80000d02 <.Lpcrel_hi14+0x48>
+1421-80000d02: 70ea         	ld	ra, 0xb8(sp)
+1422-80000d04: 6129         	addi	sp, sp, 0xc0
+1423-80000d06: 8082         	ret
+1424-
+--
+1634-80000f00: 00004717     	auipc	a4, 0x4
+1635-80000f04: 5d870713     	addi	a4, a4, 0x5d8
+1636-80000f08: e314         	sd	a3, 0x0(a4)
+1637-80000f0a: 468d         	li	a3, 0x3
+1638-80000f0c: 00001097     	auipc	ra, 0x1
+1639:80000f10: 162080e7     	jalr	0x162(ra) <lab3_kernel_task1::switch_to::hb0871a6aded13b42>
+1640-80000f14: 60ee         	ld	ra, 0xd8(sp)
+1641-80000f16: 612d         	addi	sp, sp, 0xe0
+1642-80000f18: 8082         	ret
+1643-
+1644-0000000080000f1a <.Lpcrel_hi34>:
+--
+1683-80000f7a: fda00513     	li	a0, -0x26
+1684-80000f7e: e1a8         	sd	a0, 0x40(a1)
+1685-80000f80: a831         	j	0x80000f9c <.Lpcrel_hi35+0x3e>
+1686-80000f82: 6522         	ld	a0, 0x8(sp)
+1687-80000f84: 00001097     	auipc	ra, 0x1
+1688:80000f88: bfc080e7     	jalr	-0x404(ra) <lab3_kernel_task1::handle_explicit_yield::ha7df9ed6bf7a378c>
+1689-80000f8c: a801         	j	0x80000f9c <.Lpcrel_hi35+0x3e>
+1690-80000f8e: 65a2         	ld	a1, 0x8(sp)
+1691-80000f90: 61a8         	ld	a0, 0x40(a1)
+1692-80000f92: 00000097     	auipc	ra, 0x0
+1693-80000f96: d76080e7     	jalr	-0x28a(ra) <lab3_kernel_task1::handle_finish::h3539cf28a55968d4>
+--
+2918-80001b70: 00003517     	auipc	a0, 0x3
+2919-80001b74: 3c050513     	addi	a0, a0, 0x3c0
+2920-80001b78: 00002097     	auipc	ra, 0x2
+2921-80001b7c: ed8080e7     	jalr	-0x128(ra) <core::panicking::panic_null_pointer_dereference::hbac6411af4f2e916>
+2922-
+2923:0000000080001b80 <lab3_kernel_task1::handle_explicit_yield::ha7df9ed6bf7a378c>:
+2924-80001b80: 711d         	addi	sp, sp, -0x60
+2925-80001b82: ec86         	sd	ra, 0x58(sp)
+2926-80001b84: ec2a         	sd	a0, 0x18(sp)
+2927-80001b86: e0aa         	sd	a0, 0x40(sp)
+2928-80001b88: fffff097     	auipc	ra, 0xfffff
+--
+2940-80001bac: f82a         	sd	a0, 0x30(sp)
+2941-80001bae: fc2e         	sd	a1, 0x38(sp)
+2942-80001bb0: 7542         	ld	a0, 0x30(sp)
+2943-80001bb2: 8905         	andi	a0, a0, 0x1
+2944-80001bb4: c919         	beqz	a0, 0x80001bca <.Lpcrel_hi138+0xc>
+2945:80001bb6: a009         	j	0x80001bb8 <lab3_kernel_task1::handle_explicit_yield::ha7df9ed6bf7a378c+0x38>
+2946-80001bb8: 7562         	ld	a0, 0x38(sp)
+2947-80001bba: e82a         	sd	a0, 0x10(sp)
+2948-80001bbc: e8aa         	sd	a0, 0x50(sp)
+2949-
+2950-0000000080001bbe <.Lpcrel_hi138>:
+--
+2991-80001c1a: 00004717     	auipc	a4, 0x4
+2992-80001c1e: 8de70713     	addi	a4, a4, -0x722
+2993-80001c22: e314         	sd	a3, 0x0(a4)
+2994-80001c24: 4685         	li	a3, 0x1
+2995-80001c26: 00000097     	auipc	ra, 0x0
+2996:80001c2a: 448080e7     	jalr	0x448(ra) <lab3_kernel_task1::switch_to::hb0871a6aded13b42>
+2997-80001c2e: bf71         	j	0x80001bca <.Lpcrel_hi138+0xc>
+2998-
+2999-0000000080001c30 <.Lpcrel_hi144>:
+3000-80001c30: 00003517     	auipc	a0, 0x3
+3001-80001c34: 36850513     	addi	a0, a0, 0x368
+--
+3015-80001c56: e58080e7     	jalr	-0x1a8(ra) <core::ptr::write_volatile::hfd554433e3ab0753>
+3016-80001c5a: 60a2         	ld	ra, 0x8(sp)
+3017-80001c5c: 0141         	addi	sp, sp, 0x10
+3018-80001c5e: 8082         	ret
+3019-
+3020:0000000080001c60 <lab3_kernel_task1::handle_timer_interrupt::hd04b505bb4f726fc>:
+3021-80001c60: 711d         	addi	sp, sp, -0x60
+3022-80001c62: ec86         	sd	ra, 0x58(sp)
+3023-80001c64: f42a         	sd	a0, 0x28(sp)
+3024-80001c66: e0aa         	sd	a0, 0x40(sp)
+3025-80001c68: 00000097     	auipc	ra, 0x0
+--
+3135-80001d6c: 00003717     	auipc	a4, 0x3
+3136-80001d70: 77470713     	addi	a4, a4, 0x774
+3137-80001d74: e314         	sd	a3, 0x0(a4)
+3138-80001d76: 4689         	li	a3, 0x2
+3139-80001d78: 00000097     	auipc	ra, 0x0
+3140:80001d7c: 2f6080e7     	jalr	0x2f6(ra) <lab3_kernel_task1::switch_to::hb0871a6aded13b42>
+3141-80001d80: bf71         	j	0x80001d1c <.Lpcrel_hi153+0xc>
+3142-
+3143-0000000080001d82 <.Lpcrel_hi159>:
+3144-80001d82: 00003517     	auipc	a0, 0x3
+3145-80001d86: 25e50513     	addi	a0, a0, 0x25e
+--
+3472-80002062: 9ec080e7     	jalr	-0x614(ra) <core::ptr::write_volatile::h3898932666397ff8>
+3473-80002066: a009         	j	0x80002068 <.Lpcrel_hi178+0x16>
+3474-80002068: 0100000f     	fence	w, 0
+3475-8000206c: bff5         	j	0x80002068 <.Lpcrel_hi178+0x16>
+3476-
+3477:000000008000206e <lab3_kernel_task1::switch_to::hb0871a6aded13b42>:
+3478-8000206e: cf010113     	addi	sp, sp, -0x310
+3479-80002072: 30113423     	sd	ra, 0x308(sp)
+3480-80002076: f8b2         	sd	a2, 0x70(sp)
+3481-80002078: fcae         	sd	a1, 0x78(sp)
+3482-8000207a: e12a         	sd	a0, 0x80(sp)
+--
+3486-80002084: 2ab13423     	sd	a1, 0x2a8(sp)
+3487-80002088: 2ac13823     	sd	a2, 0x2b0(sp)
+3488-8000208c: 2ad10fa3     	sb	a3, 0x2bf(sp)
+3489-80002090: 4505         	li	a0, 0x1
+3490-80002092: 02b56363     	bltu	a0, a1, 0x800020b8 <.Lpcrel_hi179+0x1a>
+3491:80002096: a009         	j	0x80002098 <lab3_kernel_task1::switch_to::hb0871a6aded13b42+0x2a>
+3492-80002098: 7566         	ld	a0, 0x78(sp)
+3493-8000209a: 00551613     	slli	a2, a0, 0x5
+3494-
+3495-000000008000209e <.Lpcrel_hi179>:
+3496-8000209e: 00003597     	auipc	a1, 0x3
+--
+4655-80002ace: e188         	sd	a0, 0x0(a1)
+4656-80002ad0: 70a2         	ld	ra, 0x28(sp)
+4657-80002ad2: 6145         	addi	sp, sp, 0x30
+4658-80002ad4: 8082         	ret
+4659-
+4660:0000000080002ad6 <lab3_kernel_task1::syscall::invoke_syscall3::hb8f976b03466ca86>:
+4661-80002ad6: 7139         	addi	sp, sp, -0x40
+4662-80002ad8: e036         	sd	a3, 0x0(sp)
+4663-80002ada: 86b2         	mv	a3, a2
+4664-80002adc: 6602         	ld	a2, 0x0(sp)
+4665-80002ade: e436         	sd	a3, 0x8(sp)
+--
+4672-80002aec: f42a         	sd	a0, 0x28(sp)
+4673-80002aee: f82e         	sd	a1, 0x30(sp)
+4674-80002af0: fc32         	sd	a2, 0x38(sp)
+4675-80002af2: ec2a         	sd	a0, 0x18(sp)
+4676-80002af4: 6562         	ld	a0, 0x18(sp)
+4677:80002af6: 00000073     	ecall
+4678-80002afa: ec2a         	sd	a0, 0x18(sp)
+4679-80002afc: 6562         	ld	a0, 0x18(sp)
+4680-80002afe: 6121         	addi	sp, sp, 0x40
+4681-80002b00: 8082         	ret
+4682-
+--
+4687-80002b08: e02e         	sd	a1, 0x0(sp)
+4688-80002b0a: 4505         	li	a0, 0x1
+4689-80002b0c: 4681         	li	a3, 0x0
+4690-80002b0e: 8636         	mv	a2, a3
+4691-80002b10: 00000097     	auipc	ra, 0x0
+4692:80002b14: fc6080e7     	jalr	-0x3a(ra) <lab3_kernel_task1::syscall::invoke_syscall3::hb8f976b03466ca86>
+4693-80002b18: a009         	j	0x80002b1a <lab3_kernel_task1::syscall::finish::h59475b829e5b99a8+0x18>
+4694-80002b1a: 10500073     	wfi
+4695-80002b1e: bff5         	j	0x80002b1a <lab3_kernel_task1::syscall::finish::h59475b829e5b99a8+0x18>
+4696-
+4697-0000000080002b20 <lab3_kernel_task1::syscall::yield_now::h74df35d7a371f7ae>:
+--
+4700-80002b24: 4681         	li	a3, 0x0
+4701-80002b26: 8536         	mv	a0, a3
+4702-80002b28: 85b6         	mv	a1, a3
+4703-80002b2a: 8636         	mv	a2, a3
+4704-80002b2c: 00000097     	auipc	ra, 0x0
+4705:80002b30: faa080e7     	jalr	-0x56(ra) <lab3_kernel_task1::syscall::invoke_syscall3::hb8f976b03466ca86>
+4706-80002b34: 60a2         	ld	ra, 0x8(sp)
+4707-80002b36: 0141         	addi	sp, sp, 0x10
+4708-80002b38: 8082         	ret
+4709-
+4710-0000000080002b3a <_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$::fmt::he513d956590d6506>:
