@@ -1,0 +1,72 @@
+[demo] case=1 ops="&&"
+[theory] expression=fork() && fork()
+[theory] operands=2 operators=1 total_processes=3 child_processes=2 printf_outputs=3 true_results=1 false_results=2
+[theory] fork#1 evaluated_by=1 process(es)
+[theory] fork#2 evaluated_by=1 process(es)
+[verify] expression=fork() && fork()
+[verify] predicted_total_processes=3 predicted_child_processes=2 predicted_printf_outputs=3 predicted_true_results=1 predicted_false_results=2
+[leaf] expression=fork() && fork() pid=15135 ppid=15134 result=false forks_executed_on_path=1
+[leaf] expression=fork() && fork() pid=15134 ppid=15133 result=true forks_executed_on_path=2
+[leaf] expression=fork() && fork() pid=15136 ppid=15134 result=false forks_executed_on_path=2
+[verify] actual_total_processes=3 actual_child_processes=2 actual_printf_outputs=3 actual_true_results=1 actual_false_results=2
+[acceptance] theory matches runtime process/printf counts: PASS
+[demo] case=2 ops="||"
+[theory] expression=fork() || fork()
+[theory] operands=2 operators=1 total_processes=3 child_processes=2 printf_outputs=3 true_results=2 false_results=1
+[theory] fork#1 evaluated_by=1 process(es)
+[theory] fork#2 evaluated_by=1 process(es)
+[verify] expression=fork() || fork()
+[verify] predicted_total_processes=3 predicted_child_processes=2 predicted_printf_outputs=3 predicted_true_results=2 predicted_false_results=1
+[leaf] expression=fork() || fork() pid=15134 ppid=15133 result=true forks_executed_on_path=1
+[leaf] expression=fork() || fork() pid=15137 ppid=15134 result=true forks_executed_on_path=2
+[leaf] expression=fork() || fork() pid=15138 ppid=15137 result=false forks_executed_on_path=2
+[verify] actual_total_processes=3 actual_child_processes=2 actual_printf_outputs=3 actual_true_results=2 actual_false_results=1
+[acceptance] theory matches runtime process/printf counts: PASS
+[demo] case=3 ops="&& ||"
+[theory] expression=fork() && fork() || fork()
+[theory] operands=3 operators=2 total_processes=5 child_processes=4 printf_outputs=5 true_results=3 false_results=2
+[theory] fork#1 evaluated_by=1 process(es)
+[theory] fork#2 evaluated_by=1 process(es)
+[theory] fork#3 evaluated_by=2 process(es)
+[verify] expression=fork() && fork() || fork()
+[verify] predicted_total_processes=5 predicted_child_processes=4 predicted_printf_outputs=5 predicted_true_results=3 predicted_false_results=2
+[leaf] expression=fork() && fork() || fork() pid=15139 ppid=15134 result=true forks_executed_on_path=2
+[leaf] expression=fork() && fork() || fork() pid=15134 ppid=15133 result=true forks_executed_on_path=2
+[leaf] expression=fork() && fork() || fork() pid=15140 ppid=15139 result=false forks_executed_on_path=2
+[leaf] expression=fork() && fork() || fork() pid=15142 ppid=15134 result=true forks_executed_on_path=3
+[leaf] expression=fork() && fork() || fork() pid=15143 ppid=15142 result=false forks_executed_on_path=3
+[verify] actual_total_processes=5 actual_child_processes=4 actual_printf_outputs=5 actual_true_results=3 actual_false_results=2
+[acceptance] theory matches runtime process/printf counts: PASS
+[demo] case=4 ops="|| &&"
+[theory] expression=fork() || fork() && fork()
+[theory] operands=3 operators=2 total_processes=4 child_processes=3 printf_outputs=4 true_results=2 false_results=2
+[theory] fork#1 evaluated_by=1 process(es)
+[theory] fork#2 evaluated_by=1 process(es)
+[theory] fork#3 evaluated_by=1 process(es)
+[verify] expression=fork() || fork() && fork()
+[verify] predicted_total_processes=4 predicted_child_processes=3 predicted_printf_outputs=4 predicted_true_results=2 predicted_false_results=2
+[leaf] expression=fork() || fork() && fork() pid=15134 ppid=15133 result=true forks_executed_on_path=1
+[leaf] expression=fork() || fork() && fork() pid=15145 ppid=15144 result=false forks_executed_on_path=2
+[leaf] expression=fork() || fork() && fork() pid=15144 ppid=15134 result=true forks_executed_on_path=3
+[leaf] expression=fork() || fork() && fork() pid=15146 ppid=15144 result=false forks_executed_on_path=3
+[verify] actual_total_processes=4 actual_child_processes=3 actual_printf_outputs=4 actual_true_results=2 actual_false_results=2
+[acceptance] theory matches runtime process/printf counts: PASS
+[demo] case=5 ops="&& || &&"
+[theory] expression=fork() && fork() || fork() && fork()
+[theory] operands=4 operators=3 total_processes=7 child_processes=6 printf_outputs=7 true_results=3 false_results=4
+[theory] fork#1 evaluated_by=1 process(es)
+[theory] fork#2 evaluated_by=1 process(es)
+[theory] fork#3 evaluated_by=2 process(es)
+[theory] fork#4 evaluated_by=2 process(es)
+[verify] expression=fork() && fork() || fork() && fork()
+[verify] predicted_total_processes=7 predicted_child_processes=6 predicted_printf_outputs=7 predicted_true_results=3 predicted_false_results=4
+[leaf] expression=fork() && fork() || fork() && fork() pid=15134 ppid=15133 result=true forks_executed_on_path=2
+[leaf] expression=fork() && fork() || fork() && fork() pid=15148 ppid=15147 result=false forks_executed_on_path=2
+[leaf] expression=fork() && fork() || fork() && fork() pid=15147 ppid=15134 result=true forks_executed_on_path=3
+[leaf] expression=fork() && fork() || fork() && fork() pid=15150 ppid=15147 result=false forks_executed_on_path=3
+[leaf] expression=fork() && fork() || fork() && fork() pid=15151 ppid=15149 result=false forks_executed_on_path=3
+[leaf] expression=fork() && fork() || fork() && fork() pid=15149 ppid=15134 result=true forks_executed_on_path=4
+[leaf] expression=fork() && fork() || fork() && fork() pid=15152 ppid=15149 result=false forks_executed_on_path=4
+[verify] actual_total_processes=7 actual_child_processes=6 actual_printf_outputs=7 actual_true_results=3 actual_false_results=4
+[acceptance] theory matches runtime process/printf counts: PASS
+[done] demo suite completed successfully

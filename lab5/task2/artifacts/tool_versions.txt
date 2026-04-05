@@ -1,0 +1,4 @@
+gcc (Debian 14.2.0-19) 14.2.0
+Linux Laptop-SoongFS 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 GNU/Linux
+glibc 2.41
+4096
