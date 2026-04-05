@@ -1,0 +1,71 @@
+[kernel] booted in M-mode
+[kernel] LAB5 kernel task2 non-RR scheduler experiment
+[kernel] timer source: mtime=0x200bff8, mtimecmp=0x2004000, frequency=10000000 Hz, 1 tick=100 ns
+[kernel] policies: phase0=round_robin, phase1=static_priority
+[kernel] trace control: enabled=true, limit=18 record(s) per phase
+[kernel] task_def[0]: pid=1 name=interactive_proc class=interactive priority=0 role=yield-heavy short-burst interactive workload
+[kernel] task_def[1]: pid=2 name=compute_short class=compute priority=2 role=cpu-bound short compute workload
+[kernel] task_def[2]: pid=3 name=compute_long class=compute priority=2 role=cpu-bound long compute workload
+[kernel] phase begin: index=0 name=rr_baseline policy=round_robin
+[sched][round_robin] boot restore_begin: to pid=1 name=interactive_proc class=interactive priority=0 reason=boot next_mepc=0x80004772
+[sched][round_robin] switch#01 reason=explicit_yield from pid=1(interactive_proc) runtime=15849 -> to pid=2(compute_short) runtime=0 priority=0->2
+[sched][round_robin] switch#02 reason=time_slice from pid=2(compute_short) runtime=25691 -> to pid=3(compute_long) runtime=0 priority=2->2
+[sched][round_robin] switch#03 reason=time_slice from pid=3(compute_long) runtime=18687 -> to pid=1(interactive_proc) runtime=15849 priority=2->0
+[sched][round_robin] switch#04 reason=explicit_yield from pid=1(interactive_proc) runtime=23499 -> to pid=2(compute_short) runtime=25691 priority=0->2
+[sched][round_robin] switch#05 reason=time_slice from pid=2(compute_short) runtime=36577 -> to pid=3(compute_long) runtime=18687 priority=2->2
+[sched][round_robin] switch#06 reason=time_slice from pid=3(compute_long) runtime=39129 -> to pid=1(interactive_proc) runtime=23499 priority=2->0
+[sched][round_robin] switch#07 reason=explicit_yield from pid=1(interactive_proc) runtime=33800 -> to pid=2(compute_short) runtime=36577 priority=0->2
+[sched][round_robin] switch#08 reason=time_slice from pid=2(compute_short) runtime=45974 -> to pid=3(compute_long) runtime=39129 priority=2->2
+[sched][round_robin] switch#09 reason=time_slice from pid=3(compute_long) runtime=57905 -> to pid=1(interactive_proc) runtime=33800 priority=2->0
+[sched][round_robin] switch#10 reason=explicit_yield from pid=1(interactive_proc) runtime=41060 -> to pid=2(compute_short) runtime=45974 priority=0->2
+[sched][round_robin] switch#11 reason=time_slice from pid=2(compute_short) runtime=57571 -> to pid=3(compute_long) runtime=57905 priority=2->2
+[sched][round_robin] switch#12 reason=time_slice from pid=3(compute_long) runtime=77881 -> to pid=1(interactive_proc) runtime=41060 priority=2->0
+[sched][round_robin] switch#13 reason=explicit_yield from pid=1(interactive_proc) runtime=49012 -> to pid=2(compute_short) runtime=57571 priority=0->2
+[sched][round_robin] switch#14 reason=time_slice from pid=2(compute_short) runtime=68612 -> to pid=3(compute_long) runtime=77881 priority=2->2
+[sched][round_robin] switch#15 reason=time_slice from pid=3(compute_long) runtime=96553 -> to pid=1(interactive_proc) runtime=49012 priority=2->0
+[sched][round_robin] switch#16 reason=explicit_yield from pid=1(interactive_proc) runtime=59993 -> to pid=2(compute_short) runtime=68612 priority=0->2
+[sched][round_robin] switch#17 reason=time_slice from pid=2(compute_short) runtime=76492 -> to pid=3(compute_long) runtime=96553 priority=2->2
+[sched][round_robin] switch#18 reason=time_slice from pid=3(compute_long) runtime=115639 -> to pid=1(interactive_proc) runtime=59993 priority=2->0
+[sched][round_robin] trace limit reached at 18 record(s); further switches suppressed
+[kernel][rr_baseline] process exit: pid=1 name=interactive_proc finish_tick=404943 runtime_ticks=84126 code=0x7114fb989de1911c
+[kernel][rr_baseline] process exit: pid=2 name=compute_short finish_tick=708087 runtime_ticks=280123 code=0xd26a3c4dafde87bc
+[kernel][rr_baseline] process exit: pid=3 name=compute_long finish_tick=858525 runtime_ticks=494276 code=0x740716737bfdc8cf
+[kernel][rr_baseline] summary: policy=round_robin total_switches=48 explicit_yield_switches=10 time_slice_switches=36 task_exit_switches=2 timer_interrupts=44
+[kernel][rr_baseline] proc pid=1 name=interactive_proc class=interactive priority=0 finish_order=1 finish_tick=404943 runtime_ticks=84126 switch_ins=11 explicit_yields=10 time_slice_preemptions=0 exit_code=0x7114fb989de1911c
+[kernel][rr_baseline] proc pid=2 name=compute_short class=compute priority=2 finish_order=2 finish_tick=708087 runtime_ticks=280123 switch_ins=19 explicit_yields=0 time_slice_preemptions=18 exit_code=0xd26a3c4dafde87bc
+[kernel][rr_baseline] proc pid=3 name=compute_long class=compute priority=2 finish_order=3 finish_tick=858525 runtime_ticks=494276 switch_ins=19 explicit_yields=0 time_slice_preemptions=18 exit_code=0x740716737bfdc8cf
+[kernel] phase transition: rr_baseline -> priority_compare
+[kernel] phase begin: index=1 name=priority_compare policy=static_priority
+[sched][static_priority] boot restore_begin: to pid=1 name=interactive_proc class=interactive priority=0 reason=boot next_mepc=0x80004772
+[sched][static_priority] switch#01 reason=explicit_yield from pid=1(interactive_proc) runtime=10182 -> to pid=2(compute_short) runtime=0 priority=0->2
+[sched][static_priority] switch#02 reason=time_slice from pid=2(compute_short) runtime=8670 -> to pid=1(interactive_proc) runtime=10182 priority=2->0
+[sched][static_priority] switch#03 reason=explicit_yield from pid=1(interactive_proc) runtime=17554 -> to pid=3(compute_long) runtime=0 priority=0->2
+[sched][static_priority] switch#04 reason=time_slice from pid=3(compute_long) runtime=11437 -> to pid=1(interactive_proc) runtime=17554 priority=2->0
+[sched][static_priority] switch#05 reason=explicit_yield from pid=1(interactive_proc) runtime=28877 -> to pid=2(compute_short) runtime=8670 priority=0->2
+[sched][static_priority] switch#06 reason=time_slice from pid=2(compute_short) runtime=16433 -> to pid=1(interactive_proc) runtime=28877 priority=2->0
+[sched][static_priority] switch#07 reason=explicit_yield from pid=1(interactive_proc) runtime=36591 -> to pid=3(compute_long) runtime=11437 priority=0->2
+[sched][static_priority] switch#08 reason=time_slice from pid=3(compute_long) runtime=22526 -> to pid=1(interactive_proc) runtime=36591 priority=2->0
+[sched][static_priority] switch#09 reason=explicit_yield from pid=1(interactive_proc) runtime=44611 -> to pid=2(compute_short) runtime=16433 priority=0->2
+[sched][static_priority] switch#10 reason=time_slice from pid=2(compute_short) runtime=28190 -> to pid=1(interactive_proc) runtime=44611 priority=2->0
+[sched][static_priority] switch#11 reason=explicit_yield from pid=1(interactive_proc) runtime=55981 -> to pid=3(compute_long) runtime=22526 priority=0->2
+[sched][static_priority] switch#12 reason=time_slice from pid=3(compute_long) runtime=31092 -> to pid=1(interactive_proc) runtime=55981 priority=2->0
+[sched][static_priority] switch#13 reason=explicit_yield from pid=1(interactive_proc) runtime=64970 -> to pid=2(compute_short) runtime=28190 priority=0->2
+[sched][static_priority] switch#14 reason=time_slice from pid=2(compute_short) runtime=38658 -> to pid=1(interactive_proc) runtime=64970 priority=2->0
+[sched][static_priority] switch#15 reason=explicit_yield from pid=1(interactive_proc) runtime=72999 -> to pid=3(compute_long) runtime=31092 priority=0->2
+[sched][static_priority] switch#16 reason=time_slice from pid=3(compute_long) runtime=41834 -> to pid=1(interactive_proc) runtime=72999 priority=2->0
+[sched][static_priority] switch#17 reason=explicit_yield from pid=1(interactive_proc) runtime=80815 -> to pid=2(compute_short) runtime=38658 priority=0->2
+[sched][static_priority] switch#18 reason=time_slice from pid=2(compute_short) runtime=50048 -> to pid=1(interactive_proc) runtime=80815 priority=2->0
+[sched][static_priority] trace limit reached at 18 record(s); further switches suppressed
+[kernel][priority_compare] process exit: pid=1 name=interactive_proc finish_tick=192054 runtime_ticks=94313 code=0x7114fb989de1911c
+[kernel][priority_compare] process exit: pid=2 name=compute_short finish_tick=616754 runtime_ticks=266874 code=0xd26a3c4dafde87bc
+[kernel][priority_compare] process exit: pid=3 name=compute_long finish_tick=844776 runtime_ticks=483589 code=0x740716737bfdc8cf
+[kernel][priority_compare] summary: policy=static_priority total_switches=44 explicit_yield_switches=10 time_slice_switches=32 task_exit_switches=2 timer_interrupts=44
+[kernel][priority_compare] proc pid=1 name=interactive_proc class=interactive priority=0 finish_order=1 finish_tick=192054 runtime_ticks=94313 switch_ins=11 explicit_yields=10 time_slice_preemptions=0 exit_code=0x7114fb989de1911c
+[kernel][priority_compare] proc pid=2 name=compute_short class=compute priority=2 finish_order=2 finish_tick=616754 runtime_ticks=266874 switch_ins=17 explicit_yields=0 time_slice_preemptions=16 exit_code=0xd26a3c4dafde87bc
+[kernel][priority_compare] proc pid=3 name=compute_long class=compute priority=2 finish_order=3 finish_tick=844776 runtime_ticks=483589 switch_ins=17 explicit_yields=0 time_slice_preemptions=16 exit_code=0x740716737bfdc8cf
+[kernel] comparison: interactive_finish_tick rr=404943 priority=192054 interactive_service_share=20%.7 rr_runtime=84126 priority_runtime=94313
+[kernel] comparison: interactive_service_share_priority=49%.1 priority_switch_ins=11 rr_switch_ins=11
+[kernel] comparison: compute_long_finish_tick rr=858525 priority=844776
+[kernel] acceptance high-priority interactive task favored under static_priority: PASS
+[kernel] acceptance rr vs static_priority show clearly different completion timing: PASS
+[kernel] acceptance low-priority compute tasks still completed in finite run: PASS

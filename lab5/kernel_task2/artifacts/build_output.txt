@@ -1,0 +1,2 @@
+   Compiling lab5_kernel_task2 v0.1.0 (/root/os_experiments/lab5/kernel_task2)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.15s
