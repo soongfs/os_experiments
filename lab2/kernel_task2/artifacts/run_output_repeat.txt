@@ -1,0 +1,87 @@
+[kernel] booted in M-mode
+[kernel] starting LAB2 kernel task2 syscall histogram suite
+[kernel] tracked syscall numbers: nr=0(write), nr=1(get_taskinfo), nr=2(exit)
+[kernel] launch task id=1 name=io_burst | expected: write bucket should dominate; exit bucket should be exactly 1
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+io
+[kernel] result io_burst: status=exit(0) cycles=4674480 total=25 errors=0 unknown=0
+[kernel] syscall histogram for io_burst:
+[kernel]   nr=0 (write) -> 24
+[kernel]   nr=1 (get_taskinfo) -> 0
+[kernel]   nr=2 (exit) -> 1
+[kernel]   unknown -> 0
+[kernel] launch task id=2 name=compute_spin | expected: almost only exit syscall; elapsed cycles should be the largest
+[kernel] result compute_spin: status=exit(0) cycles=13652760 total=1 errors=0 unknown=0
+[kernel] syscall histogram for compute_spin:
+[kernel]   nr=0 (write) -> 0
+[kernel]   nr=1 (get_taskinfo) -> 0
+[kernel]   nr=2 (exit) -> 1
+[kernel]   unknown -> 0
+[kernel] launch task id=3 name=info_flood | expected: get_taskinfo bucket should dominate; exit bucket should be exactly 1
+[kernel] result info_flood: status=exit(0) cycles=3174960 total=21 errors=0 unknown=0
+[kernel] syscall histogram for info_flood:
+[kernel]   nr=0 (write) -> 0
+[kernel]   nr=1 (get_taskinfo) -> 20
+[kernel]   nr=2 (exit) -> 1
+[kernel]   unknown -> 0
+[kernel] launch task id=4 name=illegal_trap | expected: should fault before any syscall, keeping every bucket at 0
+[kernel] task illegal_trap faulted: mcause=0x2 mepc=0x80002202 mtval=0x30501073
+[kernel] result illegal_trap: status=fault(cause=0x2, mtval=0x30501073) cycles=1023840 total=0 errors=0 unknown=0
+[kernel] syscall histogram for illegal_trap:
+[kernel]   nr=0 (write) -> 0
+[kernel]   nr=1 (get_taskinfo) -> 0
+[kernel]   nr=2 (exit) -> 0
+[kernel]   unknown -> 0
+[kernel] final per-task summary:
+[kernel] result io_burst: status=exit(0) cycles=4674480 total=25 errors=0 unknown=0
+[kernel] syscall histogram for io_burst:
+[kernel]   nr=0 (write) -> 24
+[kernel]   nr=1 (get_taskinfo) -> 0
+[kernel]   nr=2 (exit) -> 1
+[kernel]   unknown -> 0
+[kernel] result compute_spin: status=exit(0) cycles=13652760 total=1 errors=0 unknown=0
+[kernel] syscall histogram for compute_spin:
+[kernel]   nr=0 (write) -> 0
+[kernel]   nr=1 (get_taskinfo) -> 0
+[kernel]   nr=2 (exit) -> 1
+[kernel]   unknown -> 0
+[kernel] result info_flood: status=exit(0) cycles=3174960 total=21 errors=0 unknown=0
+[kernel] syscall histogram for info_flood:
+[kernel]   nr=0 (write) -> 0
+[kernel]   nr=1 (get_taskinfo) -> 20
+[kernel]   nr=2 (exit) -> 1
+[kernel]   unknown -> 0
+[kernel] result illegal_trap: status=fault(cause=0x2, mtval=0x30501073) cycles=1023840 total=0 errors=0 unknown=0
+[kernel] syscall histogram for illegal_trap:
+[kernel]   nr=0 (write) -> 0
+[kernel]   nr=1 (get_taskinfo) -> 0
+[kernel]   nr=2 (exit) -> 0
+[kernel]   unknown -> 0
+[kernel] check io_burst write bucket dominance: PASS
+[kernel] check compute_spin exit-only histogram: PASS
+[kernel] check info_flood get_taskinfo bucket dominance: PASS
+[kernel] check illegal_trap keeps histogram clean: PASS
+[kernel] check per-task isolation across launches: PASS
+[kernel] cross-check with user-side workload trends: PASS
