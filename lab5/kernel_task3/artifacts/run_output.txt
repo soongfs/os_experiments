@@ -1,0 +1,74 @@
+[kernel] booted in M-mode
+[kernel] LAB5 kernel task3 SMP work-queue scheduler
+[kernel] qemu expected_harts=4 job_count=8 heap_size=65536 bytes alloc_align=64 bytes
+[kernel] synchronization: run_queue and bump_allocator are protected by spinlocks
+[kernel] job_def[0]: id=1 name=tty_echo class=interactive alloc_bytes=512 bursts=6 iterations=28000
+[kernel] job_def[1]: id=2 name=batch_crc_a class=compute alloc_bytes=4096 bursts=1 iterations=820000
+[kernel] job_def[2]: id=3 name=ui_refresh class=interactive alloc_bytes=768 bursts=5 iterations=34000
+[kernel] job_def[3]: id=4 name=batch_crc_b class=compute alloc_bytes=3072 bursts=1 iterations=760000
+[kernel] job_def[4]: id=5 name=pipe_shell class=interactive alloc_bytes=640 bursts=7 iterations=26000
+[kernel] job_def[5]: id=6 name=matrix_mul class=compute alloc_bytes=4096 bursts=1 iterations=900000
+[kernel] job_def[6]: id=7 name=input_mux class=interactive alloc_bytes=896 bursts=6 iterations=30000
+[kernel] job_def[7]: id=8 name=log_compact class=compute alloc_bytes=3584 bursts=1 iterations=880000
+[hart2] init complete: role=secondary sp=0x8002ed30 ready_harts=4/4
+[hart1] init complete: role=secondary sp=0x80032d30 ready_harts=3/4
+[hart3] init complete: role=secondary sp=0x8002ad30 ready_harts=1/4
+[hart0] init complete: role=primary sp=0x80036b50 ready_harts=2/4
+[hart2] start barrier observed
+[hart1] start barrier observed
+[hart3] start barrier observed
+[hart0] start barrier released: ready_harts=4 booted_mask=0xf
+[hart1] schedule pick: job=4 name=batch_crc_b class=compute queue_remaining=4
+[hart0] schedule pick: job=2 name=batch_crc_a class=compute queue_remaining=6
+[hart3] schedule pick: job=3 name=ui_refresh class=interactive queue_remaining=5
+[hart2] schedule pick: job=1 name=tty_echo class=interactive queue_remaining=7
+[hart0] alloc: job=2 bytes=4096 offset=3840 high_water=7936
+[hart2] alloc: job=1 bytes=512 offset=7936 high_water=8448
+[hart3] alloc: job=3 bytes=768 offset=3072 high_water=3840
+[hart1] alloc: job=4 bytes=3072 offset=0 high_water=3072
+[hart1] job start: id=4 name=batch_crc_b class=compute alloc_offset=0 alloc_bytes=3072 running_jobs=1
+[hart3] job start: id=3 name=ui_refresh class=interactive alloc_offset=3072 alloc_bytes=768 running_jobs=3
+[hart2] job start: id=1 name=tty_echo class=interactive alloc_offset=7936 alloc_bytes=512 running_jobs=4
+[hart0] job start: id=2 name=batch_crc_a class=compute alloc_offset=3840 alloc_bytes=4096 running_jobs=2
+[hart2] job done: id=1 checksum=0xc6330d25ecad2341 completed_jobs=1/8 running_after=3
+[hart3] job done: id=3 checksum=0xd623b8b706c74635 completed_jobs=2/8 running_after=2
+[hart2] schedule pick: job=5 name=pipe_shell class=interactive queue_remaining=3
+[hart3] schedule pick: job=6 name=matrix_mul class=compute queue_remaining=2
+[hart2] alloc: job=5 bytes=640 offset=8448 high_water=9088
+[hart3] alloc: job=6 bytes=4096 offset=9088 high_water=13184
+[hart3] job start: id=6 name=matrix_mul class=compute alloc_offset=9088 alloc_bytes=4096 running_jobs=4
+[hart2] job start: id=5 name=pipe_shell class=interactive alloc_offset=8448 alloc_bytes=640 running_jobs=3
+[hart2] job done: id=5 checksum=0x88b1eccec808fb52 completed_jobs=3/8 running_after=3
+[hart2] schedule pick: job=7 name=input_mux class=interactive queue_remaining=1
+[hart2] alloc: job=7 bytes=896 offset=13184 high_water=14080
+[hart2] job start: id=7 name=input_mux class=interactive alloc_offset=13184 alloc_bytes=896 running_jobs=4
+[hart2] job done: id=7 checksum=0x33f68c5579a4d605 completed_jobs=4/8 running_after=3
+[hart2] schedule pick: job=8 name=log_compact class=compute queue_remaining=0
+[hart2] alloc: job=8 bytes=3584 offset=14080 high_water=17664
+[hart2] job start: id=8 name=log_compact class=compute alloc_offset=14080 alloc_bytes=3584 running_jobs=4
+[hart1] job done: id=4 checksum=0xc8f3a8a563932e72 completed_jobs=5/8 running_after=3
+[hart0] job done: id=2 checksum=0x4dd752d1da2ecf8d completed_jobs=6/8 running_after=2
+[hart3] job done: id=6 checksum=0x4414fd0aee3cd2ec completed_jobs=7/8 running_after=1
+[hart2] job done: id=8 checksum=0xb968afffd1e053f5 completed_jobs=8/8 running_after=0
+[hart3] scheduler drained: jobs_done=2 finished_harts=1/4
+[hart2] scheduler drained: jobs_done=4 finished_harts=4/4
+[hart1] scheduler drained: jobs_done=1 finished_harts=3/4
+[hart0] scheduler drained: jobs_done=1 finished_harts=2/4
+[kernel] summary: ready_harts=4 booted_mask=0xf finished_harts=4 completed_jobs=8/8 max_parallel_jobs=4
+[kernel] run_queue_lock: acquisitions=2550 contention_spins=190237 pop_count=8 remaining=0
+[kernel] allocator_lock: acquisitions=10 contention_spins=740 allocations=8 high_water=17664 bytes
+[kernel] hart[0]: init_done=1 jobs_done=1 alloc_bytes=4096
+[kernel] hart[1]: init_done=1 jobs_done=1 alloc_bytes=3072
+[kernel] hart[2]: init_done=1 jobs_done=4 alloc_bytes=5632
+[kernel] hart[3]: init_done=1 jobs_done=2 alloc_bytes=4864
+[kernel] job[0]: id=1 class=interactive completed_by_hart=2 checksum=0xc6330d25ecad2341
+[kernel] job[1]: id=2 class=compute completed_by_hart=0 checksum=0x4dd752d1da2ecf8d
+[kernel] job[2]: id=3 class=interactive completed_by_hart=3 checksum=0xd623b8b706c74635
+[kernel] job[3]: id=4 class=compute completed_by_hart=1 checksum=0xc8f3a8a563932e72
+[kernel] job[4]: id=5 class=interactive completed_by_hart=2 checksum=0x88b1eccec808fb52
+[kernel] job[5]: id=6 class=compute completed_by_hart=3 checksum=0x4414fd0aee3cd2ec
+[kernel] job[6]: id=7 class=interactive completed_by_hart=2 checksum=0x33f68c5579a4d605
+[kernel] job[7]: id=8 class=compute completed_by_hart=2 checksum=0xb968afffd1e053f5
+[kernel] acceptance all configured harts completed independent initialization: PASS
+[kernel] acceptance global run queue and allocator were protected by spinlocks: PASS
+[kernel] acceptance -smp 4 run completed without deadlock or crash: PASS
