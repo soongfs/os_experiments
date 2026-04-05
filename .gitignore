@@ -24,3 +24,5 @@ lab4/task1/memory_syscall_demo
 lab4/task2/lazy_swap_trigger
 lab4/task3/cow_fork_demo
 lab4/kernel_task1/target/
+
+lab4/kernel_task2/target/

@@ -1,0 +1,42 @@
+[kernel] booted in S-mode with Sv39 enabled
+[kernel] LAB4 kernel task2 lazy anonymous paging
+[kernel] policy: sys_sbrk/sys_mmap reserve VMA only; load/store page fault allocates physical page and installs user leaf PTE
+[kernel] satp(root)=0x800000000008001b root_pa=0x8001b000
+[kernel] eager user mappings: text=0x400000 shared=0x401000 stack=0x402000; lazy heap_base=0x410000 mmap_base=0x420000
+[pt] user_text va=0x400000 vpn=(0,2,0) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x000000002000685b leaf_pte=0x000000002000685b leaf_pa=0x8001a000 flags=VR-XU-A-
+[pt] user_shared va=0x401000 vpn=(0,2,1) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x00000000200074d7 leaf_pte=0x00000000200074d7 leaf_pa=0x8001d000 flags=VRW-U-AD
+[pt] user_stack va=0x402000 vpn=(0,2,2) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x00000000200070d7 leaf_pte=0x00000000200070d7 leaf_pa=0x8001c000 flags=VRW-U-AD
+[pt] heap_before_reserve va=0x410000 vpn=(0,2,16) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x0000000000000000 leaf_pte=0x0000000000000000 leaf_pa=0x0 flags=--------
+[pt] mmap_before_reserve va=0x420000 vpn=(0,2,32) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x0000000000000000 leaf_pte=0x0000000000000000 leaf_pa=0x0 flags=--------
+[kernel] entering U-mode lazy-paging probe at user_text=0x400000 user_sp=0x403000
+[kernel] sys_sbrk len=8192 -> base=0x410000 new_break=0x412000 alloc_count=0 still_unmapped_after_reserve=PASS
+[pt] heap_reserved va=0x410000 vpn=(0,2,16) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x0000000000000000 leaf_pte=0x0000000000000000 leaf_pa=0x0 flags=--------
+[vma] slot=0 kind=heap range=[0x410000, 0x412000) flags=rw faults=0 mapped_pages=0
+[kernel] sys_mmap len=8192 -> base=0x420000 end=0x422000 alloc_count=0 still_unmapped_after_reserve=PASS
+[pt] mmap_reserved va=0x420000 vpn=(0,2,32) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x0000000000000000 leaf_pte=0x0000000000000000 leaf_pa=0x0 flags=--------
+[vma] slot=0 kind=heap range=[0x410000, 0x412000) flags=rw faults=0 mapped_pages=0
+[vma] slot=1 kind=mmap range=[0x420000, 0x422000) flags=rw faults=0 mapped_pages=0
+[kernel] lazy fault kind=store sepc=0x400056 stval=0x410000 page=0x410000 vma=heap before_present=NO alloc_pa=0x8000a000
+[pt] fault_before va=0x410000 vpn=(0,2,16) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x0000000000000000 leaf_pte=0x0000000000000000 leaf_pa=0x0 flags=--------
+[pt] fault_after va=0x410000 vpn=(0,2,16) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x00000000200028d7 leaf_pte=0x00000000200028d7 leaf_pa=0x8000a000 flags=VRW-U-AD
+[kernel] lazy fault kind=store sepc=0x400082 stval=0x411000 page=0x411000 vma=heap before_present=NO alloc_pa=0x8000b000
+[pt] fault_before va=0x411000 vpn=(0,2,17) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x0000000000000000 leaf_pte=0x0000000000000000 leaf_pa=0x0 flags=--------
+[pt] fault_after va=0x411000 vpn=(0,2,17) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x0000000020002cd7 leaf_pte=0x0000000020002cd7 leaf_pa=0x8000b000 flags=VRW-U-AD
+[kernel] lazy fault kind=load sepc=0x40008e stval=0x420000 page=0x420000 vma=mmap before_present=NO alloc_pa=0x8000c000
+[pt] fault_before va=0x420000 vpn=(0,2,32) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x0000000000000000 leaf_pte=0x0000000000000000 leaf_pa=0x0 flags=--------
+[pt] fault_after va=0x420000 vpn=(0,2,32) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x00000000200030d7 leaf_pte=0x00000000200030d7 leaf_pa=0x8000c000 flags=VRW-U-AD
+[kernel] lazy fault kind=load sepc=0x4000c2 stval=0x421000 page=0x421000 vma=mmap before_present=NO alloc_pa=0x8000d000
+[pt] fault_before va=0x421000 vpn=(0,2,33) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x0000000000000000 leaf_pte=0x0000000000000000 leaf_pa=0x0 flags=--------
+[pt] fault_after va=0x421000 vpn=(0,2,33) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x00000000200034d7 leaf_pte=0x00000000200034d7 leaf_pa=0x8000d000 flags=VRW-U-AD
+[kernel] user program requested exit with code=0
+[kernel] counters: reserves=2 sbrk_calls=1 mmap_calls=1 page_faults=4 load_faults=2 store_faults=2 allocs=4 map_installs=4
+[kernel] user evidence: stage=0x5555666677778888 heap_base=0x410000 mmap_base=0x420000 heap0=0x1111222233334444 heap1=0x5555666677778888 mmap0_initial=0x0000000000000000 mmap0=0x9999aaaabbbbcccc mmap1_initial=0x0000000000000000 mmap1=0xddddeeeeffff0001
+[vma] slot=0 kind=heap range=[0x410000, 0x412000) flags=rw faults=2 mapped_pages=2
+[vma] slot=1 kind=mmap range=[0x420000, 0x422000) flags=rw faults=2 mapped_pages=2
+[pt] heap_page0 va=0x410000 vpn=(0,2,16) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x00000000200028d7 leaf_pte=0x00000000200028d7 leaf_pa=0x8000a000 flags=VRW-U-AD
+[pt] heap_page1 va=0x411000 vpn=(0,2,17) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x0000000020002cd7 leaf_pte=0x0000000020002cd7 leaf_pa=0x8000b000 flags=VRW-U-AD
+[pt] mmap_page0 va=0x420000 vpn=(0,2,32) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x00000000200030d7 leaf_pte=0x00000000200030d7 leaf_pa=0x8000c000 flags=VRW-U-AD
+[pt] mmap_page1 va=0x421000 vpn=(0,2,33) level=L0-4K root_pte=0x0000000020007c01 l1_pte=0x0000000020008001 l0_pte=0x00000000200034d7 leaf_pte=0x00000000200034d7 leaf_pa=0x8000d000 flags=VRW-U-AD
+[kernel] acceptance sys_sbrk/sys_mmap reserve VMA without immediate physical allocation: PASS
+[kernel] acceptance load/store page fault allocates page and installs user PTE on demand: PASS
+[kernel] acceptance user-side heap/mmap accesses observe expected zero-fill and readback values: PASS
