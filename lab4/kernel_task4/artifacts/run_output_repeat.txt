@@ -1,0 +1,39 @@
+[kernel] booted in S-mode with Sv39 enabled
+[kernel] LAB4 kernel task4 swap in/out with Clock replacement
+[kernel] policy: working set has 3 virtual pages but only 2 resident frames; evicted pages are encoded as swap-slot PTEs and restored on demand
+[kernel] satp(root)=0x800000000008000d root_pa=0x8000d000
+[kernel] swap backend: 4 slots in simulated swap disk area at pa=0x80017000
+[pt] user_text va=0x400000 vpn=(0,2,0) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x0000000020002c5b leaf_pte=0x0000000020002c5b leaf_pa=0x8000b000 flags=VR-XU-A--
+[pt] user_shared va=0x401000 vpn=(0,2,1) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x0000000020003cd7 leaf_pte=0x0000000020003cd7 leaf_pa=0x8000f000 flags=VRW-U-AD-
+[pt] user_stack va=0x402000 vpn=(0,2,2) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x00000000200038d7 leaf_pte=0x00000000200038d7 leaf_pa=0x8000e000 flags=VRW-U-AD-
+[pt] working_page0_before va=0x410000 vpn=(0,2,16) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x0000000000000000 leaf_pte=0x0000000000000000 leaf_pa=0x0 flags=---------
+[pt] working_page1_before va=0x411000 vpn=(0,2,17) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x0000000000000000 leaf_pte=0x0000000000000000 leaf_pa=0x0 flags=---------
+[pt] working_page2_before va=0x412000 vpn=(0,2,18) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x0000000000000000 leaf_pte=0x0000000000000000 leaf_pa=0x0 flags=---------
+[kernel] lazy map kind=store sepc=0x400022 stval=0x410000 page_index=0 frame=0 pa=0x80013000
+[pt] fault_before va=0x410000 vpn=(0,2,16) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x0000000000000000 leaf_pte=0x0000000000000000 leaf_pa=0x0 flags=---------
+[pt] fault_after va=0x410000 vpn=(0,2,16) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x0000000020004cd7 leaf_pte=0x0000000020004cd7 leaf_pa=0x80013000 flags=VRW-U-AD-
+[kernel] lazy map kind=store sepc=0x400046 stval=0x411000 page_index=1 frame=1 pa=0x80014000
+[pt] fault_before va=0x411000 vpn=(0,2,17) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x0000000000000000 leaf_pte=0x0000000000000000 leaf_pa=0x0 flags=---------
+[pt] fault_after va=0x411000 vpn=(0,2,17) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x00000000200050d7 leaf_pte=0x00000000200050d7 leaf_pa=0x80014000 flags=VRW-U-AD-
+[clock] frame=0 victim_page=0 va=0x410000 second_chance old_pte=0x20004cd7 new_pte=0x20004c97
+[clock] frame=1 victim_page=1 va=0x411000 second_chance old_pte=0x200050d7 new_pte=0x20005097
+[kernel] swap out trigger incoming_page=2 victim_page=0 frame=0 victim_va=0x410000 victim_pa=0x80013000 slot=0 swap_pte=0x100
+[pt] victim_after_swap va=0x410000 vpn=(0,2,16) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x0000000000000100 leaf_pte=0x0000000000000100 swap_slot=0 swap_pa=0x80017000 flags=--------S
+[kernel] lazy map kind=store sepc=0x40006c stval=0x412000 page_index=2 frame=0 pa=0x80013000
+[pt] fault_before va=0x412000 vpn=(0,2,18) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x0000000000000000 leaf_pte=0x0000000000000000 leaf_pa=0x0 flags=---------
+[pt] fault_after va=0x412000 vpn=(0,2,18) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x0000000020004cd7 leaf_pte=0x0000000020004cd7 leaf_pa=0x80013000 flags=VRW-U-AD-
+[kernel] swap out trigger incoming_page=0 victim_page=1 frame=1 victim_va=0x411000 victim_pa=0x80014000 slot=1 swap_pte=0x500
+[pt] victim_after_swap va=0x411000 vpn=(0,2,17) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x0000000000000500 leaf_pte=0x0000000000000500 swap_slot=1 swap_pa=0x80018000 flags=--------S
+[kernel] swap in kind=load sepc=0x400076 stval=0x410000 page_index=0 slot=0 restored_pa=0x80014000 swap_pte=0x100
+[pt] swap_before va=0x410000 vpn=(0,2,16) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x0000000000000100 leaf_pte=0x0000000000000100 swap_slot=0 swap_pa=0x80017000 flags=--------S
+[pt] swap_after va=0x410000 vpn=(0,2,16) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x00000000200050d7 leaf_pte=0x00000000200050d7 leaf_pa=0x80014000 flags=VRW-U-AD-
+[kernel] user program requested exit with code=0
+[kernel] counters: accesses=6 hits=2 page_faults=4 load_faults=1 store_faults=3 lazy_allocs=3 swap_outs=2 swap_ins=1 clock_scans=4 second_chances=2
+[kernel] user evidence: stage=0xabcdef0123456789 page2_hit=0x9999aaaabbbbcccc page0_swapin=0x1111222233334444 page0_hit_again=0x1111222233334444
+[kernel] swap evidence: replacement_triggered=PASS first_evicted_page=0 first_evicted_slot=0 first_evicted_swap_pte=0x100 swapin_page=0 swapin_slot=0 swapin_restored_pa=0x80014000
+[pt] page0_final va=0x410000 vpn=(0,2,16) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x00000000200050d7 leaf_pte=0x00000000200050d7 leaf_pa=0x80014000 flags=VRW-U-AD-
+[pt] page1_final va=0x411000 vpn=(0,2,17) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x0000000000000500 leaf_pte=0x0000000000000500 swap_slot=1 swap_pa=0x80018000 flags=--------S
+[pt] page2_final va=0x412000 vpn=(0,2,18) level=L0-4K root_pte=0x0000000020004401 l1_pte=0x0000000020004801 l0_pte=0x0000000020004cd7 leaf_pte=0x0000000020004cd7 leaf_pa=0x80013000 flags=VRW-U-AD-
+[kernel] acceptance memory pressure triggers Clock replacement without crashing: PASS
+[kernel] acceptance swapped-out PTE encodes the correct swap slot: PASS
+[kernel] acceptance reaccess faults, swaps page back in, and restores mapping/data: PASS
