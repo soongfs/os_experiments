@@ -1,0 +1,23 @@
+[info] host_page_size=4096 bytes
+[sbrk] initial_break=0x5a49ea232000 offset_in_page=0
+[sbrk] grew_by=4096 bytes old_break=0x5a49ea232000 new_break=0x5a49ea233000 sample=LAB
+[sbrk] restored_break=0x5a49ea232000
+[mmap-rw] addr=0x7bef1f824000 length=8192 aligned=yes
+    /proc/self/maps: 7bef1f824000-7bef1f828000 rw-p 00000000 00:00 0 
+[mmap-rw] payload="Linux mmap read/write demo" checksum=0xf91b8ebbc5221810 marker_bytes=[0xa5,0x3c]
+[munmap] released rw mapping
+[mprotect-rx] staged x86_64 stub at 0x7bef1f825000 before mprotect
+    /proc/self/maps: 7bef1f825000-7bef1f828000 rw-p 00000000 00:00 0 
+[mprotect-rx] changed page to PROT_READ|PROT_EXEC
+    /proc/self/maps: 7bef1f825000-7bef1f826000 r-xp 00000000 00:00 0 
+[mprotect-rx] executed stub result=42
+[munmap] released rx mapping
+[mprotect-ro] unaligned mprotect(addr+1, ...) rejected with EINVAL as expected
+[mprotect-ro] addr=0x7bef1f825000 length=4096 aligned=yes read_back="read-only page after mprotect"
+    /proc/self/maps: 7bef1f825000-7bef1f826000 r--p 00000000 00:00 0 
+[munmap] released read-only mapping
+[segfault] read-only mapping prepared at 0x7bef1f825000 length=4096
+    /proc/self/maps: 7bef1f825000-7bef1f826000 r--p 00000000 00:00 0 
+[segfault] about to write into a PROT_READ page; Linux should raise SIGSEGV
+[probe] child write-to-PROT_READ terminated by signal=11 (SIGSEGV)
+[done] memory syscall demo completed successfully

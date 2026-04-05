@@ -1,0 +1,5 @@
+[segfault] read-only mapping prepared at 0x73d86ed6c000 length=4096
+    /proc/self/maps: 73d86ed6c000-73d86ed6d000 r--p 00000000 00:00 0 
+[segfault] about to write into a PROT_READ page; Linux should raise SIGSEGV
+/bin/bash: line 1:  9839 Segmentation fault      ./memory_syscall_demo segfault
+[shell] exit_status=139
