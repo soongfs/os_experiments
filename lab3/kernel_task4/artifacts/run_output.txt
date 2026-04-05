@@ -1,0 +1,33 @@
+[kernel] booted in S-mode
+[kernel] LAB3 kernel task4 in-kernel interrupt response
+[kernel] timer source: mtime=0x200bff8, mtimecmp=0x2004000, frequency=10000000 Hz, 1 tick=100 ns
+[kernel] policy: sstatus.SIE=1 in safe intervals, sstatus.SIE=0 while holding interrupt mutex
+[kernel] delivery path: machine_timer_forwarder(MTIP) -> delegated supervisor_software(SSIP) -> S-mode handler
+[kernel] timer interval=16000 ticks (1600 us), critical_hold=24000 ticks (2400 us)
+[kernel] safe interval #1: enabling sstatus.SIE for forwarded_timer_irq
+[kernel] irq#1 source=forwarded_timer(origin=mtime, delivered=ssip) scause=0x8000000000000001 sepc=0x800015ee path=machine_timer_forwarder->supervisor_trap->timer_handler
+[kernel] critical section #1 enter: sstatus.SIE=0 lock=held
+[kernel] critical section #1 hold: sstatus.SIE=0 pending_forwarded_timer_irq=1
+[kernel] critical section #1 exit: sstatus.SIE_after_guard=0
+[kernel] safe interval #2: enabling sstatus.SIE for forwarded_timer_irq
+[kernel] irq#2 source=forwarded_timer(origin=mtime, delivered=ssip) scause=0x8000000000000001 sepc=0x8000196a path=machine_timer_forwarder->supervisor_trap->timer_handler
+[kernel] irq#3 source=forwarded_timer(origin=mtime, delivered=ssip) scause=0x8000000000000001 sepc=0x8000196a path=machine_timer_forwarder->supervisor_trap->timer_handler
+[kernel] critical section #2 enter: sstatus.SIE=0 lock=held
+[kernel] critical section #2 hold: sstatus.SIE=0 pending_forwarded_timer_irq=1
+[kernel] critical section #2 exit: sstatus.SIE_after_guard=0
+[kernel] safe interval #3: enabling sstatus.SIE for forwarded_timer_irq
+[kernel] irq#4 source=forwarded_timer(origin=mtime, delivered=ssip) scause=0x8000000000000001 sepc=0x8000196a path=machine_timer_forwarder->supervisor_trap->timer_handler
+[kernel] critical section #3 enter: sstatus.SIE=0 lock=held
+[kernel] critical section #3 hold: sstatus.SIE=0 pending_forwarded_timer_irq=1
+[kernel] critical section #3 exit: sstatus.SIE_after_guard=0
+[kernel] safe interval #4: enabling sstatus.SIE for forwarded_timer_irq
+[kernel] irq#5 source=forwarded_timer(origin=mtime, delivered=ssip) scause=0x8000000000000001 sepc=0x8000196a path=machine_timer_forwarder->supervisor_trap->timer_handler
+[kernel] critical section #4 enter: sstatus.SIE=0 lock=held
+[kernel] critical section #4 hold: sstatus.SIE=0 pending_forwarded_timer_irq=1
+[kernel] critical section #4 exit: sstatus.SIE_after_guard=0
+[kernel] irq#6 source=forwarded_timer(origin=mtime, delivered=ssip) scause=0x8000000000000001 sepc=0x8000196a path=machine_timer_forwarder->supervisor_trap->timer_handler
+[kernel] summary: machine_timer_forwards=12 supervisor_timer_irqs=6 critical_sections=5 lock_acquisitions=12 pending_during_critical=5 critical_updates=32655
+[kernel] diagnostics: last_mcause=0x8000000000000007 last_scause=0x8000000000000001 last_sepc=0x8000196a
+[kernel] acceptance sstatus.SIE opened in safe interval: PASS
+[kernel] acceptance kernel-space timer interrupt handled without crash: PASS
+[kernel] acceptance locks and critical sections used interrupt-off protection: PASS

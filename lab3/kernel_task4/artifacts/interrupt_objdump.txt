@@ -1,0 +1,235 @@
+1039-80000872: 60a2         	ld	ra, 0x8(sp)
+1040-80000874: 0141         	addi	sp, sp, 0x10
+1041-80000876: 8082         	ret
+1042-80000878: 00001097     	auipc	ra, 0x1
+1043:8000087c: 0ec080e7     	jalr	0xec(ra) <lab3_kernel_task4::enable_supervisor_interrupts::h53322826f0aeb97f>
+1044-80000880: bfcd         	j	0x80000872 <_$LT$lab3_kernel_task4..InterruptGuard$u20$as$u20$core..ops..drop..Drop$GT$::drop::hf430fffea90a8a19+0x10>
+1045-
+1046-0000000080000882 <_$LT$lab3_kernel_task4..InterruptMutexGuard$LT$T$GT$$u20$as$u20$core..ops..drop..Drop$GT$::drop::hf3e362835d816147>:
+1047-80000882: 1101         	addi	sp, sp, -0x20
+--
+1740-80000efa: 6161         	addi	sp, sp, 0x50
+1741-80000efc: 8082         	ret
+1742-80000efe: 0000         	unimp
+1743-
+1744:0000000080000f00 <enter_supervisor>:
+1745-80000f00: 34151073     	csrw	mepc, a0
+1746-80000f04: 300022f3     	csrr	t0, mstatus
+1747-80000f08: 430d         	li	t1, 0x3
+1748-80000f0a: 032e         	slli	t1, t1, 0xb
+--
+1757-80000f26: 0001         	nop
+1758-80000f28: 00000013     	nop
+1759-80000f2c: 00000013     	nop
+1760-
+1761:0000000080000f30 <machine_trap_entry>:
+1762-80000f30: 34011173     	csrrw	sp, mscratch, sp
+1763-80000f34: 7111         	addi	sp, sp, -0x100
+1764-80000f36: e006         	sd	ra, 0x0(sp)
+1765-80000f38: e40e         	sd	gp, 0x8(sp)
+--
+1796-80000f78: 341022f3     	csrr	t0, mepc
+1797-80000f7c: fd96         	sd	t0, 0xf8(sp)
+1798-80000f7e: 850a         	mv	a0, sp
+1799-80000f80: 00001097     	auipc	ra, 0x1
+1800:80000f84: b60080e7     	jalr	-0x4a0(ra) <handle_machine_trap>
+1801-80000f88: 72ee         	ld	t0, 0xf8(sp)
+1802-80000f8a: 34129073     	csrw	mepc, t0
+1803-80000f8e: 72ce         	ld	t0, 0xf0(sp)
+1804-80000f90: 34029073     	csrw	mscratch, t0
+--
+1837-80000fd6: 30200073     	mret
+1838-80000fda: 0001         	nop
+1839-80000fdc: 00000013     	nop
+1840-
+1841:0000000080000fe0 <supervisor_trap_entry>:
+1842-80000fe0: 14011173     	csrrw	sp, sscratch, sp
+1843-80000fe4: 7111         	addi	sp, sp, -0x100
+1844-80000fe6: e006         	sd	ra, 0x0(sp)
+1845-80000fe8: e40e         	sd	gp, 0x8(sp)
+--
+1876-80001028: 141022f3     	csrr	t0, sepc
+1877-8000102c: fd96         	sd	t0, 0xf8(sp)
+1878-8000102e: 850a         	mv	a0, sp
+1879-80001030: 00001097     	auipc	ra, 0x1
+1880:80001034: b66080e7     	jalr	-0x49a(ra) <handle_supervisor_trap>
+1881-80001038: 72ee         	ld	t0, 0xf8(sp)
+1882-8000103a: 14129073     	csrw	sepc, t0
+1883-8000103e: 72ce         	ld	t0, 0xf0(sp)
+1884-80001040: 14029073     	csrw	sscratch, t0
+--
+2015-80001158: 828080e7     	jalr	-0x7d8(ra) <lab3_kernel_task4::supervisor_interrupts_enabled::h0dd329a2d862d503>
+2016-8000115c: e42a         	sd	a0, 0x8(sp)
+2017-8000115e: 00a10ba3     	sb	a0, 0x17(sp)
+2018-80001162: 00001097     	auipc	ra, 0x1
+2019:80001166: 812080e7     	jalr	-0x7ee(ra) <lab3_kernel_task4::disable_supervisor_interrupts::h0f1b9376ca491751>
+2020-8000116a: 6522         	ld	a0, 0x8(sp)
+2021-8000116c: 60e2         	ld	ra, 0x18(sp)
+2022-8000116e: 6105         	addi	sp, sp, 0x20
+2023-80001170: 8082         	ret
+--
+2030-000000008000117c <lab3_kernel_task4::finish_experiment::hdff9e08672b14206>:
+2031-8000117c: d4010113     	addi	sp, sp, -0x2c0
+2032-80001180: 2a113c23     	sd	ra, 0x2b8(sp)
+2033-80001184: 00000097     	auipc	ra, 0x0
+2034:80001188: 7f0080e7     	jalr	0x7f0(ra) <lab3_kernel_task4::disable_supervisor_interrupts::h0f1b9376ca491751>
+2035-
+2036-000000008000118c <.Lpcrel_hi5>:
+2037-8000118c: 00003517     	auipc	a0, 0x3
+2038-80001190: 30450513     	addi	a0, a0, 0x304
+--
+2389-8000153c: 4591         	li	a1, 0x4
+2390-8000153e: 02b56863     	bltu	a0, a1, 0x8000156e <.Lpcrel_hi22+0x14>
+2391-80001542: a009         	j	0x80001544 <.Lpcrel_hi21+0x24>
+2392-80001544: 00000097     	auipc	ra, 0x0
+2393:80001548: 420080e7     	jalr	0x420(ra) <lab3_kernel_task4::enable_supervisor_interrupts::h53322826f0aeb97f>
+2394-8000154c: 00000097     	auipc	ra, 0x0
+2395-80001550: 430080e7     	jalr	0x430(ra) <lab3_kernel_task4::supervisor_interrupts_enabled::h0dd329a2d862d503>
+2396-80001554: 85aa         	mv	a1, a0
+2397-80001556: 06b103a3     	sb	a1, 0x67(sp)
+--
+2445-800015d4: 65e2         	ld	a1, 0x18(sp)
+2446-800015d6: 00b50a63     	beq	a0, a1, 0x800015ea <.Lpcrel_hi25+0x28>
+2447-800015da: a009         	j	0x800015dc <.Lpcrel_hi25+0x1a>
+2448-800015dc: 00000097     	auipc	ra, 0x0
+2449:800015e0: 398080e7     	jalr	0x398(ra) <lab3_kernel_task4::disable_supervisor_interrupts::h0f1b9376ca491751>
+2450-800015e4: 70a6         	ld	ra, 0x68(sp)
+2451-800015e6: 6165         	addi	sp, sp, 0x70
+2452-800015e8: 8082         	ret
+2453-800015ea: 10500073     	wfi
+--
+2669-80001828: fffff097     	auipc	ra, 0xfffff
+2670-8000182c: 3e8080e7     	jalr	0x3e8(ra) <lab3_kernel_task4::console::print::h78d1f45691fa1159>
+2671-80001830: b795         	j	0x80001794 <.Lpcrel_hi30+0x10>
+2672-80001832: 00000097     	auipc	ra, 0x0
+2673:80001836: 142080e7     	jalr	0x142(ra) <lab3_kernel_task4::disable_supervisor_interrupts::h0f1b9376ca491751>
+2674-8000183a: 21813083     	ld	ra, 0x218(sp)
+2675-8000183e: 22010113     	addi	sp, sp, 0x220
+2676-80001842: 8082         	ret
+2677-80001844: 00000097     	auipc	ra, 0x0
+--
+2791-8000195a: 00009517     	auipc	a0, 0x9
+2792-8000195e: b8650513     	addi	a0, a0, -0x47a
+2793-80001962: 8082         	ret
+2794-
+2795:0000000080001964 <lab3_kernel_task4::enable_supervisor_interrupts::h53322826f0aeb97f>:
+2796-80001964: 4509         	li	a0, 0x2
+2797:80001966: 10052073     	csrs	sstatus, a0
+2798-8000196a: 8082         	ret
+2799-
+2800:000000008000196c <lab3_kernel_task4::set_supervisor_timer_pending::h7e69ab2c55d57be9>:
+2801-8000196c: 4509         	li	a0, 0x2
+2802:8000196e: 34452073     	csrs	mip, a0
+2803-80001972: 8082         	ret
+2804-
+2805:0000000080001974 <lab3_kernel_task4::disable_supervisor_interrupts::h0f1b9376ca491751>:
+2806-80001974: 4509         	li	a0, 0x2
+2807:80001976: 10053073     	csrc	sstatus, a0
+2808-8000197a: 8082         	ret
+2809-
+2810-000000008000197c <lab3_kernel_task4::supervisor_interrupts_enabled::h0dd329a2d862d503>:
+2811-8000197c: 1141         	addi	sp, sp, -0x10
+--
+2816-8000198a: 917d         	srli	a0, a0, 0x3f
+2817-8000198c: 0141         	addi	sp, sp, 0x10
+2818-8000198e: 8082         	ret
+2819-
+2820:0000000080001990 <lab3_kernel_task4::clear_supervisor_timer_pending::hde16e3953b03705e>:
+2821-80001990: 4509         	li	a0, 0x2
+2822:80001992: 14453073     	csrc	sip, a0
+2823-80001996: 8082         	ret
+2824-
+2825:0000000080001998 <lab3_kernel_task4::enable_machine_timer_interrupt::h1816db79bb068e44>:
+2826-80001998: 08000513     	li	a0, 0x80
+2827:8000199c: 30452073     	csrs	mie, a0
+2828-800019a0: 8082         	ret
+2829-
+2830:00000000800019a2 <lab3_kernel_task4::enable_supervisor_timer_source::hb1a53a3a2edf19ea>:
+2831-800019a2: 4509         	li	a0, 0x2
+2832:800019a4: 10452073     	csrs	sie, a0
+2833-800019a8: 8082         	ret
+2834-
+2835-00000000800019aa <lab3_kernel_task4::delegate_supervisor_timer_interrupt::h000f8674dea63016>:
+2836-800019aa: 4509         	li	a0, 0x2
+--
+2975-80001ad8: a009         	j	0x80001ada <.Lpcrel_hi48+0x16>
+2976-80001ada: 10500073     	wfi
+2977-80001ade: bff5         	j	0x80001ada <.Lpcrel_hi48+0x16>
+2978-
+2979:0000000080001ae0 <handle_machine_trap>:
+2980-80001ae0: 7119         	addi	sp, sp, -0x80
+2981-80001ae2: fc86         	sd	ra, 0x78(sp)
+2982-80001ae4: e82a         	sd	a0, 0x10(sp)
+2983-80001ae6: f0aa         	sd	a0, 0x60(sp)
+--
+3000-80001b12: a009         	j	0x80001b14 <.Lpcrel_hi49+0x20>
+3001-80001b14: 00000097     	auipc	ra, 0x0
+3002-80001b18: dfe080e7     	jalr	-0x202(ra) <lab3_kernel_task4::arm_next_timer_interrupt::hd76ceec1bc3d4774>
+3003-80001b1c: 00000097     	auipc	ra, 0x0
+3004:80001b20: e50080e7     	jalr	-0x1b0(ra) <lab3_kernel_task4::set_supervisor_timer_pending::h7e69ab2c55d57be9>
+3005-
+3006-0000000080001b24 <.Lpcrel_hi50>:
+3007-80001b24: 00003517     	auipc	a0, 0x3
+3008-80001b28: 99c50513     	addi	a0, a0, -0x664
+--
+3046-80001b8c: 4505         	li	a0, 0x1
+3047-80001b8e: 00000097     	auipc	ra, 0x0
+3048-80001b92: f0a080e7     	jalr	-0xf6(ra) <lab3_kernel_task4::qemu_exit::he71a85e834d22f4e>
+3049-
+3050:0000000080001b96 <handle_supervisor_trap>:
+3051-80001b96: 710d         	addi	sp, sp, -0x160
+3052-80001b98: ee86         	sd	ra, 0x158(sp)
+3053-80001b9a: f42a         	sd	a0, 0x28(sp)
+3054-80001b9c: eaaa         	sd	a0, 0x150(sp)
+--
+3079-80001bda: 0585         	addi	a1, a1, 0x1
+3080-80001bdc: 02b51863     	bne	a0, a1, 0x80001c0c <.Lpcrel_hi54+0x22>
+3081-80001be0: a009         	j	0x80001be2 <.Lpcrel_hi53+0x1e>
+3082-80001be2: 00000097     	auipc	ra, 0x0
+3083:80001be6: dae080e7     	jalr	-0x252(ra) <lab3_kernel_task4::clear_supervisor_timer_pending::hde16e3953b03705e>
+3084-
+3085-0000000080001bea <.Lpcrel_hi54>:
+3086-80001bea: 00003517     	auipc	a0, 0x3
+3087-80001bee: 8de50513     	addi	a0, a0, -0x722
+--
+3252-80001da2: c0c080e7     	jalr	-0x3f4(ra) <lab3_kernel_task4::delegate_supervisor_timer_interrupt::h000f8674dea63016>
+3253-80001da6: 00000097     	auipc	ra, 0x0
+3254-80001daa: b6c080e7     	jalr	-0x494(ra) <lab3_kernel_task4::arm_next_timer_interrupt::hd76ceec1bc3d4774>
+3255-80001dae: 00000097     	auipc	ra, 0x0
+3256:80001db2: bea080e7     	jalr	-0x416(ra) <lab3_kernel_task4::enable_machine_timer_interrupt::h1816db79bb068e44>
+3257-80001db6: 00000097     	auipc	ra, 0x0
+3258-80001dba: b52080e7     	jalr	-0x4ae(ra) <lab3_kernel_task4::machine_trap_stack_top::h78fce2aec17ca2a1>
+3259-80001dbe: 34051073     	csrw	mscratch, a0
+3260-80001dc2: fffff097     	auipc	ra, 0xfffff
+--
+3264-0000000080001dcc <.Lpcrel_hi61>:
+3265-80001dcc: 00000517     	auipc	a0, 0x0
+3266-80001dd0: 01050513     	addi	a0, a0, 0x10
+3267-80001dd4: fffff097     	auipc	ra, 0xfffff
+3268:80001dd8: 12c080e7     	jalr	0x12c(ra) <enter_supervisor>
+3269-
+3270-0000000080001ddc <start_supervisor>:
+3271-80001ddc: 710d         	addi	sp, sp, -0x160
+3272-80001dde: ee86         	sd	ra, 0x158(sp)
+3273-80001de0: ffffe097     	auipc	ra, 0xffffe
+3274-80001de4: 7c6080e7     	jalr	0x7c6(ra) <lab3_kernel_task4::trap::init_supervisor_trap_vector::he04b6d4874c14e2a>
+3275-80001de8: 00000097     	auipc	ra, 0x0
+3276:80001dec: b8c080e7     	jalr	-0x474(ra) <lab3_kernel_task4::disable_supervisor_interrupts::h0f1b9376ca491751>
+3277-80001df0: 00000097     	auipc	ra, 0x0
+3278:80001df4: ba0080e7     	jalr	-0x460(ra) <lab3_kernel_task4::clear_supervisor_timer_pending::hde16e3953b03705e>
+3279-80001df8: 00000097     	auipc	ra, 0x0
+3280-80001dfc: b62080e7     	jalr	-0x49e(ra) <lab3_kernel_task4::supervisor_trap_stack_top::hf84b8b0540946c2b>
+3281-80001e00: 14051073     	csrw	sscratch, a0
+3282-
+--
+3441-80001f9e: 6d4080e7     	jalr	0x6d4(ra) <core::fmt::Arguments::new::h8117d6714c8ae0f9>
+3442-80001fa2: fffff097     	auipc	ra, 0xfffff
+3443-80001fa6: c6e080e7     	jalr	-0x392(ra) <lab3_kernel_task4::console::print::h78d1f45691fa1159>
+3444-80001faa: 00000097     	auipc	ra, 0x0
+3445:80001fae: 9e6080e7     	jalr	-0x61a(ra) <lab3_kernel_task4::clear_supervisor_timer_pending::hde16e3953b03705e>
+3446-80001fb2: 00000097     	auipc	ra, 0x0
+3447:80001fb6: 9f0080e7     	jalr	-0x610(ra) <lab3_kernel_task4::enable_supervisor_timer_source::hb1a53a3a2edf19ea>
+3448-80001fba: 00000097     	auipc	ra, 0x0
+3449-80001fbe: 8ea080e7     	jalr	-0x716(ra) <lab3_kernel_task4::run_kernel_experiment::hc737aa4557ce1061>
+3450-
+3451-0000000080001fc2 <core::num::_$LT$impl$u20$u64$GT$::saturating_mul::h8481e14cf0475f58>:
