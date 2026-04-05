@@ -1,0 +1,28 @@
+[kernel] booted in S-mode with Sv39 enabled
+[kernel] LAB4 kernel task3 copy-on-write fork
+[kernel] policy: fork shares one writable anonymous user page by clearing W and setting COW; store page fault resolves copy or write-enable
+[kernel] parent satp=0x8000000000080012 root_pa=0x80012000
+[kernel] initial anonymous page pa=0x8000b000 refcount=1 value=0x1111222233334444
+[pt] parent_data_before_fork pid=0 va=0x401000 vpn=(0,2,1) level=L0-4K root_pte=0x0000000020005401 l1_pte=0x0000000020006001 l0_pte=0x0000000020002cd7 leaf_pte=0x0000000020002cd7 leaf_pa=0x8000b000 flags=VRW-U-AD-
+[kernel] fork complete: alloc_before=1 alloc_after=1 shared_pa=0x8000b000 ref_before=1 ref_after=2
+[pt] parent_after_fork pid=0 va=0x401000 vpn=(0,2,1) level=L0-4K root_pte=0x0000000020005401 l1_pte=0x0000000020006001 l0_pte=0x0000000020002d53 leaf_pte=0x0000000020002d53 leaf_pa=0x8000b000 flags=VR--U-A-C
+[pt] child_after_fork pid=1 va=0x401000 vpn=(0,2,1) level=L0-4K root_pte=0x0000000020005801 l1_pte=0x0000000020006401 l0_pte=0x0000000020002d53 leaf_pte=0x0000000020002d53 leaf_pa=0x8000b000 flags=VR--U-A-C
+[kernel] cow store fault pid=1 action=copy refcount_before=2 old_pa=0x8000b000 new_pa=0x8000c000
+[kernel] cow fault result pid=1 sepc=0x40004a stval=0x401000 old_pa=0x8000b000 new_pa=0x8000c000
+[pt] cow_fault_before pid=1 va=0x401000 vpn=(0,2,1) level=L0-4K root_pte=0x0000000020005801 l1_pte=0x0000000020006401 l0_pte=0x0000000020002d53 leaf_pte=0x0000000020002d53 leaf_pa=0x8000b000 flags=VR--U-A-C
+[pt] cow_fault_after pid=1 va=0x401000 vpn=(0,2,1) level=L0-4K root_pte=0x0000000020005801 l1_pte=0x0000000020006401 l0_pte=0x00000000200030d7 leaf_pte=0x00000000200030d7 leaf_pa=0x8000c000 flags=VRW-U-AD-
+[kernel] report pid=1 first=0x1111222233334444 second=0xc0ffee0000000001 third=0x0000000000000000
+[kernel] cow store fault pid=0 action=reuse refcount_before=1 pa=0x8000b000
+[kernel] cow fault result pid=0 sepc=0x400020 stval=0x401000 old_pa=0x8000b000 new_pa=0x8000b000
+[pt] cow_fault_before pid=0 va=0x401000 vpn=(0,2,1) level=L0-4K root_pte=0x0000000020005401 l1_pte=0x0000000020006001 l0_pte=0x0000000020002d53 leaf_pte=0x0000000020002d53 leaf_pa=0x8000b000 flags=VR--U-A-C
+[pt] cow_fault_after pid=0 va=0x401000 vpn=(0,2,1) level=L0-4K root_pte=0x0000000020005401 l1_pte=0x0000000020006001 l0_pte=0x0000000020002cd7 leaf_pte=0x0000000020002cd7 leaf_pa=0x8000b000 flags=VRW-U-AD-
+[kernel] report pid=0 first=0x1111222233334444 second=0x1111222233334444 third=0xa11ce00000000002
+[kernel] final fork stats: calls=1 alloc_before=1 alloc_after=1 shared_pa=0x8000b000 ref_before=1 ref_after=2
+[kernel] final cow stats: store_faults=2 copy_faults=1 reuse_faults=1 child_ref_before=2 child_old_pa=0x8000b000 child_new_pa=0x8000c000 parent_ref_before=1 parent_old_pa=0x8000b000 parent_new_pa=0x8000b000
+[kernel] reports parent(first=0x1111222233334444 after_child=0x1111222233334444 after_parent=0xa11ce00000000002) child(first=0x1111222233334444 after_child=0xc0ffee0000000001)
+[kernel] final values parent=0xa11ce00000000002 child=0xc0ffee0000000001 parent_refcount=1 child_refcount=1
+[pt] parent_final pid=0 va=0x401000 vpn=(0,2,1) level=L0-4K root_pte=0x0000000020005401 l1_pte=0x0000000020006001 l0_pte=0x0000000020002cd7 leaf_pte=0x0000000020002cd7 leaf_pa=0x8000b000 flags=VRW-U-AD-
+[pt] child_final pid=1 va=0x401000 vpn=(0,2,1) level=L0-4K root_pte=0x0000000020005801 l1_pte=0x0000000020006401 l0_pte=0x00000000200030d7 leaf_pte=0x00000000200030d7 leaf_pa=0x8000c000 flags=VRW-U-AD-
+[kernel] acceptance fork shares page, clears W, and only bumps refcount: PASS
+[kernel] acceptance store page fault with refcount>1 copies page and remaps writable: PASS
+[kernel] acceptance parent/child writes are isolated both ways: PASS
