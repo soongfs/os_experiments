@@ -1,0 +1,1 @@
+cc -O2 -g -Wall -Wextra -std=c11 -pthread -o parallel_benchmark parallel_benchmark.c

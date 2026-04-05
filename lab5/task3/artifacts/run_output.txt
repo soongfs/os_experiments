@@ -1,0 +1,9 @@
+$ ./parallel_benchmark single 4 1048576 20000000
+[config] workers=4 online_cpus=16 words_per_worker=1048576 bytes_per_worker=8388608 iterations_per_worker=20000000
+[result] mode=single workers=4 online_cpus=16 iterations_per_worker=20000000 bytes_per_worker=8388608 rss_snapshot_kb=34304 peak_component_rss_kb=34432 wall_s=1.749040 user_s=1.748171 sys_s=0.000838 cpu_util_percent=100.00 checksum=0x0058d92adecda4e4
+$ ./parallel_benchmark threads 4 1048576 20000000
+[config] workers=4 online_cpus=16 words_per_worker=1048576 bytes_per_worker=8388608 iterations_per_worker=20000000
+[result] mode=threads workers=4 online_cpus=16 iterations_per_worker=20000000 bytes_per_worker=8388608 rss_snapshot_kb=34304 peak_component_rss_kb=34560 wall_s=1.041699 user_s=4.136961 sys_s=0.000855 cpu_util_percent=397.22 checksum=0x0058d92adecda4e4
+$ ./parallel_benchmark processes 4 1048576 20000000
+[config] workers=4 online_cpus=16 words_per_worker=1048576 bytes_per_worker=8388608 iterations_per_worker=20000000
+[result] mode=processes workers=4 online_cpus=16 iterations_per_worker=20000000 bytes_per_worker=8388608 rss_snapshot_kb=38912 peak_component_rss_kb=9472 wall_s=1.043205 user_s=4.136074 sys_s=0.028185 cpu_util_percent=399.18 checksum=0x0058d92adecda4e4

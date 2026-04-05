@@ -1,0 +1,12 @@
+gcc (Debian 14.2.0-19) 14.2.0
+Linux Laptop-SoongFS 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 GNU/Linux
+glibc 2.41
+4096
+16
+CPU(s):                               16
+On-line CPU(s) list:                  0-15
+Model name:                           AMD Ryzen 9 7940H w/ Radeon 780M Graphics
+Thread(s) per core:                   2
+Core(s) per socket:                   8
+Socket(s):                            1
+NUMA node0 CPU(s):                    0-15
