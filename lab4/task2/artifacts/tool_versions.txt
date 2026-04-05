@@ -1,0 +1,18 @@
+gcc (Debian 14.2.0-19) 14.2.0
+rustc 1.94.1 (e408947bf 2026-03-25)
+cargo 1.94.1 (29ea6fb6a 2026-03-24)
+QEMU emulator version 10.0.8 (Debian 1:10.0.8+ds-0+deb13u1+b1)
+Linux 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 GNU/Linux
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       1.7Gi        13Gi       6.8Mi       828Mi        13Gi
+Swap:          4.0Gi       2.9Mi       4.0Gi
+--- /proc/swaps ---
+Filename				Type		Size		Used		Priority
+/dev/sdc                                partition	4194304		2960		-2
+--- sysctl ---
+vm.swappiness = 60
+vm.overcommit_memory = 0
+vm.overcommit_ratio = 50
+--- cgroup ---
+cgroup2fs
+cpu memory pids

@@ -1,0 +1,141 @@
+=== case=low working_set=128MiB step=16MiB revisit_passes=1 memory.max=192M memory.swap.max=768M ===
+[cgroup-before/low] memory.current=0 memory.swap.current=0
+[cgroup-before/low] anon=0
+[cgroup-before/low] swapcached=0
+[cgroup-before/low] pgscan=0
+[cgroup-before/low] pgsteal=0
+[cgroup-before/low] pgfault=0
+[cgroup-before/low] pgmajfault=0
+[vmstat-before/low] pgfault=37064439 pgmajfault=193219 pswpin=1377550 pswpout=1706400
+[info] label=low page_size=4096B mapping=0x71fd38b28000 working_set=128MiB total_pages=32768 step=16MiB revisit_passes=1
+[snapshot] label=low stage=grow#1 touched=16MiB elapsed_ms=14.47 minflt_total=8205 majflt_total=0 resident_pages=4096/32768 (12.50%) VmSize=133624kB VmRSS=18048kB VmSwap=0kB checksum=0xd712befca5110325
+[snapshot] label=low stage=grow#2 touched=32MiB elapsed_ms=26.38 minflt_total=16399 majflt_total=0 resident_pages=8192/32768 (25.00%) VmSize=133624kB VmRSS=34432kB VmSwap=0kB checksum=0xe8cb3b5f7f6d0325
+[snapshot] label=low stage=grow#3 touched=48MiB elapsed_ms=36.54 minflt_total=24591 majflt_total=0 resident_pages=12288/32768 (37.50%) VmSize=133624kB VmRSS=50816kB VmSwap=0kB checksum=0xe4172179092e2325
+[snapshot] label=low stage=grow#4 touched=64MiB elapsed_ms=47.61 minflt_total=32783 majflt_total=0 resident_pages=16384/32768 (50.00%) VmSize=133624kB VmRSS=67200kB VmSwap=0kB checksum=0x4c9c73eb712a2325
+[snapshot] label=low stage=grow#5 touched=80MiB elapsed_ms=59.88 minflt_total=40975 majflt_total=0 resident_pages=20480/32768 (62.50%) VmSize=133624kB VmRSS=83584kB VmSwap=0kB checksum=0x5fa0ff500deae325
+[snapshot] label=low stage=grow#6 touched=96MiB elapsed_ms=72.70 minflt_total=49167 majflt_total=0 resident_pages=24576/32768 (75.00%) VmSize=133624kB VmRSS=99968kB VmSwap=0kB checksum=0xf3cd78b898b18325
+[snapshot] label=low stage=grow#7 touched=112MiB elapsed_ms=90.94 minflt_total=57359 majflt_total=0 resident_pages=28672/32768 (87.50%) VmSize=133624kB VmRSS=116352kB VmSwap=0kB checksum=0xc0f9a4649dda6325
+[snapshot] label=low stage=grow#8 touched=128MiB elapsed_ms=107.86 minflt_total=65551 majflt_total=0 resident_pages=32768/32768 (100.00%) VmSize=133624kB VmRSS=132736kB VmSwap=0kB checksum=0xa581acec5a8b4325
+[snapshot] label=low stage=revisit#1 touched=128MiB elapsed_ms=108.69 minflt_total=65551 majflt_total=0 resident_pages=32768/32768 (100.00%) VmSize=133624kB VmRSS=132736kB VmSwap=0kB checksum=0x0159dbb2c6894325
+[done] label=low completed working_set=128MiB checksum=0x0159dbb2c6894325
+[cgroup-after/low] memory.current=319488 memory.swap.current=0
+[cgroup-after/low] anon=0
+[cgroup-after/low] swapcached=0
+[cgroup-after/low] pgscan=0
+[cgroup-after/low] pgsteal=0
+[cgroup-after/low] pgfault=65610
+[cgroup-after/low] pgmajfault=0
+[vmstat-after/low] pgfault=37132845 pgmajfault=193219 pswpin=1377550 pswpout=1706400
+[vmstat-delta/low] pgfault=68406 pgmajfault=0 pswpin=0 pswpout=0
+
+=== case=medium working_set=384MiB step=16MiB revisit_passes=2 memory.max=192M memory.swap.max=768M ===
+[cgroup-before/medium] memory.current=0 memory.swap.current=0
+[cgroup-before/medium] anon=0
+[cgroup-before/medium] swapcached=0
+[cgroup-before/medium] pgscan=0
+[cgroup-before/medium] pgsteal=0
+[cgroup-before/medium] pgfault=0
+[cgroup-before/medium] pgmajfault=0
+[vmstat-before/medium] pgfault=37134097 pgmajfault=193219 pswpin=1377550 pswpout=1706400
+[info] label=medium page_size=4096B mapping=0x7c5a6115d000 working_set=384MiB total_pages=98304 step=16MiB revisit_passes=2
+[snapshot] label=medium stage=grow#1 touched=16MiB elapsed_ms=10.63 minflt_total=8221 majflt_total=0 resident_pages=4096/98304 (4.17%) VmSize=395768kB VmRSS=18048kB VmSwap=0kB checksum=0xd712befca5110325
+[snapshot] label=medium stage=grow#2 touched=32MiB elapsed_ms=22.40 minflt_total=16415 majflt_total=0 resident_pages=8192/98304 (8.33%) VmSize=395768kB VmRSS=34432kB VmSwap=0kB checksum=0xe8cb3b5f7f6d0325
+[snapshot] label=medium stage=grow#3 touched=48MiB elapsed_ms=34.20 minflt_total=24607 majflt_total=0 resident_pages=12288/98304 (12.50%) VmSize=395768kB VmRSS=50816kB VmSwap=0kB checksum=0xe4172179092e2325
+[snapshot] label=medium stage=grow#4 touched=64MiB elapsed_ms=44.57 minflt_total=32799 majflt_total=0 resident_pages=16384/98304 (16.67%) VmSize=395768kB VmRSS=67200kB VmSwap=0kB checksum=0x4c9c73eb712a2325
+[snapshot] label=medium stage=grow#5 touched=80MiB elapsed_ms=55.19 minflt_total=40991 majflt_total=0 resident_pages=20480/98304 (20.83%) VmSize=395768kB VmRSS=83584kB VmSwap=0kB checksum=0x5fa0ff500deae325
+[snapshot] label=medium stage=grow#6 touched=96MiB elapsed_ms=66.14 minflt_total=49183 majflt_total=0 resident_pages=24576/98304 (25.00%) VmSize=395768kB VmRSS=99968kB VmSwap=0kB checksum=0xf3cd78b898b18325
+[snapshot] label=medium stage=grow#7 touched=112MiB elapsed_ms=76.41 minflt_total=57375 majflt_total=0 resident_pages=28672/98304 (29.17%) VmSize=395768kB VmRSS=116352kB VmSwap=0kB checksum=0xc0f9a4649dda6325
+[snapshot] label=medium stage=grow#8 touched=128MiB elapsed_ms=87.23 minflt_total=65567 majflt_total=0 resident_pages=32768/98304 (33.33%) VmSize=395768kB VmRSS=132736kB VmSwap=0kB checksum=0xa581acec5a8b4325
+[snapshot] label=medium stage=grow#9 touched=144MiB elapsed_ms=104.46 minflt_total=73759 majflt_total=0 resident_pages=36864/98304 (37.50%) VmSize=395768kB VmRSS=149120kB VmSwap=0kB checksum=0x8b5f04d53522a325
+[snapshot] label=medium stage=grow#10 touched=160MiB elapsed_ms=119.23 minflt_total=81951 majflt_total=0 resident_pages=40960/98304 (41.67%) VmSize=395768kB VmRSS=165504kB VmSwap=0kB checksum=0x2268434ed4192325
+[snapshot] label=medium stage=grow#11 touched=176MiB elapsed_ms=136.07 minflt_total=90143 majflt_total=0 resident_pages=45056/98304 (45.83%) VmSize=395768kB VmRSS=181888kB VmSwap=0kB checksum=0xd8a5a26e19032325
+[snapshot] label=medium stage=grow#12 touched=192MiB elapsed_ms=179.89 minflt_total=98348 majflt_total=0 resident_pages=48948/98304 (49.79%) VmSize=395768kB VmRSS=197248kB VmSwap=896kB checksum=0x7d72738d6616e325
+[snapshot] label=medium stage=grow#13 touched=208MiB elapsed_ms=219.02 minflt_total=106545 majflt_total=0 resident_pages=48964/98304 (49.81%) VmSize=395768kB VmRSS=197120kB VmSwap=17536kB checksum=0xc2eddcd686dc6325
+[snapshot] label=medium stage=grow#14 touched=224MiB elapsed_ms=257.55 minflt_total=114737 majflt_total=0 resident_pages=48908/98304 (49.75%) VmSize=395768kB VmRSS=196992kB VmSwap=34048kB checksum=0x35e674be4fbd4325
+[snapshot] label=medium stage=grow#15 touched=240MiB elapsed_ms=293.71 minflt_total=122929 majflt_total=0 resident_pages=48954/98304 (49.80%) VmSize=395768kB VmRSS=197376kB VmSwap=49920kB checksum=0x0fd65aedf4300325
+[snapshot] label=medium stage=grow#16 touched=256MiB elapsed_ms=331.90 minflt_total=131121 majflt_total=0 resident_pages=48938/98304 (49.78%) VmSize=395768kB VmRSS=196864kB VmSwap=66816kB checksum=0x6755c294d15ec325
+[snapshot] label=medium stage=grow#17 touched=272MiB elapsed_ms=367.79 minflt_total=139313 majflt_total=0 resident_pages=48911/98304 (49.75%) VmSize=395768kB VmRSS=197120kB VmSwap=82944kB checksum=0x3bd647784085a325
+[snapshot] label=medium stage=grow#18 touched=288MiB elapsed_ms=406.40 minflt_total=147505 majflt_total=0 resident_pages=48897/98304 (49.74%) VmSize=395768kB VmRSS=197120kB VmSwap=99328kB checksum=0x9b5412c327d9e325
+[snapshot] label=medium stage=grow#19 touched=304MiB elapsed_ms=445.42 minflt_total=155697 majflt_total=0 resident_pages=48937/98304 (49.78%) VmSize=395768kB VmRSS=197248kB VmSwap=115712kB checksum=0x53c3da0a3ddae325
+[snapshot] label=medium stage=grow#20 touched=320MiB elapsed_ms=487.72 minflt_total=163889 majflt_total=0 resident_pages=48896/98304 (49.74%) VmSize=395768kB VmRSS=197120kB VmSwap=132224kB checksum=0x4baae0d726772325
+[snapshot] label=medium stage=grow#21 touched=336MiB elapsed_ms=526.03 minflt_total=172081 majflt_total=0 resident_pages=48913/98304 (49.76%) VmSize=395768kB VmRSS=196992kB VmSwap=148608kB checksum=0xf56ef1187f5e8325
+[snapshot] label=medium stage=grow#22 touched=352MiB elapsed_ms=562.87 minflt_total=180273 majflt_total=0 resident_pages=48871/98304 (49.71%) VmSize=395768kB VmRSS=196992kB VmSwap=164992kB checksum=0x806d4ea378bd4325
+[snapshot] label=medium stage=grow#23 touched=368MiB elapsed_ms=600.75 minflt_total=188465 majflt_total=0 resident_pages=48900/98304 (49.74%) VmSize=395768kB VmRSS=196864kB VmSwap=181504kB checksum=0x397f187a57b86325
+[snapshot] label=medium stage=grow#24 touched=384MiB elapsed_ms=667.52 minflt_total=196666 majflt_total=0 resident_pages=48845/98304 (49.69%) VmSize=395768kB VmRSS=196608kB VmSwap=198144kB checksum=0xb3b354a186ac4325
+[snapshot] label=medium stage=revisit#1 touched=384MiB elapsed_ms=3717.99 minflt_total=393111 majflt_total=177 resident_pages=48894/98304 (49.74%) VmSize=395768kB VmRSS=195072kB VmSwap=199808kB checksum=0x90a34eda1c454325
+[snapshot] label=medium stage=revisit#2 touched=384MiB elapsed_ms=6793.73 minflt_total=589560 majflt_total=348 resident_pages=48867/98304 (49.71%) VmSize=395768kB VmRSS=195072kB VmSwap=199808kB checksum=0x3c5e1f98ef7d0325
+[done] label=medium completed working_set=384MiB checksum=0x3c5e1f98ef7d0325
+[cgroup-after/medium] memory.current=921600 memory.swap.current=253952
+[cgroup-after/medium] anon=0
+[cgroup-after/medium] swapcached=0
+[cgroup-after/medium] pgscan=786022
+[cgroup-after/medium] pgsteal=246119
+[cgroup-after/medium] pgfault=589977
+[cgroup-after/medium] pgmajfault=24720
+[vmstat-after/medium] pgfault=37736516 pgmajfault=217939 pswpin=1574226 pswpout=1952904
+[vmstat-delta/medium] pgfault=602419 pgmajfault=24720 pswpin=196676 pswpout=246504
+
+=== case=high working_set=640MiB step=16MiB revisit_passes=3 memory.max=192M memory.swap.max=768M ===
+[cgroup-before/high] memory.current=0 memory.swap.current=0
+[cgroup-before/high] anon=0
+[cgroup-before/high] swapcached=0
+[cgroup-before/high] pgscan=0
+[cgroup-before/high] pgsteal=0
+[cgroup-before/high] pgfault=0
+[cgroup-before/high] pgmajfault=0
+[vmstat-before/high] pgfault=37737793 pgmajfault=217939 pswpin=1574226 pswpout=1952904
+[info] label=high page_size=4096B mapping=0x7e0481d14000 working_set=640MiB total_pages=163840 step=16MiB revisit_passes=3
+[snapshot] label=high stage=grow#1 touched=16MiB elapsed_ms=11.72 minflt_total=8239 majflt_total=0 resident_pages=4096/163840 (2.50%) VmSize=657912kB VmRSS=18020kB VmSwap=0kB checksum=0xd712befca5110325
+[snapshot] label=high stage=grow#2 touched=32MiB elapsed_ms=23.37 minflt_total=16472 majflt_total=0 resident_pages=8192/163840 (5.00%) VmSize=658072kB VmRSS=34660kB VmSwap=0kB checksum=0xe8cb3b5f7f6d0325
+[snapshot] label=high stage=grow#3 touched=48MiB elapsed_ms=35.58 minflt_total=24664 majflt_total=0 resident_pages=12288/163840 (7.50%) VmSize=658072kB VmRSS=51044kB VmSwap=0kB checksum=0xe4172179092e2325
+[snapshot] label=high stage=grow#4 touched=64MiB elapsed_ms=48.21 minflt_total=32856 majflt_total=0 resident_pages=16384/163840 (10.00%) VmSize=658072kB VmRSS=67428kB VmSwap=0kB checksum=0x4c9c73eb712a2325
+[snapshot] label=high stage=grow#5 touched=80MiB elapsed_ms=60.67 minflt_total=41048 majflt_total=0 resident_pages=20480/163840 (12.50%) VmSize=658072kB VmRSS=83812kB VmSwap=0kB checksum=0x5fa0ff500deae325
+[snapshot] label=high stage=grow#6 touched=96MiB elapsed_ms=70.95 minflt_total=49240 majflt_total=0 resident_pages=24576/163840 (15.00%) VmSize=658072kB VmRSS=100196kB VmSwap=0kB checksum=0xf3cd78b898b18325
+[snapshot] label=high stage=grow#7 touched=112MiB elapsed_ms=81.19 minflt_total=57432 majflt_total=0 resident_pages=28672/163840 (17.50%) VmSize=658072kB VmRSS=116580kB VmSwap=0kB checksum=0xc0f9a4649dda6325
+[snapshot] label=high stage=grow#8 touched=128MiB elapsed_ms=92.62 minflt_total=65624 majflt_total=0 resident_pages=32768/163840 (20.00%) VmSize=658072kB VmRSS=132964kB VmSwap=0kB checksum=0xa581acec5a8b4325
+[snapshot] label=high stage=grow#9 touched=144MiB elapsed_ms=103.40 minflt_total=73816 majflt_total=0 resident_pages=36864/163840 (22.50%) VmSize=658072kB VmRSS=149348kB VmSwap=0kB checksum=0x8b5f04d53522a325
+[snapshot] label=high stage=grow#10 touched=160MiB elapsed_ms=114.45 minflt_total=82008 majflt_total=0 resident_pages=40960/163840 (25.00%) VmSize=658072kB VmRSS=165732kB VmSwap=0kB checksum=0x2268434ed4192325
+[snapshot] label=high stage=grow#11 touched=176MiB elapsed_ms=126.29 minflt_total=90200 majflt_total=0 resident_pages=45056/163840 (27.50%) VmSize=658072kB VmRSS=182116kB VmSwap=0kB checksum=0xd8a5a26e19032325
+[snapshot] label=high stage=grow#12 touched=192MiB elapsed_ms=163.30 minflt_total=98404 majflt_total=1 resident_pages=48966/163840 (29.89%) VmSize=658072kB VmRSS=197476kB VmSwap=896kB checksum=0x7d72738d6616e325
+[snapshot] label=high stage=grow#13 touched=208MiB elapsed_ms=199.47 minflt_total=106600 majflt_total=1 resident_pages=48920/163840 (29.86%) VmSize=658072kB VmRSS=197092kB VmSwap=17664kB checksum=0xc2eddcd686dc6325
+[snapshot] label=high stage=grow#14 touched=224MiB elapsed_ms=239.66 minflt_total=114792 majflt_total=1 resident_pages=48920/163840 (29.86%) VmSize=658072kB VmRSS=197220kB VmSwap=33920kB checksum=0x35e674be4fbd4325
+[snapshot] label=high stage=grow#15 touched=240MiB elapsed_ms=277.46 minflt_total=122984 majflt_total=1 resident_pages=48906/163840 (29.85%) VmSize=658072kB VmRSS=197348kB VmSwap=50176kB checksum=0x0fd65aedf4300325
+[snapshot] label=high stage=grow#16 touched=256MiB elapsed_ms=313.11 minflt_total=131176 majflt_total=1 resident_pages=48908/163840 (29.85%) VmSize=658072kB VmRSS=197220kB VmSwap=66688kB checksum=0x6755c294d15ec325
+[snapshot] label=high stage=grow#17 touched=272MiB elapsed_ms=351.08 minflt_total=139368 majflt_total=1 resident_pages=48880/163840 (29.83%) VmSize=658072kB VmRSS=196836kB VmSwap=83328kB checksum=0x3bd647784085a325
+[snapshot] label=high stage=grow#18 touched=288MiB elapsed_ms=387.49 minflt_total=147560 majflt_total=1 resident_pages=48896/163840 (29.84%) VmSize=658072kB VmRSS=197220kB VmSwap=99456kB checksum=0x9b5412c327d9e325
+[snapshot] label=high stage=grow#19 touched=304MiB elapsed_ms=424.82 minflt_total=155752 majflt_total=1 resident_pages=48883/163840 (29.84%) VmSize=658072kB VmRSS=197092kB VmSwap=115968kB checksum=0x53c3da0a3ddae325
+[snapshot] label=high stage=grow#20 touched=320MiB elapsed_ms=462.91 minflt_total=163944 majflt_total=1 resident_pages=48913/163840 (29.85%) VmSize=658072kB VmRSS=197348kB VmSwap=132096kB checksum=0x4baae0d726772325
+[snapshot] label=high stage=grow#21 touched=336MiB elapsed_ms=501.41 minflt_total=172136 majflt_total=1 resident_pages=48871/163840 (29.83%) VmSize=658072kB VmRSS=196964kB VmSwap=148736kB checksum=0xf56ef1187f5e8325
+[snapshot] label=high stage=grow#22 touched=352MiB elapsed_ms=545.36 minflt_total=180328 majflt_total=1 resident_pages=48859/163840 (29.82%) VmSize=658072kB VmRSS=196964kB VmSwap=165120kB checksum=0x806d4ea378bd4325
+[snapshot] label=high stage=grow#23 touched=368MiB elapsed_ms=585.66 minflt_total=188520 majflt_total=1 resident_pages=48875/163840 (29.83%) VmSize=658072kB VmRSS=197092kB VmSwap=181248kB checksum=0x397f187a57b86325
+[snapshot] label=high stage=grow#24 touched=384MiB elapsed_ms=650.08 minflt_total=196720 majflt_total=1 resident_pages=48890/163840 (29.84%) VmSize=658072kB VmRSS=196964kB VmSwap=197888kB checksum=0xb3b354a186ac4325
+[snapshot] label=high stage=grow#25 touched=400MiB elapsed_ms=691.38 minflt_total=204916 majflt_total=1 resident_pages=48875/163840 (29.83%) VmSize=658072kB VmRSS=196964kB VmSwap=214272kB checksum=0xbc6bb8d893c28325
+[snapshot] label=high stage=grow#26 touched=416MiB elapsed_ms=729.45 minflt_total=213108 majflt_total=1 resident_pages=48833/163840 (29.81%) VmSize=658072kB VmRSS=196964kB VmSwap=230656kB checksum=0x205286ecef372325
+[snapshot] label=high stage=grow#27 touched=432MiB elapsed_ms=769.36 minflt_total=221300 majflt_total=1 resident_pages=48849/163840 (29.82%) VmSize=658072kB VmRSS=196708kB VmSwap=247168kB checksum=0xd9ce57730b93a325
+[snapshot] label=high stage=grow#28 touched=448MiB elapsed_ms=811.07 minflt_total=229492 majflt_total=1 resident_pages=48832/163840 (29.80%) VmSize=658072kB VmRSS=196836kB VmSwap=263552kB checksum=0xd7fd0edf67942325
+[snapshot] label=high stage=grow#29 touched=464MiB elapsed_ms=856.23 minflt_total=237684 majflt_total=1 resident_pages=48836/163840 (29.81%) VmSize=658072kB VmRSS=196964kB VmSwap=279808kB checksum=0xed310dda547ea325
+[snapshot] label=high stage=grow#30 touched=480MiB elapsed_ms=887.88 minflt_total=245876 majflt_total=1 resident_pages=48813/163840 (29.79%) VmSize=658072kB VmRSS=196452kB VmSwap=296576kB checksum=0x499e9c0ad3478325
+[snapshot] label=high stage=grow#31 touched=496MiB elapsed_ms=917.42 minflt_total=254068 majflt_total=1 resident_pages=48826/163840 (29.80%) VmSize=658072kB VmRSS=196836kB VmSwap=312704kB checksum=0xd9d9b0e62f212325
+[snapshot] label=high stage=grow#32 touched=512MiB elapsed_ms=948.37 minflt_total=262260 majflt_total=1 resident_pages=48738/163840 (29.75%) VmSize=658072kB VmRSS=196452kB VmSwap=329600kB checksum=0x48cce49f5a896325
+[snapshot] label=high stage=grow#33 touched=528MiB elapsed_ms=981.56 minflt_total=270452 majflt_total=1 resident_pages=48771/163840 (29.77%) VmSize=658072kB VmRSS=196580kB VmSwap=345728kB checksum=0x0b13aef8906dc325
+[snapshot] label=high stage=grow#34 touched=544MiB elapsed_ms=1013.14 minflt_total=278644 majflt_total=1 resident_pages=48757/163840 (29.76%) VmSize=658072kB VmRSS=196580kB VmSwap=361984kB checksum=0xc1d4156069ff2325
+[snapshot] label=high stage=grow#35 touched=560MiB elapsed_ms=1045.17 minflt_total=286836 majflt_total=1 resident_pages=48754/163840 (29.76%) VmSize=658072kB VmRSS=196580kB VmSwap=378368kB checksum=0x3cbc6e5e438fa325
+[snapshot] label=high stage=grow#36 touched=576MiB elapsed_ms=1106.73 minflt_total=295036 majflt_total=1 resident_pages=48777/163840 (29.77%) VmSize=658072kB VmRSS=196708kB VmSwap=394752kB checksum=0x38644bbd8610a325
+[snapshot] label=high stage=grow#37 touched=592MiB elapsed_ms=1143.41 minflt_total=303232 majflt_total=1 resident_pages=48728/163840 (29.74%) VmSize=658072kB VmRSS=195940kB VmSwap=411904kB checksum=0xe2b23af7a9b36325
+[snapshot] label=high stage=grow#38 touched=608MiB elapsed_ms=1178.55 minflt_total=311424 majflt_total=1 resident_pages=48727/163840 (29.74%) VmSize=658072kB VmRSS=196452kB VmSwap=427776kB checksum=0x07a4f9960ec72325
+[snapshot] label=high stage=grow#39 touched=624MiB elapsed_ms=1215.57 minflt_total=319616 majflt_total=1 resident_pages=48733/163840 (29.74%) VmSize=658072kB VmRSS=196324kB VmSwap=444288kB checksum=0x51516db41411e325
+[snapshot] label=high stage=grow#40 touched=640MiB elapsed_ms=1255.84 minflt_total=327808 majflt_total=1 resident_pages=48734/163840 (29.74%) VmSize=658072kB VmRSS=196452kB VmSwap=460672kB checksum=0x72ece2f5365da325
+[snapshot] label=high stage=revisit#1 touched=640MiB elapsed_ms=6429.00 minflt_total=655186 majflt_total=311 resident_pages=48703/163840 (29.73%) VmSize=658072kB VmRSS=195044kB VmSwap=462208kB checksum=0x723a484ce216e325
+[snapshot] label=high stage=revisit#2 touched=640MiB elapsed_ms=11727.65 minflt_total=982523 majflt_total=638 resident_pages=48761/163840 (29.76%) VmSize=658072kB VmRSS=195172kB VmSwap=461952kB checksum=0x90f78c289188e325
+[snapshot] label=high stage=revisit#3 touched=640MiB elapsed_ms=17065.65 minflt_total=1309884 majflt_total=967 resident_pages=48756/163840 (29.76%) VmSize=658072kB VmRSS=194404kB VmSwap=462720kB checksum=0xb597b6018d402325
+[done] label=high completed working_set=640MiB checksum=0xb597b6018d402325
+[cgroup-after/high] memory.current=1437696 memory.swap.current=2977792
+[cgroup-after/high] anon=0
+[cgroup-after/high] swapcached=0
+[cgroup-after/high] pgscan=1847770
+[cgroup-after/high] pgsteal=607318
+[cgroup-after/high] pgfault=1310923
+[cgroup-after/high] pgmajfault=61953
+[vmstat-after/high] pgfault=39067652 pgmajfault=279892 pswpin=2066391 pswpout=2560078
+[vmstat-delta/high] pgfault=1329859 pgmajfault=61953 pswpin=492165 pswpout=607174
+
