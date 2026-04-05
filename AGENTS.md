@@ -17,6 +17,15 @@ If a new task would conflict with an existing task directory that already serves
 
 For `LAB2+` bare-metal tasks, prefer reusing stable scaffolding from adjacent completed tasks, such as `boot.S`, trap entry code, UART console helpers, linker scripts, and Cargo target configuration, then change only the minimum task-specific logic.
 
+When copying an adjacent task as a starting point, immediately verify and fix:
+
+- `Cargo.toml` package name or binary target name
+- copied `artifacts/` contents, which should be cleared before fresh verification
+- copied `target/` directories, which should not remain in the new task
+- repository `.gitignore` entries for the new task-local `target/`
+- linker script stack layout and exported symbols
+- copied README titles or task references that still mention the old task
+
 ## Execution Environment by Lab
 
 Do not assume that every lab runs in the same execution environment.
@@ -59,6 +68,12 @@ Before implementation, translate the prompt into an explicit `acceptance -> evid
 - If the current program does not expose enough evidence, add instrumentation first instead of planning to explain the behavior later from memory.
 - For timing, scheduling, trap, interrupt, paging, syscall-accounting, persistence, or other runtime-sensitive tasks, prefer direct observable evidence over narrative claims.
 
+For common runtime-sensitive categories, prefer these evidence patterns:
+
+- Scheduling tasks: policy name, switch reason, per-task runtime or finish counters, final comparison lines
+- SMP tasks: per-hart init logs, `ready_harts`, `booted_mask`, per-hart work totals, lock statistics
+- Interrupt or trap tasks: per-hart cause counters, timer or IPI counters, stack-boundary evidence, lock-state or reentrancy invariants
+
 ## Build, Test, and Verification Commands
 
 Common Linux-side build commands:
@@ -84,6 +99,8 @@ Common output verification commands:
 
 Always record the exact commands and observable results in the task README.
 
+Do not run dependent commands in parallel. In particular, `build` and any `qemu`, `objdump`, `nm`, or other verification step that depends on the freshly built image must be serialized.
+
 If a task involves concurrency, scheduling, timing, exceptions, system call statistics, trap handling, or any other non-deterministic or runtime-sensitive behavior, run it multiple times and preserve representative outputs.
 
 When low-level control flow placement matters, also capture focused symbol or disassembly evidence with commands such as `cargo objdump` or `cargo nm`, and save those outputs under the task-local `artifacts/` directory.
@@ -102,6 +119,8 @@ Each task-level `README.md` should be a reviewable experiment record, not a plac
 - Environment notes, reproduction limits, and any unresolved issues
 
 If a requested second environment, such as a native Linux server, is unavailable, state that explicitly in the README.
+
+If the implementation intentionally uses a minimal model to verify one mechanism cleanly instead of building a full OS feature set, state that explicitly in the README and name the main omitted pieces.
 
 For timing, accounting, or performance-estimation tasks, also include:
 
