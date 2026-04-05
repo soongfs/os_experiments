@@ -1,0 +1,39 @@
+[kernel] booted in M-mode
+[kernel] LAB3 kernel task3 floating-point context + preemption support
+[kernel] timer source: mtime=0x200bff8, mtimecmp=0x2004000, frequency=10000000 Hz, 1 tick=100 ns
+[kernel] fp trap frame: 528 bytes, includes f0-f31 (256) + fcsr
+[kernel] fp context strategy: eager save/restore on every trap entry/exit
+[kernel] plan: run two single-task references, then rerun both under timer-driven preemption
+[kernel] concurrent time slice: 2500 ticks (250 us)
+[kernel] phase=reference task=fp_alpha iterations=220000
+[user/fp_alpha] reference run start: iterations=220000
+[user/fp_alpha] reference checksum=0x7ffec4df42aade3f
+[kernel] reference checksum [fp_alpha] = 0x7ffec4df42aade3f
+[kernel] phase=reference task=fp_beta iterations=220000
+[user/fp_beta] reference run start: iterations=220000
+[user/fp_beta] reference checksum=0x801936f547486022
+[kernel] reference checksum [fp_beta] = 0x801936f547486022
+[kernel] phase=preemptive starting concurrent run
+[kernel] expected checksum [fp_alpha] = 0x7ffec4df42aade3f
+[kernel] expected checksum [fp_beta] = 0x801936f547486022
+[user/fp_alpha] preemptive run start: iterations=220000
+[kernel] timer interrupt #1: preempt fp_alpha -> fp_beta at mepc=0x80000f68
+[kernel] timer interrupt #2: preempt fp_beta -> fp_alpha at mepc=0x80002e42
+[kernel] timer interrupt #3: preempt fp_alpha -> fp_beta at mepc=0x80000f68
+[user/fp_beta] preemptive[kernel] timer interrupt #4: preempt fp_beta -> fp_alpha at mepc=0x800004f4
+[kernel] timer interrupt #5: preempt fp_alpha -> fp_beta at mepc=0x80000f68
+ run start: iterations=220000
+[kernel] timer interrupt #6: preempt fp_beta -> fp_alpha at mepc=0x80000f68
+[kernel] timer interrupt logging capped after 6 events
+[user/fp_alpha] preemptive checksum=0x7ffec4df42aade3f, expected=0x7ffec4df42aade3f, status=match
+[kernel] concurrent checksum [fp_alpha] = 0x7ffec4df42aade3f
+[user/fp_beta] preemptive checksum=0x801936f547486022, expected=0x801936f547486022, status=match
+[kernel] concurrent checksum [fp_beta] = 0x801936f547486022
+[kernel] summary: timer_interrupts=90 forced_switches=90
+[kernel] result [fp_alpha]: expected=0x7ffec4df42aade3f observed=0x7ffec4df42aade3f => PASS
+[kernel] result [fp_beta]: expected=0x801936f547486022 observed=0x801936f547486022 => PASS
+[kernel] acceptance forced timer interrupt occurred: PASS
+[kernel] acceptance forced context switch occurred: PASS
+[kernel] acceptance concurrent floating-point checksums match reference exactly: PASS
+[kernel] acceptance eager fp save/restore preserved f0-f31 and fcsr across preemption: PASS
+[kernel] criterion: any exact-bit checksum mismatch means FP register or fcsr state leaked across preemption
