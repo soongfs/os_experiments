@@ -1,0 +1,15 @@
+[kernel] booted in M-mode
+[kernel] LAB3 task3 user/kernel CPU-time accounting verifier
+[kernel] time source: mtime @ 0x200bff8, frequency=10000000 Hz, 1 tick=100 ns
+[kernel] workloads: compute iterations=4000000, syscall iterations=60000, kernel_probe_spin=48
+[kernel] launching task 0 (compute_background)
+[kernel] task finished: compute_background result=0x886bdb03e6f7f8c8
+[kernel] launching next task: syscall_probe
+[kernel] launching task 1 (syscall_probe)
+[kernel] task finished: syscall_probe result=0x000000000000ea60
+[kernel] final accounting summary begins
+[kernel] stats[compute_background]: user=1335302 ticks (133530 us, 99.83%), kernel=2204 ticks (220 us, 0.16%), total=1337506 ticks (133750 us), syscalls=1, result=0x886bdb03e6f7f8c8
+[kernel] stats[syscall_probe]: user=952988 ticks (95298 us, 39.29%), kernel=1472377 ticks (147237 us, 60.70%), total=2425365 ticks (242536 us), syscalls=60001, result=0x000000000000ea60
+[kernel] acceptance task1 compute user_time >> kernel_time: PASS
+[kernel] acceptance task2 syscall kernel ratio increased clearly: PASS
+[kernel] explanation: compute task traps only once at finish, while syscall task enters the kernel on every probe call
