@@ -1,0 +1,28 @@
+[kernel] booted in M-mode
+[kernel] LAB3 kernel task2 user/kernel completion-time accounting
+[kernel] time source: mtime @ 0x200bff8, frequency=10000000 Hz, 1 tick=100 ns
+[kernel] workloads: compute iterations=4000000, syscall iterations=60000, kernel_probe_spin=48
+[kernel] accounting rule: trap_enter adds to pcb.utime, trap_exit/task_complete adds to pcb.stime
+[kernel] accounting trace: enabled=true, limit=8 event(s)
+[kernel] launching task: id=1 name=compute_user_heavy
+[acct] trap_enter: task=1(compute_user_heavy) mepc=0x8000004c add_utime=1470915 ticks total_utime=1470915 ticks
+[kernel] task finished: id=1 name=compute_user_heavy result=0x886bdb03e6f7f8c8
+[kernel] scheduling next task: id=2 name=syscall_kernel_heavy
+[acct] trap_exit: charge=1(compute_user_heavy) resume=2(syscall_kernel_heavy) next_mepc=0x80002b5c add_stime=18501 ticks total_stime=18501 ticks
+[acct] trap_enter: task=2(syscall_kernel_heavy) mepc=0x8000004c add_utime=6885 ticks total_utime=6885 ticks
+[acct] trap_exit: charge=2(syscall_kernel_heavy) resume=2(syscall_kernel_heavy) next_mepc=0x80000050 add_stime=3516 ticks total_stime=3516 ticks
+[acct] trap_enter: task=2(syscall_kernel_heavy) mepc=0x8000004c add_utime=3386 ticks total_utime=10271 ticks
+[acct] trap_exit: charge=2(syscall_kernel_heavy) resume=2(syscall_kernel_heavy) next_mepc=0x80000050 add_stime=2197 ticks total_stime=5713 ticks
+[acct] trap_enter: task=2(syscall_kernel_heavy) mepc=0x8000004c add_utime=2827 ticks total_utime=13098 ticks
+[acct] trap_exit: charge=2(syscall_kernel_heavy) resume=2(syscall_kernel_heavy) next_mepc=0x80000050 add_stime=2162 ticks total_stime=7875 ticks
+[acct] trace limit reached at 8 event(s); further accounting logs suppressed
+[kernel] task finished: id=2 name=syscall_kernel_heavy result=0x000000000000ea60
+[kernel] final accounting summary begins
+[kernel] pcb[1:compute_user_heavy]: utime=1470915 ticks (147091 us, 98.75%), stime=18501 ticks (1850 us, 1.24%), total_accounted=1489416 ticks (148941 us), elapsed=1489416 ticks (148941 us), gap=0 ticks, syscalls=1, trap_entries=1, result=0x886bdb03e6f7f8c8
+[kernel] pcb[2:syscall_kernel_heavy]: utime=1064079 ticks (106407 us, 37.45%), stime=1776688 ticks (177668 us, 62.54%), total_accounted=2840767 ticks (284076 us), elapsed=2840767 ticks (284076 us), gap=0 ticks, syscalls=60001, trap_entries=60001, result=0x000000000000ea60
+[kernel] accounting events: trap_enter_updates=60002 trap_exit_updates=60001 task_complete_updates=1
+[kernel] accounting scope: utime=[last_timestamp, trap_enter), stime=[last_timestamp, trap_exit/task_complete)
+[kernel] acceptance pcb utime/stime maintained: PASS
+[kernel] acceptance trap enter/exit timestamp updates balanced: PASS
+[kernel] acceptance compute task utime >> stime: PASS
+[kernel] acceptance syscall task kernel ratio increased clearly: PASS

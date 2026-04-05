@@ -1,0 +1,135 @@
+20-80000022: 00154513     	xori	a0, a0, 0x1
+21-80000026: 60e2         	ld	ra, 0x18(sp)
+22-80000028: 6105         	addi	sp, sp, 0x20
+23-8000002a: 8082         	ret
+24-
+25:000000008000002c <lab3_kernel_task2::syscall::invoke_syscall3::hddcfcca49606595c>:
+26-8000002c: 7139         	addi	sp, sp, -0x40
+27-8000002e: e036         	sd	a3, 0x0(sp)
+28-80000030: 86b2         	mv	a3, a2
+29-80000032: 6602         	ld	a2, 0x0(sp)
+30-80000034: e436         	sd	a3, 0x8(sp)
+--
+37-80000042: f42a         	sd	a0, 0x28(sp)
+38-80000044: f82e         	sd	a1, 0x30(sp)
+39-80000046: fc32         	sd	a2, 0x38(sp)
+40-80000048: ec2a         	sd	a0, 0x18(sp)
+41-8000004a: 6562         	ld	a0, 0x18(sp)
+42:8000004c: 00000073     	ecall
+43-80000050: ec2a         	sd	a0, 0x18(sp)
+44-80000052: 6562         	ld	a0, 0x18(sp)
+45-80000054: 6121         	addi	sp, sp, 0x40
+46-80000056: 8082         	ret
+47-
+--
+51-8000005c: 4681         	li	a3, 0x0
+52-8000005e: 8536         	mv	a0, a3
+53-80000060: 85b6         	mv	a1, a3
+54-80000062: 8636         	mv	a2, a3
+55-80000064: 00000097     	auipc	ra, 0x0
+56:80000068: fc8080e7     	jalr	-0x38(ra) <lab3_kernel_task2::syscall::invoke_syscall3::hddcfcca49606595c>
+57-8000006c: 60a2         	ld	ra, 0x8(sp)
+58-8000006e: 0141         	addi	sp, sp, 0x10
+59-80000070: 8082         	ret
+60-
+61-0000000080000072 <lab3_kernel_task2::syscall::finish::hf921c561a02f2ea4>:
+--
+65-80000078: e02e         	sd	a1, 0x0(sp)
+66-8000007a: 4505         	li	a0, 0x1
+67-8000007c: 4681         	li	a3, 0x0
+68-8000007e: 8636         	mv	a2, a3
+69-80000080: 00000097     	auipc	ra, 0x0
+70:80000084: fac080e7     	jalr	-0x54(ra) <lab3_kernel_task2::syscall::invoke_syscall3::hddcfcca49606595c>
+71-80000088: a009         	j	0x8000008a <lab3_kernel_task2::syscall::finish::hf921c561a02f2ea4+0x18>
+72-8000008a: 10500073     	wfi
+73-8000008e: bff5         	j	0x8000008a <lab3_kernel_task2::syscall::finish::hf921c561a02f2ea4+0x18>
+74-
+75-0000000080000090 <core::str::_$LT$impl$u20$str$GT$::bytes::h7ec22c49065d1065>:
+--
+164-800001d0: 30200073     	mret
+165-800001d4: 00000013     	nop
+166-800001d8: 00000013     	nop
+167-800001dc: 00000013     	nop
+168-
+169:00000000800001e0 <trap_entry>:
+170-800001e0: 34011173     	csrrw	sp, mscratch, sp
+171-800001e4: df010113     	addi	sp, sp, -0x210
+172-800001e8: e006         	sd	ra, 0x0(sp)
+173-800001ea: e40e         	sd	gp, 0x8(sp)
+174-800001ec: e812         	sd	tp, 0x10(sp)
+--
+238-80000270: 003022f3     	frcsr	t0
+239-80000274: 20513023     	sd	t0, 0x200(sp)
+240-80000278: 20013423     	sd	zero, 0x208(sp)
+241-8000027c: 850a         	mv	a0, sp
+242-8000027e: 00003097     	auipc	ra, 0x3
+243:80000282: bf4080e7     	jalr	-0x40c(ra) <rust_account_trap_enter>
+244-80000286: 850a         	mv	a0, sp
+245-80000288: 00003097     	auipc	ra, 0x3
+246-8000028c: c2c080e7     	jalr	-0x3d4(ra) <rust_handle_trap>
+247-80000290: 850a         	mv	a0, sp
+248-80000292: 00003097     	auipc	ra, 0x3
+249:80000296: c0e080e7     	jalr	-0x3f2(ra) <rust_account_trap_exit>
+250-8000029a: 72ee         	ld	t0, 0xf8(sp)
+251-8000029c: 34129073     	csrw	mepc, t0
+252-800002a0: 20013283     	ld	t0, 0x200(sp)
+253-800002a4: 00329073     	fscsr	t0
+254-800002a8: 72ce         	ld	t0, 0xf0(sp)
+--
+1142-80000b5c: 61858613     	addi	a2, a1, 0x618
+1143-80000b60: 4589         	li	a1, 0x2
+1144-80000b62: 00004097     	auipc	ra, 0x4
+1145-80000b66: 9ee080e7     	jalr	-0x612(ra) <core::panicking::panic_bounds_check::h6aaee0d15e0261eb>
+1146-
+1147:0000000080000b6a <lab3_kernel_task2::account_trap_exit::h8169689bc72b24a0>:
+1148-80000b6a: 7175         	addi	sp, sp, -0x90
+1149-80000b6c: e506         	sd	ra, 0x88(sp)
+1150-80000b6e: f42a         	sd	a0, 0x28(sp)
+1151-80000b70: e0aa         	sd	a0, 0x40(sp)
+1152-80000b72: 00000097     	auipc	ra, 0x0
+--
+1354-80000d5a: 00004517     	auipc	a0, 0x4
+1355-80000d5e: 59e50513     	addi	a0, a0, 0x59e
+1356-80000d62: 00004097     	auipc	ra, 0x4
+1357-80000d66: 85a080e7     	jalr	-0x7a6(ra) <core::panicking::panic_null_pointer_dereference::hbac6411af4f2e916>
+1358-
+1359:0000000080000d6a <lab3_kernel_task2::account_trap_enter::h950f19c7b3b3d450>:
+1360-80000d6a: 716d         	addi	sp, sp, -0x110
+1361-80000d6c: e606         	sd	ra, 0x108(sp)
+1362-80000d6e: f42a         	sd	a0, 0x28(sp)
+1363-80000d70: f0aa         	sd	a0, 0x60(sp)
+1364-80000d72: f4ae         	sd	a1, 0x68(sp)
+--
+4744-80002e68: 20a5b423     	sd	a0, 0x208(a1)
+4745-80002e6c: 70b2         	ld	ra, 0x128(sp)
+4746-80002e6e: 6155         	addi	sp, sp, 0x130
+4747-80002e70: 8082         	ret
+4748-
+4749:0000000080002e72 <rust_account_trap_enter>:
+4750-80002e72: 1101         	addi	sp, sp, -0x20
+4751-80002e74: ec06         	sd	ra, 0x18(sp)
+4752-80002e76: e42a         	sd	a0, 0x8(sp)
+4753-80002e78: e82a         	sd	a0, 0x10(sp)
+4754-80002e7a: 00000097     	auipc	ra, 0x0
+--
+4758-80002e88: f42080e7     	jalr	-0xbe(ra) <lab3_kernel_task2::trap::read_mtval::h45ac33e14e70b88f>
+4759-80002e8c: 6582         	ld	a1, 0x0(sp)
+4760-80002e8e: 862a         	mv	a2, a0
+4761-80002e90: 6522         	ld	a0, 0x8(sp)
+4762-80002e92: ffffe097     	auipc	ra, 0xffffe
+4763:80002e96: ed8080e7     	jalr	-0x128(ra) <lab3_kernel_task2::account_trap_enter::h950f19c7b3b3d450>
+4764-80002e9a: 60e2         	ld	ra, 0x18(sp)
+4765-80002e9c: 6105         	addi	sp, sp, 0x20
+4766-80002e9e: 8082         	ret
+4767-
+4768:0000000080002ea0 <rust_account_trap_exit>:
+4769-80002ea0: 1141         	addi	sp, sp, -0x10
+4770-80002ea2: e406         	sd	ra, 0x8(sp)
+4771-80002ea4: e02a         	sd	a0, 0x0(sp)
+4772-80002ea6: ffffe097     	auipc	ra, 0xffffe
+4773:80002eaa: cc4080e7     	jalr	-0x33c(ra) <lab3_kernel_task2::account_trap_exit::h8169689bc72b24a0>
+4774-80002eae: 60a2         	ld	ra, 0x8(sp)
+4775-80002eb0: 0141         	addi	sp, sp, 0x10
+4776-80002eb2: 8082         	ret
+4777-
+4778-0000000080002eb4 <rust_handle_trap>:
