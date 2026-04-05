@@ -1,0 +1,11 @@
+[kernel] booted in M-mode
+[kernel] launching stack trace demo in U-mode
+[user] stack trace demo started
+[user] frame pointer walk begins: fp=0x8000b690, stack=[0x80007780, 0x8000b780)
+[user] frame#00: fp=0x8000b690 prev_fp=0x8000b6e0 ra=0x80000e6e
+[user] frame#01: fp=0x8000b6e0 prev_fp=0x8000b730 ra=0x80001600
+[user] frame#02: fp=0x8000b730 prev_fp=0x8000b770 ra=0x80000eae
+[user] frame#03: fp=0x8000b770 prev_fp=0x8000b780 ra=0x800016b8
+[user] frame#04: fp=0x8000b780 prev_fp=0x80007780 ra=0x8000168a
+[user] frame pointer walk finished after 5 frame(s)
+[kernel] user requested exit with code 0

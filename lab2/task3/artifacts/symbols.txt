@@ -1,0 +1,5 @@
+0000000080000e30 t lab2_task3::trace_leaf::hd53c09e157711e07
+0000000080000e82 t lab2_task3::trace_root::h2ac938ecb0710440
+0000000080000f8e t lab2_task3::print_stack_trace::hb2e01e702d84565b
+00000000800015c2 t lab2_task3::trace_mid::h6605153df9c92865
+000000008000168e T user_entry
