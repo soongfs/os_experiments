@@ -1,0 +1,17 @@
+[kernel] booted in M-mode
+[kernel] current task template: id=1 name=kernel_task1_user
+[kernel] syscall table ready: write=0, get_taskinfo=1, shutdown=2
+[user] kernel-side get_taskinfo demo started
+[kernel] dispatch syscall nr=1 -> sys_get_taskinfo(user_ptr=0x8000bd78)
+[kernel] copied task info to user: id=1 name=kernel_task1_user
+[user] valid pointer copied task info: id=1, name=kernel_task1_user
+[kernel] dispatch syscall nr=1 -> sys_get_taskinfo(user_ptr=0x0)
+[kernel] rejected get_taskinfo user pointer 0x0 with -14
+[user] null pointer result: bad user pointer (-14)
+[kernel] dispatch syscall nr=1 -> sys_get_taskinfo(user_ptr=0x1)
+[kernel] rejected get_taskinfo user pointer 0x1 with -22
+[user] misaligned pointer result: invalid argument (-22)
+[kernel] dispatch syscall nr=1 -> sys_get_taskinfo(user_ptr=0x8000bfb0)
+[kernel] rejected get_taskinfo user pointer 0x8000bfb0 with -14
+[user] past-stack pointer result: bad user pointer (-14)
+[kernel] user requested shutdown with code 0
