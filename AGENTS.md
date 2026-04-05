@@ -15,6 +15,8 @@ For simple tasks, a single `.c` or `.rs` file is acceptable. For larger tasks, f
 
 If a new task would conflict with an existing task directory that already serves a different lab requirement, prefer creating a new task directory instead of overloading the old one.
 
+For `LAB2+` bare-metal tasks, prefer reusing stable scaffolding from adjacent completed tasks, such as `boot.S`, trap entry code, UART console helpers, linker scripts, and Cargo target configuration, then change only the minimum task-specific logic.
+
 ## Execution Environment by Lab
 
 Do not assume that every lab runs in the same execution environment.
@@ -49,6 +51,14 @@ Verify the environment with:
 - `rustup target list | grep riscv64gc`
 - `qemu-system-riscv64 --version`
 
+## Acceptance Planning
+
+Before implementation, translate the prompt into an explicit `acceptance -> evidence` checklist.
+
+- For each hard requirement or acceptance check, decide which counter, checksum, log line, file output, disassembly excerpt, or README section will prove it.
+- If the current program does not expose enough evidence, add instrumentation first instead of planning to explain the behavior later from memory.
+- For timing, scheduling, trap, interrupt, paging, syscall-accounting, persistence, or other runtime-sensitive tasks, prefer direct observable evidence over narrative claims.
+
 ## Build, Test, and Verification Commands
 
 Common Linux-side build commands:
@@ -64,6 +74,7 @@ Common Rust and RISC-V commands:
 - `cargo objdump --bin <bin> -- --demangle -d`
 - `cargo nm --bin <bin> -- --demangle`
 - `qemu-system-riscv64 -machine virt -bios none -nographic -kernel <elf>`
+- `timeout 30s qemu-system-riscv64 -machine virt -bios none -nographic -kernel <elf> > artifacts/run_output.txt 2>&1`
 
 Common output verification commands:
 
@@ -74,6 +85,8 @@ Common output verification commands:
 Always record the exact commands and observable results in the task README.
 
 If a task involves concurrency, scheduling, timing, exceptions, system call statistics, trap handling, or any other non-deterministic or runtime-sensitive behavior, run it multiple times and preserve representative outputs.
+
+When low-level control flow placement matters, also capture focused symbol or disassembly evidence with commands such as `cargo objdump` or `cargo nm`, and save those outputs under the task-local `artifacts/` directory.
 
 ## README Requirements
 
@@ -90,9 +103,24 @@ Each task-level `README.md` should be a reviewable experiment record, not a plac
 
 If a requested second environment, such as a native Linux server, is unavailable, state that explicitly in the README.
 
+For timing, accounting, or performance-estimation tasks, also include:
+
+- The measurement method and baseline subtraction approach when used
+- The start and stop boundaries for each timestamp or counter
+- The main estimate or ratio reported to the user
+- Plausible error sources such as timer granularity, cache warmup, QEMU translation effects, or host scheduling jitter
+
 ## Artifact & Ignore Rules
 
 Keep generated review artifacts under a task-local `artifacts/` directory. Text logs, hexdumps, symbol dumps, and similar review evidence may be committed when they are required for verification.
+
+For runtime-sensitive or low-level tasks, the default artifact set should usually include:
+
+- `artifacts/build_output.txt`
+- `artifacts/run_output.txt`
+- `artifacts/run_output_repeat.txt`
+- `artifacts/*objdump*.txt` or `artifacts/*nm*.txt` when trap paths, context save/restore, or symbol placement matter
+- `artifacts/tool_versions.txt` when toolchain or QEMU version meaningfully affects reproduction
 
 Do not commit transient build outputs unless a task explicitly requires them as evidence. In particular:
 
@@ -113,6 +141,8 @@ Keep new code warning-free:
 
 Prefer straightforward, reviewable code over cleverness. When working in bare-metal Rust, keep unsafe blocks narrow and tied to the hardware or trap mechanism being exercised.
 
+Kernel diagnostics used for verification should be readable and bounded. Prefer explicit enable flags, counters, or capped logging over unbounded printk-style output that can drown out acceptance evidence.
+
 ## Commit Guidelines
 
 Follow the existing Git history style: short, imperative commit subjects scoped to one lab increment or one environment change, for example:
@@ -121,3 +151,11 @@ Follow the existing Git history style: short, imperative commit subjects scoped 
 - `Add LAB2 kernel task3 completion timing`
 
 Keep each commit focused. In PRs or handoff notes, include the relevant build commands, verification commands, and artifact paths.
+
+Before final handoff, verify that:
+
+- `git status --short` only shows the intended task files and any necessary `.gitignore` updates
+- the final response names the key files changed
+- the final response reports the main observed or measured result
+- the final response includes the commit hash when a commit was created
+- the final response mentions any remaining unrelated worktree state
