@@ -1,0 +1,20 @@
+[kernel] booted in S-mode with Sv39 enabled
+[kernel] LAB4 kernel task1 single page-table mechanism
+[kernel] isolation policy: one shared root page table, kernel leaves keep U=0, user text/data/stack leaves set U=1
+[kernel] satp(root)=0x8000000000080009 root_pa=0x80009000
+[kernel] windows: kernel_identity=[0x80000000, 0x81000000) user=[0x400000, 0x403000)
+[kernel] user pages: code_pa=0x80007000 data_pa=0x80008000 stack_pa=0x8000a000 copied_program=86 bytes
+[pt] kernel_probe va=0x80000000 vpn=(2,0,0) level=L1-2M root_pte=0x0000000020003801 l1_pte=0x00000000200000cf l0_pte=0x0000000000000000 leaf_pte=0x00000000200000cf leaf_pa=0x80000000 flags=VRWX--AD
+[pt] user_text va=0x400000 vpn=(0,2,0) level=L0-4K root_pte=0x0000000020003001 l1_pte=0x0000000020003401 l0_pte=0x0000000020001c5b leaf_pte=0x0000000020001c5b leaf_pa=0x80007000 flags=VR-XU-A-
+[pt] user_data va=0x401000 vpn=(0,2,1) level=L0-4K root_pte=0x0000000020003001 l1_pte=0x0000000020003401 l0_pte=0x00000000200020d7 leaf_pte=0x00000000200020d7 leaf_pa=0x80008000 flags=VRW-U-AD
+[pt] user_stack va=0x402000 vpn=(0,2,2) level=L0-4K root_pte=0x0000000020003001 l1_pte=0x0000000020003401 l0_pte=0x00000000200028d7 leaf_pte=0x00000000200028d7 leaf_pa=0x8000a000 flags=VRW-U-AD
+[kernel] entering U-mode probe at user_text=0x400000 with user_sp=0x403000
+[kernel] trapped user fault: scause=0xd sepc=0x40002c stval=0x80000000 satp=0x8000000000080009
+[kernel] user evidence: seed=0x1122334455667788 readback=0x1122334455667788 stack_echo=0x1122334455667788 stage=0xfeedface00000001 unexpected_kernel_value=0x0000000000000000 unexpected_syscall=0x0000000000000000
+[pt] kernel_probe va=0x80000000 vpn=(2,0,0) level=L1-2M root_pte=0x0000000020003801 l1_pte=0x00000000200000cf l0_pte=0x0000000000000000 leaf_pte=0x00000000200000cf leaf_pa=0x80000000 flags=VRWX--AD
+[pt] user_text va=0x400000 vpn=(0,2,0) level=L0-4K root_pte=0x0000000020003001 l1_pte=0x0000000020003401 l0_pte=0x0000000020001c5b leaf_pte=0x0000000020001c5b leaf_pa=0x80007000 flags=VR-XU-A-
+[pt] user_data va=0x401000 vpn=(0,2,1) level=L0-4K root_pte=0x0000000020003001 l1_pte=0x0000000020003401 l0_pte=0x00000000200020d7 leaf_pte=0x00000000200020d7 leaf_pa=0x80008000 flags=VRW-U-AD
+[pt] user_stack va=0x402000 vpn=(0,2,2) level=L0-4K root_pte=0x0000000020003001 l1_pte=0x0000000020003401 l0_pte=0x00000000200028d7 leaf_pte=0x00000000200028d7 leaf_pa=0x8000a000 flags=VRW-U-AD
+[kernel] acceptance same multi-level root contains kernel and user mappings: PASS
+[kernel] acceptance kernel leaves clear U and user leaves set U: PASS
+[kernel] acceptance user kernel-probe load trapped as delegated load page fault: PASS
