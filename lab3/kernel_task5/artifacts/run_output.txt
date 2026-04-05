@@ -1,0 +1,26 @@
+[kernel] booted in S-mode
+[kernel] LAB3 kernel task5 kernel threads with preemptive switching
+[kernel] timer source: mtime=0x200bff8, mtimecmp=0x2004000, frequency=10000000 Hz, 1 tick=100 ns
+[kernel] scheduler: independent S-mode kernel-task round-robin queue, no U-mode tasks
+[kernel] time slice=12000 ticks (1200 us), target_preempt_switches=18
+[kernel] task[0]: id=1 name=recycler_daemon role=background_reclaimer mode=S-only address_space=kernel-only u_stack=none kernel_stack_top=0x8000d930
+[kernel] task[1]: id=2 name=logger_daemon role=log_flusher mode=S-only address_space=kernel-only u_stack=none kernel_stack_top=0x80011930
+[sched] switch#01 reason=timer_preempt from=1(recycler_daemon) saved_sepc=0x80001a6e -> to=2(logger_daemon) next_sepc=0x80001928
+[sched] switch#02 reason=timer_preempt from=2(logger_daemon) saved_sepc=0x80001928 -> to=1(recycler_daemon) next_sepc=0x80001a6e
+[kthread] start id=1 name=recycler_daemon mode=S-only stack_top=0x8000d930
+[sched] switch#03 reason=timer_preempt from=1(recycler_daemon) saved_sepc=0x80001b8e -> to=2(logger_daemon) next_sepc=0x80001928
+[kthread] start id=2 name=logger_daemon mode=S-only stack_top=0x80011930
+[sched] switch#04 reason=timer_preempt from=2(logger_daemon) saved_sepc=0x80001a22 -> to=1(recycler_daemon) next_sepc=0x80001b8e
+[sched] switch#05 reason=timer_preempt from=1(recycler_daemon) saved_sepc=0x80001b5a -> to=2(logger_daemon) next_sepc=0x80001a22
+[sched] switch#06 reason=timer_preempt from=2(logger_daemon) saved_sepc=0x80001a22 -> to=1(recycler_daemon) next_sepc=0x80001b5a
+[sched] switch#07 reason=timer_preempt from=1(recycler_daemon) saved_sepc=0x800023f0 -> to=2(logger_daemon) next_sepc=0x80001a22
+[sched] switch#08 reason=timer_preempt from=2(logger_daemon) saved_sepc=0x80001a22 -> to=1(recycler_daemon) next_sepc=0x800023f0
+[sched] switch#09 reason=timer_preempt from=1(recycler_daemon) saved_sepc=0x80001b8e -> to=2(logger_daemon) next_sepc=0x80001a22
+[sched] switch#10 reason=timer_preempt from=2(logger_daemon) saved_sepc=0x800019d8 -> to=1(recycler_daemon) next_sepc=0x80001b8e
+[sched] switch logging capped after 10 timer-preempted context switches
+[kernel] summary: machine_timer_forwards=19 supervisor_timer_irqs=18 preempt_switches=18
+[kernel] task_summary[recycler_daemon]: started=yes progress=8265246259472653266 switch_ins=10 preemptions=9 kernel_stack_top=0x8000d930
+[kernel] task_summary[logger_daemon]: started=yes progress=5854435521184466307 switch_ins=9 preemptions=9 kernel_stack_top=0x80011930
+[kernel] diagnostics: last_mcause=0x8000000000000007 last_scause=0x8000000000000001 last_sepc=0x80001a22
+[kernel] acceptance kernel task exists in S-mode without U-stack: PASS
+[kernel] acceptance timer interrupt suspended kernel task and scheduled another: PASS

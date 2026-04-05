@@ -1,0 +1,139 @@
+136-80000118: 0585         	addi	a1, a1, 0x1
+137-8000011a: 0141         	addi	sp, sp, 0x10
+138-8000011c: 8082         	ret
+139-8000011e: 0000         	unimp
+140-
+141:0000000080000120 <enter_supervisor>:
+142-80000120: 34151073     	csrw	mepc, a0
+143-80000124: 300022f3     	csrr	t0, mstatus
+144-80000128: 430d         	li	t1, 0x3
+145-8000012a: 032e         	slli	t1, t1, 0xb
+146-8000012c: fff34313     	not	t1, t1
+--
+148-80000134: 4305         	li	t1, 0x1
+149-80000136: 032e         	slli	t1, t1, 0xb
+150-80000138: 0062e2b3     	or	t0, t0, t1
+151-8000013c: 30029073     	csrw	mstatus, t0
+152-80000140: 812e         	mv	sp, a1
+153:80000142: 30200073     	mret
+154-
+155:0000000080000146 <enter_kernel_task>:
+156-80000146: 8faa         	mv	t6, a0
+157-80000148: 14059073     	csrw	sscratch, a1
+158-8000014c: 0f8fb283     	ld	t0, 0xf8(t6)
+159-80000150: 14129073     	csrw	sepc, t0
+160-80000154: 100022f3     	csrr	t0, sstatus
+--
+193-800001d8: 0d0fbe03     	ld	t3, 0xd0(t6)
+194-800001dc: 0d8fbe83     	ld	t4, 0xd8(t6)
+195-800001e0: 0e0fbf03     	ld	t5, 0xe0(t6)
+196-800001e4: 0f0fb103     	ld	sp, 0xf0(t6)
+197-800001e8: 0e8fbf83     	ld	t6, 0xe8(t6)
+198:800001ec: 10200073     	sret
+199-
+200:00000000800001f0 <machine_trap_entry>:
+201-800001f0: 34011173     	csrrw	sp, mscratch, sp
+202-800001f4: 7111         	addi	sp, sp, -0x100
+203-800001f6: e006         	sd	ra, 0x0(sp)
+204-800001f8: e40e         	sd	gp, 0x8(sp)
+205-800001fa: e812         	sd	tp, 0x10(sp)
+--
+234-80000236: f996         	sd	t0, 0xf0(sp)
+235-80000238: 341022f3     	csrr	t0, mepc
+236-8000023c: fd96         	sd	t0, 0xf8(sp)
+237-8000023e: 850a         	mv	a0, sp
+238-80000240: 00001097     	auipc	ra, 0x1
+239:80000244: d28080e7     	jalr	-0x2d8(ra) <handle_machine_trap>
+240-80000248: 72ee         	ld	t0, 0xf8(sp)
+241-8000024a: 34129073     	csrw	mepc, t0
+242-8000024e: 72ce         	ld	t0, 0xf0(sp)
+243-80000250: 34029073     	csrw	mscratch, t0
+244-80000254: 6082         	ld	ra, 0x0(sp)
+--
+271-8000028a: 6eee         	ld	t4, 0xd8(sp)
+272-8000028c: 7f0e         	ld	t5, 0xe0(sp)
+273-8000028e: 7fae         	ld	t6, 0xe8(sp)
+274-80000290: 6111         	addi	sp, sp, 0x100
+275-80000292: 34011173     	csrrw	sp, mscratch, sp
+276:80000296: 30200073     	mret
+277-8000029a: 0001         	nop
+278-8000029c: 00000013     	nop
+279-
+280:00000000800002a0 <supervisor_trap_entry>:
+281-800002a0: 14011173     	csrrw	sp, sscratch, sp
+282-800002a4: 7111         	addi	sp, sp, -0x100
+283-800002a6: e006         	sd	ra, 0x0(sp)
+284-800002a8: e40e         	sd	gp, 0x8(sp)
+285-800002aa: e812         	sd	tp, 0x10(sp)
+--
+314-800002e6: f996         	sd	t0, 0xf0(sp)
+315-800002e8: 141022f3     	csrr	t0, sepc
+316-800002ec: fd96         	sd	t0, 0xf8(sp)
+317-800002ee: 850a         	mv	a0, sp
+318-800002f0: 00001097     	auipc	ra, 0x1
+319:800002f4: d84080e7     	jalr	-0x27c(ra) <handle_supervisor_trap>
+320-800002f8: 72ee         	ld	t0, 0xf8(sp)
+321-800002fa: 14129073     	csrw	sepc, t0
+322-800002fe: 72ce         	ld	t0, 0xf0(sp)
+323-80000300: 14029073     	csrw	sscratch, t0
+324-80000304: 6082         	ld	ra, 0x0(sp)
+--
+351-8000033a: 6eee         	ld	t4, 0xd8(sp)
+352-8000033c: 7f0e         	ld	t5, 0xe0(sp)
+353-8000033e: 7fae         	ld	t6, 0xe8(sp)
+354-80000340: 6111         	addi	sp, sp, 0x100
+355-80000342: 14011173     	csrrw	sp, sscratch, sp
+356:80000346: 10200073     	sret
+357-
+358-000000008000034a <__rustc::rust_begin_unwind>:
+359-8000034a: 7139         	addi	sp, sp, -0x40
+360-8000034c: fc06         	sd	ra, 0x38(sp)
+361-8000034e: e42a         	sd	a0, 0x8(sp)
+--
+1599-80000f5c: 780080e7     	jalr	0x780(ra) <core::ptr::write_volatile::h64fe0af95eb77e56>
+1600-80000f60: a009         	j	0x80000f62 <.Lpcrel_hi87+0x16>
+1601-80000f62: 10500073     	wfi
+1602-80000f66: bff5         	j	0x80000f62 <.Lpcrel_hi87+0x16>
+1603-
+1604:0000000080000f68 <handle_machine_trap>:
+1605-80000f68: 7119         	addi	sp, sp, -0x80
+1606-80000f6a: fc86         	sd	ra, 0x78(sp)
+1607-80000f6c: e82a         	sd	a0, 0x10(sp)
+1608-80000f6e: f0aa         	sd	a0, 0x60(sp)
+1609-80000f70: fffff097     	auipc	ra, 0xfffff
+--
+1707-80001064: 00003517     	auipc	a0, 0x3
+1708-80001068: 6bc50513     	addi	a0, a0, 0x6bc
+1709-8000106c: 00003097     	auipc	ra, 0x3
+1710-80001070: a96080e7     	jalr	-0x56a(ra) <core::panicking::panic_null_pointer_dereference::hbac6411af4f2e916>
+1711-
+1712:0000000080001074 <handle_supervisor_trap>:
+1713-80001074: ae010113     	addi	sp, sp, -0x520
+1714-80001078: 50113c23     	sd	ra, 0x518(sp)
+1715-8000107c: f92a         	sd	a0, 0xb0(sp)
+1716-8000107e: 4ca13423     	sd	a0, 0x4c8(sp)
+1717-80001082: fffff097     	auipc	ra, 0xfffff
+--
+2859-
+2860-0000000080001bf0 <.Lpcrel_hi196>:
+2861-80001bf0: 00000517     	auipc	a0, 0x0
+2862-80001bf4: 01050513     	addi	a0, a0, 0x10
+2863-80001bf8: ffffe097     	auipc	ra, 0xffffe
+2864:80001bfc: 528080e7     	jalr	0x528(ra) <enter_supervisor>
+2865-
+2866-0000000080001c00 <start_supervisor>:
+2867-80001c00: dc010113     	addi	sp, sp, -0x240
+2868-80001c04: 22113c23     	sd	ra, 0x238(sp)
+2869-80001c08: 00001097     	auipc	ra, 0x1
+--
+3058-80001dfa: fffff097     	auipc	ra, 0xfffff
+3059-80001dfe: fec080e7     	jalr	-0x14(ra) <lab3_kernel_task5::supervisor_trap_stack_top::h9155466d435b5730>
+3060-80001e02: 85aa         	mv	a1, a0
+3061-80001e04: 6562         	ld	a0, 0x18(sp)
+3062-80001e06: ffffe097     	auipc	ra, 0xffffe
+3063:80001e0a: 340080e7     	jalr	0x340(ra) <enter_kernel_task>
+3064-
+3065-0000000080001e0e <.Lpcrel_hi210>:
+3066-80001e0e: 00003517     	auipc	a0, 0x3
+3067-80001e12: d8a50513     	addi	a0, a0, -0x276
+3068-80001e16: 00002097     	auipc	ra, 0x2
