@@ -1,0 +1,34 @@
+[kernel] booted in S-mode with Sv39 enabled
+[kernel] LAB4 kernel task5 recursive self-mapping
+[kernel] selfmap policy: root[511] recursively points to root_pa; reserved alias index 510 exposes table pages as kernel-only leaf mappings under fixed Sv39 virtual patterns
+[kernel] satp(root)=0x800000000008000b root_pa=0x8000b000
+[kernel] selfmap addresses: root_table_va=0xffffffffffffe000 low_l1_table_va=0xffffffffc01fe000 user_l0_table_va=0x5fe000 kernel_l1_table_va=0xffffffffc05fe000 probe_va=0xffffffffffffe000
+[selfmap] root[ref=511] direct=0x0000000020002c01 via_root_table_va=0x0000000020002c01 expected=0x0000000020002c01
+[selfmap] root[alias=510] via_root_table_va=0x0000000020002cc7 flags=VRW---AD
+[pt] kernel_probe_direct va=0x80000000 vpn=(2,0,0) level=L1-2M root_pte=0x0000000020004001 l1_pte=0x00000000200000cf l0_pte=0x0000000000000000 leaf_pte=0x00000000200000cf leaf_pa=0x80000000 flags=VRWX--AD
+[pt] user_text_direct va=0x400000 vpn=(0,2,0) level=L0-4K root_pte=0x0000000020003801 l1_pte=0x0000000020003c01 l0_pte=0x000000002000245b leaf_pte=0x000000002000245b leaf_pa=0x80009000 flags=VR-XU-A-
+[pt] user_data_direct va=0x401000 vpn=(0,2,1) level=L0-4K root_pte=0x0000000020003801 l1_pte=0x0000000020003c01 l0_pte=0x00000000200028d7 leaf_pte=0x00000000200028d7 leaf_pa=0x8000a000 flags=VRW-U-AD
+[pt] user_stack_direct va=0x402000 vpn=(0,2,2) level=L0-4K root_pte=0x0000000020003801 l1_pte=0x0000000020003c01 l0_pte=0x00000000200030d7 leaf_pte=0x00000000200030d7 leaf_pa=0x8000c000 flags=VRW-U-AD
+[pt] selfmap_probe_direct va=0xffffffffffffe000 vpn=(511,511,510) level=L0-4K root_pte=0x0000000020002c01 l1_pte=0x0000000020002c01 l0_pte=0x0000000020002cc7 leaf_pte=0x0000000020002cc7 leaf_pa=0x8000b000 flags=VRW---AD
+[selfmap] kernel_probe_via_selfmap va=0x80000000 entry_vas(root=0xffffffffffffe010, l1=0xffffffffc05fe000, l0=0x0) level=L1-2M root_pte=0x0000000020004001 l1_pte=0x00000000200000cf l0_pte=0x0000000000000000 leaf_pte=0x00000000200000cf leaf_pa=0x80000000 flags=VRWX--AD
+[selfmap] user_text_via_selfmap va=0x400000 entry_vas(root=0xffffffffffffe000, l1=0xffffffffc01fe010, l0=0x5fe000) level=L0-4K root_pte=0x0000000020003801 l1_pte=0x0000000020003c01 l0_pte=0x000000002000245b leaf_pte=0x000000002000245b leaf_pa=0x80009000 flags=VR-XU-A-
+[selfmap] user_data_via_selfmap va=0x401000 entry_vas(root=0xffffffffffffe000, l1=0xffffffffc01fe010, l0=0x5fe008) level=L0-4K root_pte=0x0000000020003801 l1_pte=0x0000000020003c01 l0_pte=0x00000000200028d7 leaf_pte=0x00000000200028d7 leaf_pa=0x8000a000 flags=VRW-U-AD
+[selfmap] user_stack_via_selfmap va=0x402000 entry_vas(root=0xffffffffffffe000, l1=0xffffffffc01fe010, l0=0x5fe010) level=L0-4K root_pte=0x0000000020003801 l1_pte=0x0000000020003c01 l0_pte=0x00000000200030d7 leaf_pte=0x00000000200030d7 leaf_pa=0x8000c000 flags=VRW-U-AD
+[selfmap] selfmap_probe_via_selfmap va=0xffffffffffffe000 entry_vas(root=0xffffffffffffeff8, l1=0xffffffffffffeff8, l0=0xffffffffffffeff0) level=L0-4K root_pte=0x0000000020002c01 l1_pte=0x0000000020002c01 l0_pte=0x0000000020002cc7 leaf_pte=0x0000000020002cc7 leaf_pa=0x8000b000 flags=VRW---AD
+[kernel] direct/selfmap equality: kernel_probe=PASS user_text=PASS user_data=PASS user_stack=PASS selfmap_probe=PASS
+[kernel] entering U-mode probe at user_text=0x400000 with user_sp=0x403000
+[kernel] trapped user selfmap probe: scause=0xd sepc=0x40002a stval=0xffffffffffffe000 satp=0x800000000008000b
+[kernel] user evidence: seed=0x1122334455667788 readback=0x1122334455667788 stack_echo=0x1122334455667788 stage=0xfeedface00000005 unexpected_selfmap_value=0x0000000000000000 unexpected_syscall=0x0000000000000000
+[pt] kernel_probe_direct va=0x80000000 vpn=(2,0,0) level=L1-2M root_pte=0x0000000020004001 l1_pte=0x00000000200000cf l0_pte=0x0000000000000000 leaf_pte=0x00000000200000cf leaf_pa=0x80000000 flags=VRWX--AD
+[pt] user_text_direct va=0x400000 vpn=(0,2,0) level=L0-4K root_pte=0x0000000020003801 l1_pte=0x0000000020003c01 l0_pte=0x000000002000245b leaf_pte=0x000000002000245b leaf_pa=0x80009000 flags=VR-XU-A-
+[pt] user_data_direct va=0x401000 vpn=(0,2,1) level=L0-4K root_pte=0x0000000020003801 l1_pte=0x0000000020003c01 l0_pte=0x00000000200028d7 leaf_pte=0x00000000200028d7 leaf_pa=0x8000a000 flags=VRW-U-AD
+[pt] user_stack_direct va=0x402000 vpn=(0,2,2) level=L0-4K root_pte=0x0000000020003801 l1_pte=0x0000000020003c01 l0_pte=0x00000000200030d7 leaf_pte=0x00000000200030d7 leaf_pa=0x8000c000 flags=VRW-U-AD
+[pt] selfmap_probe_direct va=0xffffffffffffe000 vpn=(511,511,510) level=L0-4K root_pte=0x0000000020002c01 l1_pte=0x0000000020002c01 l0_pte=0x0000000020002cc7 leaf_pte=0x0000000020002cc7 leaf_pa=0x8000b000 flags=VRW---AD
+[selfmap] kernel_probe_via_selfmap va=0x80000000 entry_vas(root=0xffffffffffffe010, l1=0xffffffffc05fe000, l0=0x0) level=L1-2M root_pte=0x0000000020004001 l1_pte=0x00000000200000cf l0_pte=0x0000000000000000 leaf_pte=0x00000000200000cf leaf_pa=0x80000000 flags=VRWX--AD
+[selfmap] user_text_via_selfmap va=0x400000 entry_vas(root=0xffffffffffffe000, l1=0xffffffffc01fe010, l0=0x5fe000) level=L0-4K root_pte=0x0000000020003801 l1_pte=0x0000000020003c01 l0_pte=0x000000002000245b leaf_pte=0x000000002000245b leaf_pa=0x80009000 flags=VR-XU-A-
+[selfmap] user_data_via_selfmap va=0x401000 entry_vas(root=0xffffffffffffe000, l1=0xffffffffc01fe010, l0=0x5fe008) level=L0-4K root_pte=0x0000000020003801 l1_pte=0x0000000020003c01 l0_pte=0x00000000200028d7 leaf_pte=0x00000000200028d7 leaf_pa=0x8000a000 flags=VRW-U-AD
+[selfmap] user_stack_via_selfmap va=0x402000 entry_vas(root=0xffffffffffffe000, l1=0xffffffffc01fe010, l0=0x5fe010) level=L0-4K root_pte=0x0000000020003801 l1_pte=0x0000000020003c01 l0_pte=0x00000000200030d7 leaf_pte=0x00000000200030d7 leaf_pa=0x8000c000 flags=VRW-U-AD
+[selfmap] selfmap_probe_via_selfmap va=0xffffffffffffe000 entry_vas(root=0xffffffffffffeff8, l1=0xffffffffffffeff8, l0=0xffffffffffffeff0) level=L0-4K root_pte=0x0000000020002c01 l1_pte=0x0000000020002c01 l0_pte=0x0000000020002cc7 leaf_pte=0x0000000020002cc7 leaf_pa=0x8000b000 flags=VRW---AD
+[kernel] acceptance root[511] points to root_pa and matches recursive readback: PASS
+[kernel] acceptance fixed-pattern selfmap virtual addresses traverse root/L1/L0 entries: PASS
+[kernel] acceptance user selfmap probe is blocked by U=0 kernel-only aliases: PASS
