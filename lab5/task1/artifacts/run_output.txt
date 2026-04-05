@@ -1,0 +1,15 @@
+[info] demo=process_management_demo pid=14987 ppid=14986 exe=/root/os_experiments/lab5/task1/process_management_demo
+[nice] before=0 increment=4 nice_return=4 after=4
+[fork-parent-after-fork] pid=14987 child_pid=14988 marker_addr=0x7ffff1d84a94 marker_value=111 nice=4
+[fork-child-before-exec] pid=14988 ppid=14987 marker_addr=0x7ffff1d84a94 marker_value=222 nice=4 target=/root/os_experiments/lab5/task1/process_image_helper
+[image-helper/exec] pid=14988 pre_exec_pid=14988 same_pid=yes ppid=14987 pre_exec_ppid=14987 same_ppid=yes nice=4 pre_exec_nice=4 same_nice=yes exe=/root/os_experiments/lab5/task1/process_image_helper
+[image-helper/exec] image_replacement=confirmed
+[fork-parent-after-wait] child_pid=14988 exit_code=0
+[spawn-parent-before] pid=14987 nice=4 target=/root/os_experiments/lab5/task1/process_image_helper
+[image-helper/spawn] pid=14989 ppid=14987 expected_parent=14987 same_parent=yes nice=4 expected_nice=4 same_nice=yes exe=/root/os_experiments/lab5/task1/process_image_helper
+[image-helper/spawn] spawn_result=confirmed
+[spawn-parent-after-wait] child_pid=14989 exit_code=0
+[acceptance] nice adjusted current process priority: PASS
+[acceptance] fork created a child and exec replaced its image: PASS
+[acceptance] posix_spawn created a new process and loaded the helper image: PASS
+[done] process management demo completed successfully
