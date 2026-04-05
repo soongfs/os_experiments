@@ -1,0 +1,119 @@
+1117-80000958: 60e2         	ld	ra, 0x18(sp)
+1118-8000095a: 6105         	addi	sp, sp, 0x20
+1119-8000095c: 8082         	ret
+1120-8000095e: 0000         	unimp
+1121-
+1122:0000000080000960 <enter_task>:
+1123-80000960: 8faa         	mv	t6, a0
+1124-80000962: 34059073     	csrw	mscratch, a1
+1125-80000966: 300022f3     	csrr	t0, mstatus
+1126-8000096a: 433d         	li	t1, 0xf
+1127-8000096c: 032e         	slli	t1, t1, 0xb
+--
+1201-80000a90: 30200073     	mret
+1202-80000a94: 00000013     	nop
+1203-80000a98: 00000013     	nop
+1204-80000a9c: 00000013     	nop
+1205-
+1206:0000000080000aa0 <trap_entry>:
+1207-80000aa0: 34011173     	csrrw	sp, mscratch, sp
+1208-80000aa4: df010113     	addi	sp, sp, -0x210
+1209-80000aa8: e006         	sd	ra, 0x0(sp)
+1210-80000aaa: e40e         	sd	gp, 0x8(sp)
+1211-80000aac: e812         	sd	tp, 0x10(sp)
+--
+2541-800017de: 00004517     	auipc	a0, 0x4
+2542-800017e2: a7a50513     	addi	a0, a0, -0x586
+2543-800017e6: 00003097     	auipc	ra, 0x3
+2544-800017ea: 876080e7     	jalr	-0x78a(ra) <core::panicking::panic_null_pointer_dereference::hbac6411af4f2e916>
+2545-
+2546:00000000800017ee <lab3_task2::handle_yield::h217645506e9ce8f4>:
+2547-800017ee: b7010113     	addi	sp, sp, -0x490
+2548-800017f2: 48113423     	sd	ra, 0x488(sp)
+2549-800017f6: fc2a         	sd	a0, 0x38(sp)
+2550-800017f8: 46a13823     	sd	a0, 0x470(sp)
+2551-
+--
+3064-80001cea: f3250513     	addi	a0, a0, -0xce
+3065-80001cee: ed11         	bnez	a0, 0x80001d0a <.Lpcrel_hi138>
+3066-80001cf0: a805         	j	0x80001d20 <.Lpcrel_hi139>
+3067-80001cf2: 6522         	ld	a0, 0x8(sp)
+3068-80001cf4: 00000097     	auipc	ra, 0x0
+3069:80001cf8: afa080e7     	jalr	-0x506(ra) <lab3_task2::handle_yield::h217645506e9ce8f4>
+3070-80001cfc: a895         	j	0x80001d70 <.Lpcrel_hi143+0x10>
+3071-80001cfe: 6522         	ld	a0, 0x8(sp)
+3072-80001d00: 00000097     	auipc	ra, 0x0
+3073-80001d04: e0e080e7     	jalr	-0x1f2(ra) <lab3_task2::handle_finish::h73cfcafd5da39ba8>
+3074-80001d08: a0a5         	j	0x80001d70 <.Lpcrel_hi143+0x10>
+--
+4734-80002dfe: fffff097     	auipc	ra, 0xfffff
+4735-80002e02: 1e0080e7     	jalr	0x1e0(ra) <lab3_task2::kernel_stack_top::hb3265287fa4a9efa>
+4736-80002e06: 85aa         	mv	a1, a0
+4737-80002e08: 6522         	ld	a0, 0x8(sp)
+4738-80002e0a: ffffe097     	auipc	ra, 0xffffe
+4739:80002e0e: b56080e7     	jalr	-0x4aa(ra) <enter_task>
+4740-
+4741-0000000080002e12 <.Lpcrel_hi227>:
+4742-80002e12: 00003517     	auipc	a0, 0x3
+4743-80002e16: b7650513     	addi	a0, a0, -0x48a
+4744-80002e1a: 00001097     	auipc	ra, 0x1
+--
+5165-8000319e: e42e         	sd	a1, 0x8(sp)
+5166-800031a0: 95aa         	add	a1, a1, a0
+5167-800031a2: 0141         	addi	sp, sp, 0x10
+5168-800031a4: 8082         	ret
+5169-
+5170:00000000800031a6 <lab3_task2::syscall::invoke_syscall3::h185744c0e1fa124d>:
+5171-800031a6: 7139         	addi	sp, sp, -0x40
+5172-800031a8: e036         	sd	a3, 0x0(sp)
+5173-800031aa: 86b2         	mv	a3, a2
+5174-800031ac: 6602         	ld	a2, 0x0(sp)
+5175-800031ae: e436         	sd	a3, 0x8(sp)
+--
+5182-800031bc: f42a         	sd	a0, 0x28(sp)
+5183-800031be: f82e         	sd	a1, 0x30(sp)
+5184-800031c0: fc32         	sd	a2, 0x38(sp)
+5185-800031c2: ec2a         	sd	a0, 0x18(sp)
+5186-800031c4: 6562         	ld	a0, 0x18(sp)
+5187:800031c6: 00000073     	ecall
+5188-800031ca: ec2a         	sd	a0, 0x18(sp)
+5189-800031cc: 6562         	ld	a0, 0x18(sp)
+5190-800031ce: 6121         	addi	sp, sp, 0x40
+5191-800031d0: 8082         	ret
+5192-
+--
+5196-800031d6: 4681         	li	a3, 0x0
+5197-800031d8: 8536         	mv	a0, a3
+5198-800031da: 85b6         	mv	a1, a3
+5199-800031dc: 8636         	mv	a2, a3
+5200-800031de: 00000097     	auipc	ra, 0x0
+5201:800031e2: fc8080e7     	jalr	-0x38(ra) <lab3_task2::syscall::invoke_syscall3::h185744c0e1fa124d>
+5202-800031e6: 60a2         	ld	ra, 0x8(sp)
+5203-800031e8: 0141         	addi	sp, sp, 0x10
+5204-800031ea: 8082         	ret
+5205-
+5206-00000000800031ec <lab3_task2::syscall::finish::h59d1a0c3b0557866>:
+--
+5209-800031f0: 4509         	li	a0, 0x2
+5210-800031f2: 4681         	li	a3, 0x0
+5211-800031f4: 85b6         	mv	a1, a3
+5212-800031f6: 8636         	mv	a2, a3
+5213-800031f8: 00000097     	auipc	ra, 0x0
+5214:800031fc: fae080e7     	jalr	-0x52(ra) <lab3_task2::syscall::invoke_syscall3::h185744c0e1fa124d>
+5215-80003200: a009         	j	0x80003202 <lab3_task2::syscall::finish::h59d1a0c3b0557866+0x16>
+5216-80003202: 10500073     	wfi
+5217-80003206: bff5         	j	0x80003202 <lab3_task2::syscall::finish::h59d1a0c3b0557866+0x16>
+5218-
+5219-0000000080003208 <lab3_task2::syscall::yield_now::h0ed38d32f1f4f170>:
+--
+5222-8000320c: 4505         	li	a0, 0x1
+5223-8000320e: 4681         	li	a3, 0x0
+5224-80003210: 85b6         	mv	a1, a3
+5225-80003212: 8636         	mv	a2, a3
+5226-80003214: 00000097     	auipc	ra, 0x0
+5227:80003218: f92080e7     	jalr	-0x6e(ra) <lab3_task2::syscall::invoke_syscall3::h185744c0e1fa124d>
+5228-8000321c: 60a2         	ld	ra, 0x8(sp)
+5229-8000321e: 0141         	addi	sp, sp, 0x10
+5230-80003220: 8082         	ret
+5231-
+5232-0000000080003222 <_$LT$str$u20$as$u20$core..fmt..Display$GT$::fmt::h53474d83e2b0968b>:

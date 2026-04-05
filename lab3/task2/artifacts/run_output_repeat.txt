@@ -1,0 +1,42 @@
+[kernel] booted in M-mode
+[kernel] LAB3 task2 task-switch overhead estimator
+[kernel] time source: mtime @ 0x200bff8, frequency=10000000 Hz, 1 tick=100 ns
+[kernel] methodology: sequential noop-syscall baseline versus two-task ping-pong yield benchmark
+[kernel] rounds: 1 warm-up + 5 measured, ops/task/phase=25000
+[kernel] round#0(warm-up) starting sequential noop baseline
+[kernel] round#0(warm-up) baseline done: elapsed=470441 ticks (47044 us), hot_ops=50000, avg=940 ns/op
+[kernel] round#0(warm-up) starting ping-pong yield benchmark
+[kernel] round#0(warm-up) yield done: elapsed=1095809 ticks (109580 us), hot_ops=50000, switches=50000, extra=625368 ticks (62536 us), switch_estimate=1250 ns (1.250 us)
+[kernel] round#1 starting sequential noop baseline
+[kernel] round#1 baseline done: elapsed=479895 ticks (47989 us), hot_ops=50000, avg=959 ns/op
+[kernel] round#1 starting ping-pong yield benchmark
+[kernel] round#1 yield done: elapsed=1042414 ticks (104241 us), hot_ops=50000, switches=50000, extra=562519 ticks (56251 us), switch_estimate=1125 ns (1.125 us)
+[kernel] round#2 starting sequential noop baseline
+[kernel] round#2 baseline done: elapsed=496167 ticks (49616 us), hot_ops=50000, avg=992 ns/op
+[kernel] round#2 starting ping-pong yield benchmark
+[kernel] round#2 yield done: elapsed=1078078 ticks (107807 us), hot_ops=50000, switches=50000, extra=581911 ticks (58191 us), switch_estimate=1163 ns (1.163 us)
+[kernel] round#3 starting sequential noop baseline
+[kernel] round#3 baseline done: elapsed=469483 ticks (46948 us), hot_ops=50000, avg=938 ns/op
+[kernel] round#3 starting ping-pong yield benchmark
+[kernel] round#3 yield done: elapsed=1088315 ticks (108831 us), hot_ops=50000, switches=50000, extra=618832 ticks (61883 us), switch_estimate=1237 ns (1.237 us)
+[kernel] round#4 starting sequential noop baseline
+[kernel] round#4 baseline done: elapsed=487103 ticks (48710 us), hot_ops=50000, avg=974 ns/op
+[kernel] round#4 starting ping-pong yield benchmark
+[kernel] round#4 yield done: elapsed=1058939 ticks (105893 us), hot_ops=50000, switches=50000, extra=571836 ticks (57183 us), switch_estimate=1143 ns (1.143 us)
+[kernel] round#5 starting sequential noop baseline
+[kernel] round#5 baseline done: elapsed=498446 ticks (49844 us), hot_ops=50000, avg=996 ns/op
+[kernel] round#5 starting ping-pong yield benchmark
+[kernel] round#5 yield done: elapsed=1100007 ticks (110000 us), hot_ops=50000, switches=50000, extra=601561 ticks (60156 us), switch_estimate=1203 ns (1.203 us)
+[kernel] measured-round summary begins
+[kernel] round#1: baseline=47989 us, yield=104241 us, extra=56251 us, switches=50000, switch_estimate=1125 ns (1.125 us)
+[kernel] round#2: baseline=49616 us, yield=107807 us, extra=58191 us, switches=50000, switch_estimate=1163 ns (1.163 us)
+[kernel] round#3: baseline=46948 us, yield=108831 us, extra=61883 us, switches=50000, switch_estimate=1237 ns (1.237 us)
+[kernel] round#4: baseline=48710 us, yield=105893 us, extra=57183 us, switches=50000, switch_estimate=1143 ns (1.143 us)
+[kernel] round#5: baseline=49844 us, yield=110000 us, extra=60156 us, switches=50000, switch_estimate=1203 ns (1.203 us)
+[kernel] average baseline=48621 us, average yield=107355 us, average extra=58733 us
+[kernel] robust median single task-switch overhead = 1163 ns (1.163 us)
+[kernel] arithmetic mean switch overhead = 1174 ns (1.174 us), min=1125 ns, max=1237 ns
+[kernel] formula: (yield_total - baseline_total) / actual_switches
+[kernel] acceptance explicit per-switch estimate available: PASS
+[kernel] acceptance operation counts and switch counts are consistent: PASS
+[kernel] acceptance measured extra cost stayed positive in every measured round: PASS
