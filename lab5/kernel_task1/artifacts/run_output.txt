@@ -1,0 +1,41 @@
+[kernel] booted in M-mode
+[kernel] LAB5 kernel task1 process-switch tracing
+[kernel] timer source: mtime=0x200bff8, mtimecmp=0x2004000, frequency=10000000 Hz, 1 tick=100 ns
+[kernel] process switch trace: enabled=true, limit=12 record(s)
+[kernel] workloads: pid=1 performs 3 explicit yields, pid=2 runs 3 long compute phases for timer preemption
+[sched] boot restore_begin: to pid=1 name=yield_proc reason=boot next_mepc=0x800026fc
+[sched] switch#01 save_done: from pid=1 name=yield_proc reason=explicit_yield saved_mepc=0x80000522
+[sched] switch#01 restore_begin: to pid=2 name=timeslice_proc reason=explicit_yield next_mepc=0x8000269a
+[sched] switch#02 save_done: from pid=2 name=timeslice_proc reason=time_slice saved_mepc=0x8000269a
+[sched] switch#02 restore_begin: to pid=1 name=yield_proc reason=time_slice next_mepc=0x80000522
+[sched] switch#03 save_done: from pid=1 name=yield_proc reason=time_slice saved_mepc=0x80000780
+[sched] switch#03 restore_begin: to pid=2 name=timeslice_proc reason=time_slice next_mepc=0x8000269a
+[sched] switch#04 save_done: from pid=2 name=timeslice_proc reason=time_slice saved_mepc=0x8000207c
+[sched] switch#04 restore_begin: to pid=1 name=yield_proc reason=time_slice next_mepc=0x80000780
+[sched] switch#05 save_done: from pid=1 name=yield_proc reason=explicit_yield saved_mepc=0x80000522
+[sched] switch#05 restore_begin: to pid=2 name=timeslice_proc reason=explicit_yield next_mepc=0x8000207c
+[sched] switch#06 save_done: from pid=2 name=timeslice_proc reason=time_slice saved_mepc=0x8000207c
+[sched] switch#06 restore_begin: to pid=1 name=yield_proc reason=time_slice next_mepc=0x80000522
+[sched] switch#07 save_done: from pid=1 name=yield_proc reason=time_slice saved_mepc=0x80002048
+[sched] switch#07 restore_begin: to pid=2 name=timeslice_proc reason=time_slice next_mepc=0x8000207c
+[sched] switch#08 save_done: from pid=2 name=timeslice_proc reason=time_slice saved_mepc=0x80002048
+[sched] switch#08 restore_begin: to pid=1 name=yield_proc reason=time_slice next_mepc=0x80002048
+[sched] switch#09 save_done: from pid=1 name=yield_proc reason=explicit_yield saved_mepc=0x80000522
+[sched] switch#09 restore_begin: to pid=2 name=timeslice_proc reason=explicit_yield next_mepc=0x80002048
+[sched] switch#10 save_done: from pid=2 name=timeslice_proc reason=time_slice saved_mepc=0x80000780
+[sched] switch#10 restore_begin: to pid=1 name=yield_proc reason=time_slice next_mepc=0x80000522
+[sched] switch#11 save_done: from pid=1 name=yield_proc reason=time_slice saved_mepc=0x80002048
+[sched] switch#11 restore_begin: to pid=2 name=timeslice_proc reason=time_slice next_mepc=0x80000780
+[sched] switch#12 save_done: from pid=2 name=timeslice_proc reason=time_slice saved_mepc=0x80000780
+[sched] switch#12 restore_begin: to pid=1 name=yield_proc reason=time_slice next_mepc=0x80002048
+[sched] switch trace limit reached at 12 record(s); further switches suppressed
+[kernel] process exit: pid=1 name=yield_proc code=0xc95c2cca0aecc165
+[kernel] process exit: pid=2 name=timeslice_proc code=0x14dc072bf38e21d3
+[kernel] process switch summary begins
+[kernel] summary: total_switches=88 explicit_yield_switches=3 time_slice_switches=84 process_exit_switches=1 timer_interrupts=84
+[kernel] process result: pid=1 name=yield_proc exit_code=0xc95c2cca0aecc165
+[kernel] process result: pid=2 name=timeslice_proc exit_code=0x14dc072bf38e21d3
+[kernel] acceptance: switch logs came from scheduler/switch_to path with pid-tagged save_done + restore_begin markers
+[kernel] acceptance yield reason observed: PASS
+[kernel] acceptance time_slice reason observed: PASS
+[kernel] acceptance pid-based readable switch trace captured: PASS
