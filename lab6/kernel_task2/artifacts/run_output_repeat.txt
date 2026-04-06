@@ -1,0 +1,40 @@
+[kernel] booted in M-mode
+[kernel] LAB6 kernel task2 stat syscall support
+[kernel] fs pools: max_inodes=48 max_data_blocks=256 max_ptr_blocks=64 path_max=256
+[kernel] stat export fields: kind,size,inode_number,device_id,blocks_used,child_count,created_us,modified_us
+[config] dir_path=/meta file_path=/meta/sample.txt payload_bytes=27 invalid_path=relative/path missing_path=/missing/stat.txt
+[stat] label=directory path=/meta
+  Type: directory
+  File Size: 0
+  Inode Number: 2
+  Device ID: 0x4c360002
+  Blocks Used: 0
+  Child Count: 1
+  Mapping Level: direct
+  Created Timestamp (us): 2
+  Modified Timestamp (us): 5
+[stat] label=file path=/meta/sample.txt
+  Type: regular
+  File Size: 27
+  Inode Number: 3
+  Device ID: 0x4c360002
+  Blocks Used: 1
+  Child Count: 0
+  Mapping Level: direct
+  Created Timestamp (us): 4
+  Modified Timestamp (us): 6
+[kernel-stat] calls=5 successful_lookups=2 failed_lookups=3 successful_copyouts=2 last_inode=3 last_kind=1 last_size=27 last_error=-14
+[errors] missing_path_result=-2 invalid_path_result=-22 bad_buffer_result=-14
+[compare] file_size expected=27 actual=27 match=yes
+[compare] file_inode expected=3 actual=3 match=yes
+[compare] file_device expected=0x4c360002 actual=0x4c360002 match=yes
+[compare] dir_inode expected=2 actual=2 match=yes
+[compare] dir_device expected=0x4c360002 actual=0x4c360002 match=yes
+[timing] setup_us=1883 stat_us=409
+[acceptance] stat locates the correct inode for file and directory paths: PASS
+[acceptance] metadata is converted into user-space stat buffers correctly: PASS
+[acceptance] missing file, invalid path, and bad user buffer return expected errors: PASS
+[acceptance] kernel stat diagnostics report lookup and copyout activity: PASS
+[timing] cleanup_us=287
+[done] kernel stat syscall validation completed successfully
+[kernel] user requested shutdown with code 0
