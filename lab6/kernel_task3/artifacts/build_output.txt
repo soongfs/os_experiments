@@ -1,0 +1,2 @@
+   Compiling lab6_kernel_task3 v0.1.0 (/root/os_experiments/lab6/kernel_task3)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.15s

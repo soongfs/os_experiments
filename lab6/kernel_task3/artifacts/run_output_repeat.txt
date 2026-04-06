@@ -1,0 +1,17 @@
+[kernel] booted in M-mode
+[kernel] LAB6 kernel task3 mmap file mapping
+[kernel] fs pools: max_inodes=48 max_data_blocks=256 max_ptr_blocks=64 path_max=256
+[kernel] mmap window: addr=0x80037b50 length=4096 bytes
+[config] file_path=/mapped.bin mmap_len=4096 mmap_window=0x80037b50
+[page-fault] cause=load-access addr=0x80037b50 loaded_bytes=4096
+[mmap] returned_addr=0x80037b50 fault_elapsed_us=1081 initial_match=yes
+[flush] msync_elapsed_us=389 munmap_elapsed_us=369 msync_persisted=yes munmap_persisted=yes
+[diag] mmap_calls=1 page_faults=1 pages_loaded=1 msync_writebacks=1 munmap_writebacks=1 dirty_detections=2 last_fault_addr=0x80037b50 last_loaded_bytes=4096 last_writeback_bytes=4096
+[file-stat] inode=2 size_bytes=4096 device_id=0x4c360003 highest_level=direct
+[timing] setup_us=2190 fault_us=1081 msync_us=389 munmap_us=369
+[acceptance] mmap triggers a file-backed page fault on first access: PASS
+[acceptance] file data is loaded into the mapped physical page content: PASS
+[acceptance] dirty page changes are written back on msync or munmap: PASS
+[timing] cleanup_us=323
+[done] kernel mmap validation completed successfully
+[kernel] user requested shutdown with code 0

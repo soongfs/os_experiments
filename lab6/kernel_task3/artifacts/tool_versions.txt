@@ -1,0 +1,6 @@
+rustc 1.94.1 (e408947bf 2026-03-25)
+cargo 1.94.1 (29ea6fb6a 2026-03-24)
+riscv64gc-unknown-linux-gnu
+riscv64gc-unknown-linux-musl
+riscv64gc-unknown-none-elf (installed)
+QEMU emulator version 10.0.8 (Debian 1:10.0.8+ds-0+deb13u1+b1)
