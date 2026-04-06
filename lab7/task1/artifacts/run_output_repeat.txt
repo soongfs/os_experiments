@@ -1,0 +1,13 @@
+[config] environment=linux-native chunk_bytes=4096 iterations=4096 total_bytes=16777216
+[config] workload=repeated parent->child transfer with checksum acknowledgement
+[summary] ------------------------------------------------------------
+[demo] mechanism=pipe sync="kernel buffer + blocking read/write"
+[result] mechanism=pipe total_bytes=16777216 elapsed_ms=30.799 throughput_mib_s=519.49 expected_checksum=0xb0845c5f275d0383 actual_checksum=0xb0845c5f275d0383 status=PASS
+[demo] mechanism=shared_memory sync="shared segment + busy-wait state flag"
+[result] mechanism=shared_memory total_bytes=16777216 elapsed_ms=21.340 throughput_mib_s=749.77 expected_checksum=0xb0845c5f275d0383 actual_checksum=0xb0845c5f275d0383 status=PASS
+[demo] mechanism=semaphore sync="shared segment + blocking System V semaphores"
+[result] mechanism=semaphore total_bytes=16777216 elapsed_ms=284.198 throughput_mib_s=56.30 expected_checksum=0xb0845c5f275d0383 actual_checksum=0xb0845c5f275d0383 status=PASS
+[demo] mechanism=message_queue sync="kernel-managed typed messages"
+[result] mechanism=message_queue total_bytes=16777216 elapsed_ms=33.801 throughput_mib_s=473.36 expected_checksum=0xb0845c5f275d0383 actual_checksum=0xb0845c5f275d0383 status=PASS
+[acceptance] four mechanisms completed a verified data exchange: PASS
+[acceptance] all checksums matched expected payload stream: PASS
