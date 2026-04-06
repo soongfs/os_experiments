@@ -1,0 +1,20 @@
+[kernel] booted in M-mode
+[kernel] LAB6 kernel task1 triple-indirect inode support
+[kernel] fs model: block_size=512 direct=10 pointers_per_indirect=128 triple_limit_bytes=1082201088
+[kernel] disk inode layout: size_bytes=168 direct_offset=116 single_offset=156 double_offset=160 triple_offset=164
+[kernel] memory pools: max_inodes=32 max_data_blocks=34000 max_ptr_blocks=512
+[user] kernel-task large-file validation started in U-mode
+[inode-model] single_limit_bytes=70656 double_limit_bytes=8459264 triple_limit_bytes=1082201088
+[dense-config] path=/dense_triple.bin target_bytes=16777216 chunk_bytes=4096 over_double_bytes=8317952 over_double_ratio=1.983x
+[dense-write] bytes=16777216 duration_us=1862523 kib_per_s=8796 checksum=0x1907102902dcaba6
+[dense-stat] size_bytes=16777216 blocks_used=32768 highest_level=triple
+[dense-readback] bytes=16777216 duration_us=3934541 kib_per_s=4164 checksum=0x1907102902dcaba6 mismatches=0
+[edge-config] path=/edge_limit_sparse.bin last_double_offset=8458752 first_triple_offset=8459264 last_triple_offset=1082200576
+[edge-stat] size_bytes=1082201088 blocks_used=3 highest_level=triple efbig_result=-27
+[kernel-diag] disk_inode_size=168 direct_offset=116 single_offset=156 double_offset=160 triple_offset=164
+[kernel-diag] recursive_calls=163284 max_recursion_depth=3 triple_resolution_calls=32496 pointer_blocks_used=266 data_blocks_used=32771
+[acceptance] disk inode layout includes triple indirect slot: PASS
+[acceptance] recursive block resolution reaches triple-indirect depth: PASS
+[acceptance] user-space large-file stress and boundary tests passed: PASS
+[done] kernel triple-indirect inode validation completed successfully
+[kernel] user requested shutdown with code 0
