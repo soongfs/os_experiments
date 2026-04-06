@@ -1,0 +1,17 @@
+[kernel] booted in M-mode
+[kernel] LAB6 task1 guest large-file stress test
+[kernel] fs model: block_size=512 direct=10 pointers_per_indirect=128 triple_limit_bytes=1082201088
+[kernel] memory pools: max_inodes=32 max_data_blocks=34000 max_ptr_blocks=512
+[user] large-file test started in U-mode
+[inode-model] block_size=512 direct=10 pointers_per_indirect=128
+[inode-model] single_limit_bytes=70656 double_limit_bytes=8459264 triple_limit_bytes=1082201088
+[config] path=/triple_data.bin target_bytes=16777216 chunk_bytes=4096 over_double_bytes=8317952 over_double_ratio=1.983x
+[write] bytes=16777216 duration_us=1942862 kib_per_s=8432 checksum=0x55b7ba0cfaaa2866
+[fs-stat] size_bytes=16777216 blocks_used=32768 highest_level=triple
+[readback] bytes=16777216 duration_us=4063278 kib_per_s=4032 checksum=0x55b7ba0cfaaa2866 mismatches=0
+[acceptance] file size exceeds single and double indirect limits: PASS
+[acceptance] file data readback matches written pattern: PASS
+[acceptance] triple-indirect mapping was actually used: PASS
+[acceptance] triple-indirect theoretical capacity reported: PASS
+[done] guest large-file stress completed successfully
+[kernel] user requested shutdown with code 0

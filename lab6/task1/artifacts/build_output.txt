@@ -1,0 +1,2 @@
+   Compiling lab6_task1 v0.1.0 (/root/os_experiments/lab6/task1)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.12s
