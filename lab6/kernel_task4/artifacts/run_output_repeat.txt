@@ -1,0 +1,30 @@
+[kernel] booted in M-mode
+[kernel] LAB6 kernel task4 directory structure expansion
+[kernel] fs pools: max_inodes=48 max_data_blocks=256 max_ptr_blocks=64 path_max=256
+[config] depth=8 example_prefix=/a/b/c/d/e path_max=256
+[mkdir] depth=1 path=/a
+[mkdir] depth=2 path=/a/b
+[mkdir] depth=3 path=/a/b/c
+[mkdir] depth=4 path=/a/b/c/d
+[mkdir] depth=5 path=/a/b/c/d/e
+[mkdir] depth=6 path=/a/b/c/d/e/f
+[mkdir] depth=7 path=/a/b/c/d/e/f/g
+[mkdir] depth=8 path=/a/b/c/d/e/f/g/h
+[traverse] parent=/ child=a found=yes
+[traverse] parent=/a child=b found=yes
+[traverse] parent=/a/b child=c found=yes
+[traverse] parent=/a/b/c child=d found=yes
+[traverse] parent=/a/b/c/d child=e found=yes
+[traverse] parent=/a/b/c/d/e child=f found=yes
+[traverse] parent=/a/b/c/d/e/f child=g found=yes
+[traverse] parent=/a/b/c/d/e/f/g child=h found=yes
+[leaf-file] path=/a/b/c/d/e/f/g/h/leaf_payload.txt bytes=40 highest_level=direct readback_match=yes
+[dir-stat] path=/a/b/c/d/e/f/g/h kind=directory child_count=1 dirent_bytes=32
+[errors] existing_dir=17 missing_intermediate=2 path_too_long=36
+[kernel-diag] dir_inode_count=9 dirent_bytes_per_inode=32 resolve_calls=119 path_components_split=100 max_resolve_depth=9 dirent_reads=109 dirent_writes=9
+[summary] directories_created=8 directories_traversed=8 directories_removed=8 file_bytes=40
+[timing] create_us=8442 verify_us=7502 cleanup_us=1323
+[acceptance] directory inode stores dirents as internal directory content: PASS
+[acceptance] path resolver recursively walks slash-separated components: PASS
+[acceptance] deep directory tree create/traverse/remove and leaf file ops succeed: PASS
+[kernel] user requested shutdown with code 0
