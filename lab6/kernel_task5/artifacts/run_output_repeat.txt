@@ -1,0 +1,33 @@
+[host-disk] stage=reset-image image=/root/os_experiments/lab6/kernel_task5/artifacts/journal_disk.bin bytes=368
+[fsck] root_dirent_ok=yes home_inode_ok=yes home_checksum_ok=yes journal_clear=yes
+[kernel] booted in M-mode
+[kernel] LAB6 kernel task5 journaling and crash consistency
+[kernel] semihosting paths: disk=/root/os_experiments/lab6/kernel_task5/artifacts/journal_disk.bin mode=/root/os_experiments/lab6/kernel_task5/artifacts/mode.txt
+[kernel] file payload capacity=128 bytes
+[config] boot_mode=reset_then_crash_after_commit journal_file=/journaled.txt payload_capacity=128
+[journal] tx=1 stage=begin target=/journaled.txt
+[host-disk] stage=write-log-blocks image=/root/os_experiments/lab6/kernel_task5/artifacts/journal_disk.bin bytes=368
+[journal] tx=1 stage=write-log data_checksum=0x004ac6e54e982173
+[host-disk] stage=write-commit image=/root/os_experiments/lab6/kernel_task5/artifacts/journal_disk.bin bytes=368
+[journal] tx=1 stage=commit committed=1
+[journal] tx=1 stage=crash-inject reason=after-commit-before-home-install
+[kernel] forced crash injection after committed journal
+qemu-system-riscv64: terminating on signal 15 from pid 4 (timeout)
+[recovery] tx=1 committed_log_detected=yes action=replay
+[host-disk] stage=replay-log image=/root/os_experiments/lab6/kernel_task5/artifacts/journal_disk.bin bytes=368
+[journal] tx=1 stage=replay-log home_checksum=0x004ac6e54e982173
+[host-disk] stage=clear-log image=/root/os_experiments/lab6/kernel_task5/artifacts/journal_disk.bin bytes=368
+[journal] tx=1 stage=clear-log active=0 committed=0
+[fsck] root_dirent_ok=yes home_inode_ok=yes home_checksum_ok=yes journal_clear=yes
+[kernel] booted in M-mode
+[kernel] LAB6 kernel task5 journaling and crash consistency
+[kernel] semihosting paths: disk=/root/os_experiments/lab6/kernel_task5/artifacts/journal_disk.bin mode=/root/os_experiments/lab6/kernel_task5/artifacts/mode.txt
+[kernel] file payload capacity=128 bytes
+[config] boot_mode=recover_after_crash journal_file=/journaled.txt payload_capacity=128
+[verify] bytes=27 data_match=yes checksum=0x004ac6e54e982173 journal_active=0 journal_committed=0
+[diag] tx_begins=0 tx_commits=0 log_writes=0 commit_writes=0 home_writes=1 recovery_replays=1 crash_injections=0 fsck_passes=1 committed_logs_seen=1 last_tx_seq=1 last_home_checksum=0x004ac6e54e982173 last_error=0
+[timing] verify_us=1586
+[acceptance] all file modifications are wrapped in transactions: PASS
+[acceptance] journal blocks commit before home data installation: PASS
+[acceptance] reboot recovery replays committed logs and repairs filesystem state: PASS
+[kernel] user requested shutdown with code 0
