@@ -1,0 +1,18 @@
+[kernel] booted in S-mode with Sv39 enabled
+[kernel] LAB7 kernel task1 shared memory mapping
+[kernel] stack tops kernel=0x80023010 supervisor=0x8002b010 machine=0x8002f010
+[kernel] initial shared target VA parent=0x402000 child=0x405000
+[kernel] user stack range base=0x403000 top=0x404000
+[kernel] shared region 0 created pa=0x8000b000
+[kernel] pid=0 mapped shared handle=0 va=0x402000 pa=0x8000b000 refcount=2
+[pt] shared_map pid=0 va=0x402000 vpn=(0,2,2) level=L0-4K root_pte=0x0000000020005001 l1_pte=0x0000000020005c01 l0_pte=0x0000000020002cd7 leaf_pte=0x0000000020002cd7 leaf_pa=0x8000b000 flags=VRW-U-AD-
+[kernel] fork complete
+[kernel] pid=1 mapped shared handle=0 va=0x405000 pa=0x8000b000 refcount=3
+[pt] shared_map pid=1 va=0x405000 vpn=(0,2,5) level=L0-4K root_pte=0x0000000020005401 l1_pte=0x0000000020006001 l0_pte=0x0000000020002cd7 leaf_pte=0x0000000020002cd7 leaf_pa=0x8000b000 flags=VRW-U-AD-
+[kernel] report pid=1 first=0x1111222233334444 second=0x0c0ffee000000001 third=0x0000000000000000
+[kernel] report pid=0 first=0x1111222233334444 second=0x0c0ffee000000001 third=0x0c0ffee000000001
+[kernel] final shared page parent_pa=0x8000b000 child_pa=0x8000b000 parent_val=0x0c0ffee000000001 child_val=0x0c0ffee000000001 refcount=3
+[pt] parent_final pid=0 va=0x402000 vpn=(0,2,2) level=L0-4K root_pte=0x0000000020005001 l1_pte=0x0000000020005c01 l0_pte=0x0000000020002cd7 leaf_pte=0x0000000020002cd7 leaf_pa=0x8000b000 flags=VRW-U-AD-
+[pt] child_final pid=1 va=0x405000 vpn=(0,2,5) level=L0-4K root_pte=0x0000000020005401 l1_pte=0x0000000020006001 l0_pte=0x0000000020002cd7 leaf_pte=0x0000000020002cd7 leaf_pa=0x8000b000 flags=VRW-U-AD-
+[kernel] acceptance kernel-owned shared region is created and mapped into both processes: PASS
+[kernel] acceptance A writes X and B immediately reads Y from the same physical page: PASS
