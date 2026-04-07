@@ -1,0 +1,8 @@
+5
+[config] pipeline="ls | wc -l" segments=2
+[summary] segments=2 initial_fds=4 final_fds=4
+[acceptance] fork-exec pipeline succeeded segments=2 status=0
+# LAB7 用户态 Task3：简易 shell 与管道支持
+[config] pipeline="cat < README.md | head -n 1" segments=2
+[summary] segments=2 initial_fds=4 final_fds=4
+[acceptance] fork-exec pipeline succeeded segments=2 status=0
