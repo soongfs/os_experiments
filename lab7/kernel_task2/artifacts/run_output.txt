@@ -1,0 +1,19 @@
+[kernel] booted in S-mode with Sv39 enabled
+[kernel] LAB7 kernel task2 signal delivery and sigreturn
+[kernel] model: receiver pid=0 registers SIGUSR1 handler, sender pid=1 marks pending signal, kernel rewrites trap frame before returning to user
+[kernel] expected user symbols: handler=0x40005e resume=0x400022 trampoline=0x40007c
+[pt] receiver_text pid=0 va=0x400000 vpn=(0,2,0) root_pte=0x0000000020005001 l1_pte=0x0000000020005801 l0_pte=0x0000000020002c5b leaf_pa=0x8000b000 flags=VR-XUA-
+[pt] receiver_data pid=0 va=0x401000 vpn=(0,2,1) root_pte=0x0000000020005001 l1_pte=0x0000000020005801 l0_pte=0x00000000200034d7 leaf_pa=0x8000d000 flags=VRW-UAD
+[pt] receiver_stack pid=0 va=0x403000 vpn=(0,2,3) root_pte=0x0000000020005001 l1_pte=0x0000000020005801 l0_pte=0x00000000200044d7 leaf_pa=0x80011000 flags=VRW-UAD
+[kernel] sigaction pid=0 signum=10 handler=0x40005e
+[kernel] kill sender_pid=1 target_pid=0 signum=10 pending_mask=0x400
+[kernel] dispatch signal pid=0 signum=10 saved_epc=0x400022 saved_sp=0x404000 handler_epc=0x40005e new_sp=0x403ff0 trampoline=0x40007c
+[kernel] handler report pid=0 state=2 signum=10 sp=0x403ff0 ra=0x40007c
+[kernel] sigreturn pid=0 stacked_ra=0x40007c stacked_epc=0x400022 restore_epc=0x400022 restore_sp=0x404000
+[kernel] main report pid=0 seen_state=2 final_state=3 signum=10
+[kernel] final signal stats: registrations=1 pending_marks=1 dispatches=1 sigreturns=1
+[kernel] context rewrite saved_epc=0x400022 saved_sp=0x404000 handler_epc=0x40005e trampoline=0x40007c stacked_ra=0x40007c stacked_epc=0x400022 restored_epc=0x400022 restored_sp=0x404000
+[kernel] receiver report handler_runs=1 handler_state=2 main_seen_state=2 final_state=3 last_signal=10 data=3 recorded_signal=10
+[kernel] acceptance pending signal is marked then checked before user return: PASS
+[kernel] acceptance kernel rewrites user trap context and restores it via sigreturn: PASS
+[kernel] acceptance user flow runs normal -> handler -> sigreturn -> normal without crash: PASS
