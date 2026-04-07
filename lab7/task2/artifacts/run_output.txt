@@ -1,0 +1,15 @@
+[config] environment=linux-native sender_pid=4 receiver_pid=3 sigusr1_rounds=8
+[config] control=self-pipe for async-safe handoff, ack-pipe to avoid coalescing races
+[receiver] event=SIGUSR1 handled_usr1=1 handler_visible_count=1 shared_total=1 status=processed
+[receiver] event=SIGUSR1 handled_usr1=2 handler_visible_count=2 shared_total=2 status=processed
+[receiver] event=SIGUSR1 handled_usr1=3 handler_visible_count=3 shared_total=3 status=processed
+[receiver] event=SIGUSR1 handled_usr1=4 handler_visible_count=4 shared_total=4 status=processed
+[receiver] event=SIGUSR1 handled_usr1=5 handler_visible_count=5 shared_total=5 status=processed
+[receiver] event=SIGUSR1 handled_usr1=6 handler_visible_count=6 shared_total=6 status=processed
+[receiver] event=SIGUSR1 handled_usr1=7 handler_visible_count=7 shared_total=7 status=processed
+[receiver] event=SIGUSR1 handled_usr1=8 handler_visible_count=8 shared_total=8 status=processed
+[receiver] event=SIGUSR2 handled_usr2=1 handler_visible_count=1 action=shutdown
+[summary] handler_sigusr1=8 mainloop_sigusr1=8 handler_sigusr2=1 mainloop_sigusr2=1 shared_total=8 handler_failures=0
+[acceptance] custom SIGUSR1 handler executed and receiver observed 8 deliveries: PASS
+[acceptance] shutdown signal SIGUSR2 was captured by custom handler: PASS
+[acceptance] handler used only async-signal-safe write plus sig_atomic_t counters: PASS
